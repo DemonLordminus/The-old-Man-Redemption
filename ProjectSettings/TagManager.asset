@@ -3,19 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Green
+  - Guaiwu
+  - Enemy
+  - None
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Citiao
   - Water
   - UI
   - 
   - 
   - 
-  - 
-  - 
+  - Map
+  - Confiner
   - 
   - 
   - 

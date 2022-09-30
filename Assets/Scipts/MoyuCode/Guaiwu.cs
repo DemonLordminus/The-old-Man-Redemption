@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ItemOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class Guaiwu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     //声明起始组类
     public Transform originalParent;
@@ -26,7 +26,7 @@ public class ItemOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     {
         //初始化
         Isguaiwu=false;
-        if(eventData.pointerCurrentRaycast.gameObject.name =="citiao")//这个代码获取鼠标射线现在碰撞的物体的名字     //citiao调换位置
+        if(eventData.pointerCurrentRaycast.gameObject.layer ==3)//这个代码获取鼠标射线现在碰撞的物体的图层     //citiao调换位置
         {
             //使拖拽对象归到鼠标当前位置的框中
             transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
@@ -44,6 +44,13 @@ public class ItemOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
             transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
             GetComponent<CanvasGroup>().blocksRaycasts = true;
             return ;//退出
+        }
+        if (eventData.pointerCurrentRaycast.gameObject.tag == "None")//修复显示bug
+        {
+            transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).transform);
+            transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
+            GetComponent<CanvasGroup>().blocksRaycasts = true;
+            return;//退出
         }
         //如果空无一物并且位置错误，就直接放
         transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);

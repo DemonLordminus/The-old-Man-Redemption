@@ -35,6 +35,13 @@ public class Green : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHan
             GetComponent<CanvasGroup>().blocksRaycasts = true;
             return;
         }
+        if (eventData.pointerCurrentRaycast.gameObject.tag == "None")//ÐÞ¸´ÏÔÊ¾bug
+        {
+            transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).transform);
+            transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
+            GetComponent<CanvasGroup>().blocksRaycasts = true;
+            return;//ÍË³ö
+        }
         transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
         transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
