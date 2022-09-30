@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     GameObject IfGreen;
     GameObject IfGuaiwu;
     //声明两个判断变量
-    bool Green = true;
-    bool Guaiwu = true;
+    public bool Green ;
+    public bool Guaiwu ;
     //声明一个游戏对象
     GameObject playobject;
     //声明速度变量
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     Vector2 lookdirection = new Vector2(1, 0);
     Vector2 lookdirection1 = new Vector2(-1, 0);
     //声明随机量
-    int x;
+    int x ;
     //计时器
     float Timer;
     //声明位置
@@ -32,11 +32,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        x = Random.Range(-1, 2);
         //分别获取游戏对象
+        x = Random.Range(-1, 2);
         playobject = GameObject.Find("Sprite-0003");
-        IfGreen = GameObject.FindWithTag("Green");
-        IfGuaiwu = GameObject.FindWithTag("Guaiwu");
         //获取刚性
         Rigidbody2D = GetComponent<Rigidbody2D>();
     }
@@ -53,8 +51,15 @@ public class PlayerController : MonoBehaviour
             Rigidbody2D.velocity = new Vector2(Rigidbody2D.velocity.x, jumpVelocity * Time.deltaTime);
         }
         //给两个判断获取值
-        Green = IfGreen.GetComponent<ItemOnDrag1>().Isgreen;
-        Guaiwu = IfGuaiwu.GetComponent<ItemOnDrag>().Isguaiwu;
+        try
+        {
+            IfGreen = GameObject.FindWithTag("Green");
+            IfGuaiwu = GameObject.FindWithTag("Guaiwu");
+            Green =IfGreen.GetComponent<Green>().Isgreen;
+            Guaiwu = IfGuaiwu.GetComponent<Guaiwu>().Isguaiwu;
+        }
+        catch
+        { }
         if (Green && Guaiwu)//两个同时成立
         {
             //趋向物体移动
