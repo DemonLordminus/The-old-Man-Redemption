@@ -15,7 +15,9 @@ public class PlayerController : MonoBehaviour
     //声明一个游戏对象
     GameObject playobject;
     //声明速度变量
-    public float speed;
+    public float maxspeed;
+    public float currentspeed;
+    public bool isRun;
     //声明跳跃力度
     public float jumpVelocity = 0.5f;
     //声明刚性对象
@@ -32,9 +34,13 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CurrentHealthy = MaxHealthy;
+        CurrentSp=MaxSp;
+        currentspeed=maxspeed;
+        isRun=true;
         //分别获取游戏对象
         x = Random.Range(-1, 2);
-        playobject = GameObject.Find("Sprite-0003");
+        playobject = GameObject.FindWithTag("Enemy");
         //获取刚性
         Rigidbody2D = GetComponent<Rigidbody2D>();
     }
@@ -42,6 +48,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //切换速度
+        if (CurrentSp > MaxSp / 10&& isRun)
+        {
+            currentspeed = maxspeed;
+            ChangeSp(-1);
+        }
+        else
+        {
+            currentspeed = maxspeed / 2;
+            ChangeSp(3);
+            isRun=false;
+        }
         //发出射线判断左右1f内是否存在图层为“Map”的对象
         RaycastHit2D hit = Physics2D.Raycast(Rigidbody2D.position + Vector2.up * 0.2f, lookdirection,1f, LayerMask.GetMask("Map"));
         RaycastHit2D hit1 = Physics2D.Raycast(Rigidbody2D.position + Vector2.up * 0.2f, lookdirection1, 1f, LayerMask.GetMask("Map"));
@@ -60,10 +78,30 @@ public class PlayerController : MonoBehaviour
         }
         catch
         { }
+        
         if (Green && Guaiwu)//两个同时成立
         {
-            //趋向物体移动
-            transform.position = Vector2.MoveTowards(transform.position, playobject.transform.position, speed * Time.deltaTime);
+            try
+            {
+                //趋向物体移动
+                transform.position = Vector2.MoveTowards(transform.position, playobject.transform.position, currentspeed* Time.deltaTime);
+            }
+            catch 
+            {
+                Move(x);
+                //计时器
+                Timer -= Time.fixedDeltaTime;
+                if (Timer <= 0)
+                {
+                    //初始化
+                    x = Random.Range(-1, 2);
+                    Timer = 1.5f;
+                    if (CurrentSp == MaxSp && isRun==false)
+                    {
+                        isRun = true;
+                    }
+                }
+            }
         }
         else
         {
@@ -76,6 +114,10 @@ public class PlayerController : MonoBehaviour
                 //初始化
                 x = Random.Range(-1, 2);
                 Timer = 1.5f;
+                if (CurrentSp == MaxSp && isRun == false)
+                {
+                    isRun = true;
+                }
             }
 
         }
@@ -86,8 +128,30 @@ public class PlayerController : MonoBehaviour
     {
         //获取当前对象所在位置
         Vector2 position = transform.position;
-        position.x = position.x + speed * i * Time.fixedDeltaTime;
+        position.x = position.x + currentspeed * i * Time.fixedDeltaTime;
         Rigidbody2D.position = position;
+    }
+    #endregion
+
+    #region 数值系统
+    public float MaxHealthy;
+    public float CurrentHealthy;
+    public float Wealthy;
+    public float MaxSp;
+    public float CurrentSp;
+    public float HappinessIndex;
+
+    
+    public void ChangeHealth(int amount)
+    {
+        CurrentHealthy = Mathf.Clamp(CurrentHealthy + amount, 0, MaxHealthy);
+        HealthyBarManager.Instance.SetValue(CurrentHealthy / (float)MaxHealthy);
+    }
+
+    public void ChangeSp(int amount)
+    {
+        CurrentSp = Mathf.Clamp(CurrentSp + amount, 0, MaxSp);
+        SpBarManager.Instance.SetValue(CurrentSp / (float)MaxSp);
     }
     #endregion
 }
