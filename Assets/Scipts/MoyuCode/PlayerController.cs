@@ -1,19 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.TextCore.LowLevel;
 
 public class PlayerController : MonoBehaviour
 {
-    #region 实现随机移动即寻怪
-    //声明空的游戏对象
-    GameObject IfGreen;
-    GameObject IfGuaiwu;
-    //声明两个判断变量
-    public bool Green ;
-    public bool Guaiwu ;
-    //声明一个游戏对象
-    GameObject playobject;
+    #region  移动
+
     //声明速度变量
     public float maxspeed;
     public float currentspeed;
@@ -24,9 +18,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D Rigidbody2D;
     //获取左右方向
     Vector2 lookdirection = new Vector2(1, 0);
-    Vector2 lookdirection1 = new Vector2(-1, 0);
     //声明随机量
-    int x ;
+    int x;
     //计时器
     float Timer;
     //声明位置
@@ -35,12 +28,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         CurrentHealthy = MaxHealthy;
-        CurrentSp=MaxSp;
-        currentspeed=maxspeed;
-        isRun=true;
+        CurrentSp = MaxSp;
+        currentspeed = maxspeed;
+        isRun = true;
         //分别获取游戏对象
-        x = Random.Range(-1, 2);
-        playobject = GameObject.FindWithTag("Enemy");
+        x = Random.Range(0, 2);
         //获取刚性
         Rigidbody2D = GetComponent<Rigidbody2D>();
     }
@@ -61,7 +53,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //切换速度
-        if (CurrentSp > MaxSp / 10&& isRun)
+        if (CurrentSp > MaxSp / 10 && isRun)
         {
             currentspeed = maxspeed;
             ChangeSp(-1);
@@ -70,68 +62,18 @@ public class PlayerController : MonoBehaviour
         {
             currentspeed = maxspeed / 2;
             ChangeSp(2);
-            isRun=false;
+            isRun = false;
         }
-        //发出射线判断左右1f内是否存在图层为“Map”的对象
-        RaycastHit2D hit = Physics2D.Raycast(Rigidbody2D.position + Vector2.up * 0.2f, lookdirection,1f, LayerMask.GetMask("Map"));
-        RaycastHit2D hit1 = Physics2D.Raycast(Rigidbody2D.position + Vector2.up * 0.2f, lookdirection1, 1f, LayerMask.GetMask("Map"));
-        if (hit.collider != null||hit1.collider !=null)//左右任一有阻挡就跳跃
+        Move(x);
+        //计时器
+        Timer -= Time.fixedDeltaTime;
+        if (Timer <= 0)
         {
-            //施加力使之完成跳跃
-            Rigidbody2D.velocity = new Vector2(Rigidbody2D.velocity.x, jumpVelocity * Time.deltaTime);
-        }
-        //给两个判断获取值
-        try
-        {
-            IfGreen = GameObject.FindWithTag("Green");
-            IfGuaiwu = GameObject.FindWithTag("Guaiwu");
-            Green =IfGreen.GetComponent<Green>().Isgreen;
-            Guaiwu = IfGuaiwu.GetComponent<Guaiwu>().Isguaiwu;
-        }
-        catch
-        { }
-        
-        if (Green && Guaiwu)//两个同时成立
-        {
-            try
-            {
-                //趋向物体移动
-                transform.position = Vector2.MoveTowards(transform.position, playobject.transform.position, currentspeed* Time.deltaTime);
-                Timer -= Time.fixedDeltaTime;
-                if (Timer <= 0)
-                {
-                    //初始化
-                    Timer = 1.5f;
-                    NewSpeed();
-                }
-            }
-            catch 
-            {
-                Move(x);
-                //计时器
-                Timer -= Time.fixedDeltaTime;
-                if (Timer <= 0)
-                {
-                    //初始化
-                    x = Random.Range(-1, 2);
-                    Timer = 1.5f;
-                    NewSpeed();
-                }
-            }
-        }
-        else
-        {
-            //调用Move这个方法
-            Move(x);
-            //计时器
-            Timer -= Time.fixedDeltaTime;
-            if (Timer <= 0)
-            {
-                //初始化
-                x = Random.Range(-1, 2);
-                Timer = 1.5f;
-                NewSpeed();
-            }
+            //初始化
+            x = Random.Range(0, 2);
+            Timer = 1.5f;
+            NewSpeed();
+
 
         }
 
@@ -139,10 +81,27 @@ public class PlayerController : MonoBehaviour
     //移动
     public void Move(int i)
     {
-        //获取当前对象所在位置
-        Vector2 position = transform.position;
-        position.x = position.x + currentspeed * i * Time.fixedDeltaTime;
-        Rigidbody2D.position = position;
+        if (i == 0)
+        {
+            //获取当前对象所在位置
+            Vector2 position = transform.position;
+            position.x = position.x + currentspeed * i * Time.fixedDeltaTime;
+            Rigidbody2D.position = position;
+        }
+        else
+        {
+            //发出射线判断左右1f内是否存在图层为“Map”的对象
+            RaycastHit2D hit = Physics2D.Raycast(Rigidbody2D.position + Vector2.up * 0.2f, lookdirection, 1f, LayerMask.GetMask("Map"));
+            if (hit.collider != null)//左右任一有阻挡就跳跃
+            {
+                //施加力使之完成跳跃
+                Rigidbody2D.velocity = new Vector2(Rigidbody2D.velocity.x, jumpVelocity * Time.deltaTime);
+            }
+            //获取当前对象所在位置
+            Vector2 position = transform.position;
+            position.x = position.x + currentspeed * i * Time.fixedDeltaTime;
+            Rigidbody2D.position = position;
+        }
     }
     #endregion
 
@@ -154,7 +113,7 @@ public class PlayerController : MonoBehaviour
     public float CurrentSp;
     public float HappinessIndex;
 
-    
+
     public void ChangeHealth(int amount)
     {
         CurrentHealthy = Mathf.Clamp(CurrentHealthy + amount, 0, MaxHealthy);
@@ -175,7 +134,7 @@ public class PlayerController : MonoBehaviour
 
     void OpenMyBag()
     {
-        if(Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             isOpean = !isOpean;
             myBar.SetActive(isOpean);
