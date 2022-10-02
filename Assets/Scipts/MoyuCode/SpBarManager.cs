@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SpBarManager : MonoBehaviour
 {
-    //创建公有静态,获取当前血条本身
+    //创建公有静态,获取当前体力条本身
     public static SpBarManager Instance { get; private set; }
     public Image mask;
     float originalSize;

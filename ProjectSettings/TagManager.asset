@@ -8,6 +8,7 @@ TagManager:
   - Guaiwu
   - Enemy
   - None
+  - Medicine
   layers:
   - Default
   - TransparentFX

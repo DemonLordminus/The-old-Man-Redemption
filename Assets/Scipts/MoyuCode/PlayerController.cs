@@ -46,6 +46,18 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
+    private void Update()
+    {
+        OpenMyBag();
+    }
+    //初始化速度
+    void NewSpeed()
+    {
+        if (CurrentSp == MaxSp && isRun == false)
+        {
+            isRun = true;
+        }
+    }
     void FixedUpdate()
     {
         //切换速度
@@ -57,7 +69,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             currentspeed = maxspeed / 2;
-            ChangeSp(3);
+            ChangeSp(2);
             isRun=false;
         }
         //发出射线判断左右1f内是否存在图层为“Map”的对象
@@ -85,6 +97,13 @@ public class PlayerController : MonoBehaviour
             {
                 //趋向物体移动
                 transform.position = Vector2.MoveTowards(transform.position, playobject.transform.position, currentspeed* Time.deltaTime);
+                Timer -= Time.fixedDeltaTime;
+                if (Timer <= 0)
+                {
+                    //初始化
+                    Timer = 1.5f;
+                    NewSpeed();
+                }
             }
             catch 
             {
@@ -96,10 +115,7 @@ public class PlayerController : MonoBehaviour
                     //初始化
                     x = Random.Range(-1, 2);
                     Timer = 1.5f;
-                    if (CurrentSp == MaxSp && isRun==false)
-                    {
-                        isRun = true;
-                    }
+                    NewSpeed();
                 }
             }
         }
@@ -114,10 +130,7 @@ public class PlayerController : MonoBehaviour
                 //初始化
                 x = Random.Range(-1, 2);
                 Timer = 1.5f;
-                if (CurrentSp == MaxSp && isRun == false)
-                {
-                    isRun = true;
-                }
+                NewSpeed();
             }
 
         }
@@ -152,6 +165,23 @@ public class PlayerController : MonoBehaviour
     {
         CurrentSp = Mathf.Clamp(CurrentSp + amount, 0, MaxSp);
         SpBarManager.Instance.SetValue(CurrentSp / (float)MaxSp);
+    }
+    #endregion
+
+    #region 切换UI
+    public GameObject myBar;
+    public GameObject myBag;
+    bool isOpean;
+
+    void OpenMyBag()
+    {
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            isOpean = !isOpean;
+            myBar.SetActive(isOpean);
+            myBag.SetActive(!isOpean);
+        }
+
     }
     #endregion
 }
