@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 7897941456386713902}
   - component: {fileID: 7897941456386713900}
   - component: {fileID: 6238042058898741104}
-  - component: {fileID: 3019363469756504755}
+  - component: {fileID: -9166759139159936553}
   m_Layer: 3
-  m_Name: citiao
-  m_TagString: Green
+  m_Name: "citiao-\u836F"
+  m_TagString: Yao
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   citiaoName: {fileID: 0}
   image: {fileID: 7897941456386713902}
---- !u!114 &3019363469756504755
+--- !u!114 &-9166759139159936553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,8 +114,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7897941456386713889}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b9adaad5f2ac2c4eab097e66c0e40a1, type: 3}
+  m_Script: {fileID: 11500000, guid: f3d5fcfe27a2c954db580ad52d875bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalParent: {fileID: 0}
-  Isgreen: 0

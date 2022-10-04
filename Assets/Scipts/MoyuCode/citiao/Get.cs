@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GetGreen : MonoBehaviour
+public class Get: MonoBehaviour
 {
 
 
     public Getcitiao getcitiao;
     public Inventory Inventory;
-
+    Manager manager;
     public void AddNewIten()
     {
         if(!Inventory.getcitiaos.Contains(getcitiao))

@@ -4,19 +4,19 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class EnemyController : MonoBehaviour
+public class MedicineController : MonoBehaviour
 {
-    
     private void Start()
     {
         Rigidbody2D Rigidbody2d = GetComponent<Rigidbody2D>();
+        Package.Items.Clear();
     }
     #region 碰撞
     //声明空的游戏对象
-    GameObject IfGreen;
+    GameObject IfMedicine;
     GameObject IfGuaiwu;
     //声明两个判断变量
-    public bool Green;
+    public bool Medicine;
     public bool Guaiwu;
     public bool IsTrue;
     private void OnCollisionEnter2D(Collision2D collision)
@@ -24,32 +24,40 @@ public class EnemyController : MonoBehaviour
         //给两个判断获取值
         try
         {
-            IfGreen = GameObject.FindWithTag("Green");
+            IfMedicine = GameObject.FindWithTag("Yao");
             IfGuaiwu = GameObject.FindWithTag("Guaiwu");
-            Green = IfGreen.GetComponent<Green>().Isgreen;
+            Medicine=IfMedicine.GetComponent<Medicine>();
             Guaiwu = IfGuaiwu.GetComponent<Guaiwu>().Isguaiwu;
         }
         catch
         { }
-        PlayerController playerController =collision.gameObject.GetComponent<PlayerController>();
-        IsTrue = Guaiwu && Green;
+        PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+        IsTrue = Guaiwu && Medicine;
         if (IsTrue)
         {
-            try
-            {
-                this.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-            }
-            catch
-            { };
-
+            this.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+            return;
         }
         if (playerController != null && !IsTrue)
         {
-            playerController.ChangeHealth(-10);
+            AddNewItem();
             Destroy(this.gameObject);
             Destroy(this.transform.parent.gameObject);
         }
     }
     #endregion
 
+    #region 获取
+    public GetItem GetItem;
+    public Package Package;
+
+    public void AddNewItem()
+    {
+        if (!Package.Items.Contains(GetItem))
+        {
+            Package.Items.Add(GetItem);
+            PackageManager.CreateNewItem(GetItem);
+        }
+    }
+    #endregion
 }

@@ -10,19 +10,39 @@ public class Manager : MonoBehaviour
 
     public Inventory inventory;
     public GameObject Grid;
-    public citiao citiaoPrefab;
+    public citiao greenPrefab;
+    public citiao medicinePrefab;
     void Awake()
     {
         if(instance != null)
             Destroy(this);
         instance = this;
+        Grid = GameObject.FindGameObjectWithTag("Grid");
     }
 
     public static void CreateNewcitiao(Getcitiao getcitiao)
     {
-        citiao newcitiao=Instantiate(instance.citiaoPrefab,instance.Grid.transform.position,Quaternion.identity);
-        newcitiao.gameObject.transform.SetParent(instance.Grid.transform);
-        newcitiao.citiaoName = getcitiao;
-        newcitiao.image.sprite=getcitiao.Image;
+        if (getcitiao.Name == "green")
+        {
+            citiao newcitiao = Instantiate(instance.greenPrefab, instance.Grid.transform.position, Quaternion.identity);
+            newcitiao.gameObject.transform.SetParent(instance.Grid.transform);
+            newcitiao.citiaoName = getcitiao;
+            newcitiao.image.sprite = getcitiao.Image;
+        }
+        if(getcitiao.Name == "medicine")
+        {
+            citiao newcitiao = Instantiate(instance.medicinePrefab, instance.Grid.transform.position, Quaternion.identity);
+            newcitiao.gameObject.transform.SetParent(instance.Grid.transform);
+            newcitiao.citiaoName = getcitiao;
+            newcitiao.image.sprite = getcitiao.Image;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (Grid.transform.childCount == 4)
+        {
+            Grid = GameObject.FindGameObjectWithTag("Grid1");
+        }
     }
 }

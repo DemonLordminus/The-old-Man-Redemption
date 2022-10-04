@@ -24,6 +24,7 @@ public class GetMedicine : MonoBehaviour
         {
             AddNewItem();
             Destroy(this.gameObject);
+            Destroy(this.transform.parent.gameObject);
         }
     }
 

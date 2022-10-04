@@ -9,6 +9,10 @@ TagManager:
   - Enemy
   - None
   - Medicine
+  - Tragger
+  - Grid
+  - Grid1
+  - Yao
   layers:
   - Default
   - TransparentFX
