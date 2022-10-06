@@ -26,36 +26,49 @@ public class Guaiwu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
     {
         //初始化
         Isguaiwu=false;
-        if(eventData.pointerCurrentRaycast.gameObject.layer ==3)//这个代码获取鼠标射线现在碰撞的物体的图层     //citiao调换位置
+        try
         {
-            //使拖拽对象归到鼠标当前位置的框中
-            transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
-            transform.position = eventData.pointerCurrentRaycast.gameObject.transform.parent.position;
-            //使原有对象返回到拖拽对象的原始位置
-            eventData.pointerCurrentRaycast.gameObject.transform.position=originalParent.position;
-            eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalParent); 
-            GetComponent<CanvasGroup>().blocksRaycasts = true;
-            return;//退出
+            if (eventData.pointerCurrentRaycast.gameObject.layer == 3)//这个代码获取鼠标射线现在碰撞的物体的图层     //citiao调换位置
+            {
+                //使拖拽对象归到鼠标当前位置的框中
+                transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
+                transform.position = eventData.pointerCurrentRaycast.gameObject.transform.parent.position;
+                //使原有对象返回到拖拽对象的原始位置
+                eventData.pointerCurrentRaycast.gameObject.transform.position = originalParent.position;
+                eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalParent);
+                GetComponent<CanvasGroup>().blocksRaycasts = true;
+                return;//退出
+            }
+            if (eventData.pointerCurrentRaycast.gameObject.tag == "TraggerNum")//定到正确位置
+            {
+                if (eventData.pointerCurrentRaycast.gameObject.name == "1")
+                { Isguaiwu = true; }
+                transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
+                transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
+                GetComponent<CanvasGroup>().blocksRaycasts = true;
+                return;//退出
+            }
+            if (eventData.pointerCurrentRaycast.gameObject.tag == "None")//修复显示bug
+            {
+                transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).transform);
+                transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
+                GetComponent<CanvasGroup>().blocksRaycasts = true;
+                return;//退出
+            }
+            if (eventData.pointerCurrentRaycast.gameObject.tag == "Grid" || eventData.pointerCurrentRaycast.gameObject.tag == "Grid1")
+            {
+                transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
+                transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
+                GetComponent<CanvasGroup>().blocksRaycasts = true;
+                return;
+            }
         }
-        if(eventData.pointerCurrentRaycast.gameObject.name=="3")//定到正确位置
-        {
-            Isguaiwu =true;
-            transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
-            transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
-            GetComponent<CanvasGroup>().blocksRaycasts = true;
-            return ;//退出
-        }
-        if (eventData.pointerCurrentRaycast.gameObject.tag == "None")//修复显示bug
-        {
-            transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).transform);
-            transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
-            GetComponent<CanvasGroup>().blocksRaycasts = true;
-            return;//退出
-        }
-        //如果空无一物并且位置错误，就直接放
-        transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
-        transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
-        GetComponent<CanvasGroup>().blocksRaycasts=true;
+        catch
+        { }
+        transform.parent = originalParent;
+        transform.position = originalParent.transform.position;
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
+
     }
     //鼠标拖拽触发
     public void OnDrag(PointerEventData eventData)

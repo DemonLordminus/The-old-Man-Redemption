@@ -13,6 +13,8 @@ TagManager:
   - Grid
   - Grid1
   - Yao
+  - Package
+  - TraggerNum
   layers:
   - Default
   - TransparentFX
@@ -25,7 +27,7 @@ TagManager:
   - 
   - Map
   - Confiner
-  - 
+  - Player
   - 
   - 
   - 

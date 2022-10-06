@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 2430102237096121428}
   - component: {fileID: 6005980853469140595}
   - component: {fileID: -9012484581268934546}
+  - component: {fileID: 7375419664490373099}
+  - component: {fileID: 6721787481182695830}
   m_Layer: 5
   m_Name: Props
-  m_TagString: Untagged
+  m_TagString: Package
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,3 +93,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: {fileID: 0}
   Image: {fileID: 6005980853469140595}
+--- !u!225 &7375419664490373099
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2375714548372599788}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &6721787481182695830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2375714548372599788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc3e8f9442b4a1240a7aec6be8a13d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originalParent: {fileID: 0}
