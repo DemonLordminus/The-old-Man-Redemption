@@ -6,5 +6,6 @@ public class GetItem : ScriptableObject
 {
     public string Name;
     public Sprite Image;
+    public int Num;
 }
 

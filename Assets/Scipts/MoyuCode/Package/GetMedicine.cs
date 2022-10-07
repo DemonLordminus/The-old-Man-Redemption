@@ -7,16 +7,19 @@ public class GetMedicine : MonoBehaviour
 {
     public GetItem GetItem;
     public Package Package;
-
     public void AddNewItem()
     {
         if (!Package.Items.Contains(GetItem))
         {
             Package.Items.Add(GetItem);
-            PackageManager.CreateNewItem(GetItem);
         }
+        else
+        {
+            GetItem.Num += 1;
+        }
+        PackageManager.RefreshItem();
     }
-
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();

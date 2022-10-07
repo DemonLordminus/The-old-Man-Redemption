@@ -7,6 +7,7 @@ public class ItemOnDrag: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
 {
     //声明起始组类
     public Transform originalParent;
+    public GetItem GetItem;
     //鼠标点击触发
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -41,7 +42,13 @@ public class ItemOnDrag: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                 if (playerController != null)
                 {
                     playerController.ChangeHealth(10);
-                    Destroy(this.gameObject);
+                    GetItem.Num -= 1;
+                    PackageManager.RefreshItem();
+                    GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    if (GetItem.Num == 0)
+                    {
+                        Destroy(this.gameObject);
+                    }
                 }
                 return;//退出
             }

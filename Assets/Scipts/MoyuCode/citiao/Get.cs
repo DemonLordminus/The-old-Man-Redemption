@@ -8,7 +8,6 @@ public class Get: MonoBehaviour
 
     public Getcitiao getcitiao;
     public Inventory Inventory;
-    Manager manager;
     public void AddNewIten()
     {
         if(!Inventory.getcitiaos.Contains(getcitiao))

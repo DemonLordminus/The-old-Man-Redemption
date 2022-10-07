@@ -9,6 +9,7 @@ public class MedicineController : MonoBehaviour
     private void Start()
     {
         Rigidbody2D Rigidbody2d = GetComponent<Rigidbody2D>();
+        GetItem.Num = 0;
         Package.Items.Clear();
     }
     #region 碰撞
@@ -19,6 +20,8 @@ public class MedicineController : MonoBehaviour
     public bool Medicine;
     public bool Guaiwu;
     public bool IsTrue;
+    public bool Isshi;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //给两个判断获取值
@@ -26,13 +29,14 @@ public class MedicineController : MonoBehaviour
         {
             IfMedicine = GameObject.FindWithTag("Yao");
             IfGuaiwu = GameObject.FindWithTag("Guaiwu");
-            Medicine=IfMedicine.GetComponent<Medicine>();
+            Medicine = IfMedicine.GetComponent<Medicine>();
             Guaiwu = IfGuaiwu.GetComponent<Guaiwu>().Isguaiwu;
+            Isshi=GameObject.FindWithTag("shi").GetComponent<Shi>().Isshi;
         }
         catch
         { }
         PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
-        IsTrue = Guaiwu && Medicine;
+        IsTrue = Guaiwu && Medicine&&Isshi;
         if (IsTrue)
         {
             this.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
@@ -56,8 +60,9 @@ public class MedicineController : MonoBehaviour
         if (!Package.Items.Contains(GetItem))
         {
             Package.Items.Add(GetItem);
-            PackageManager.CreateNewItem(GetItem);
         }
+            GetItem.Num += 1;
+        PackageManager.RefreshItem();
     }
     #endregion
 }

@@ -39,9 +39,9 @@ public class Guaiwu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
                 GetComponent<CanvasGroup>().blocksRaycasts = true;
                 return;//退出
             }
-            if (eventData.pointerCurrentRaycast.gameObject.tag == "TraggerNum")//定到正确位置
+            if (eventData.pointerCurrentRaycast.gameObject.tag == "1" || eventData.pointerCurrentRaycast.gameObject.tag == "2" || eventData.pointerCurrentRaycast.gameObject.tag == "3")//定到正确位置
             {
-                if (eventData.pointerCurrentRaycast.gameObject.name == "1")
+                if (eventData.pointerCurrentRaycast.gameObject.tag == "3")
                 { Isguaiwu = true; }
                 transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
                 transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;

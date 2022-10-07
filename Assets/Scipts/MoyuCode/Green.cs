@@ -30,9 +30,9 @@ public class Green : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHan
                 GetComponent<CanvasGroup>().blocksRaycasts = true;
                 return;
             }
-            if (eventData.pointerCurrentRaycast.gameObject.tag == "TraggerNum")
+            if (eventData.pointerCurrentRaycast.gameObject.tag == "1" || eventData.pointerCurrentRaycast.gameObject.tag == "2" || eventData.pointerCurrentRaycast.gameObject.tag == "3")//定到正确位置
             {
-                if (eventData.pointerCurrentRaycast.gameObject.name == "1")
+                if (eventData.pointerCurrentRaycast.gameObject.tag == "1")
                 { Isgreen = true; }
                 transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
                 transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;

@@ -7,4 +7,5 @@ public class Item : MonoBehaviour
 {
     public GetItem itemname;
     public Image Image;
+    public Text num;
 }

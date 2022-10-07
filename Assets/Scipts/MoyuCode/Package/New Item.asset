@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: medicine
   Image: {fileID: 21300000, guid: 7ab1da0c1213ec24c835900c12102862, type: 3}
+  Num: 2

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2583012e075b5d458b1a70516ca5ebc, type: 3}
   m_Name: new package
   m_EditorClassIdentifier: 
-  Items: []
+  Items:
+  - {fileID: 11400000, guid: bc3f56d0d7313f641b6de46349f57edc, type: 2}

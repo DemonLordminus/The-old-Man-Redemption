@@ -24,5 +24,20 @@ public class PackageManager : MonoBehaviour
         newitem.gameObject.transform.SetParent(instance.Grid.transform);
         newitem.itemname = getItem;
         newitem.Image.sprite=getItem.Image;
+        newitem.num.text=getItem.Num.ToString();
+    }
+
+    public static void RefreshItem()
+    {
+        for(int i=0;i<instance.Grid.transform.childCount;i++)
+        {
+            if (instance.Grid.transform.childCount == 0)
+                break;
+            Destroy(instance.Grid.transform.GetChild(0).gameObject);
+        }
+        for(int i=0;i<instance.Package.Items.Count;i++)
+        {
+            CreateNewItem(instance.Package.Items[i]);
+        }
     }
 }

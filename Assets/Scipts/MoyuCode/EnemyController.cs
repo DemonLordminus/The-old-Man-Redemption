@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
     public bool Green;
     public bool Guaiwu;
     public bool IsTrue;
+    public bool Isshi;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //给两个判断获取值
@@ -28,11 +29,12 @@ public class EnemyController : MonoBehaviour
             IfGuaiwu = GameObject.FindWithTag("Guaiwu");
             Green = IfGreen.GetComponent<Green>().Isgreen;
             Guaiwu = IfGuaiwu.GetComponent<Guaiwu>().Isguaiwu;
+            Isshi = GameObject.FindWithTag("shi").GetComponent<Shi>().Isshi;
         }
         catch
         { }
         PlayerController playerController =collision.gameObject.GetComponent<PlayerController>();
-        IsTrue = Guaiwu && Green;
+        IsTrue = Guaiwu && Green&Isshi;
         if (IsTrue)
         {
             try

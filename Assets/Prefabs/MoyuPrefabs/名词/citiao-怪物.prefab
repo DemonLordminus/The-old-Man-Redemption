@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6342387736226811097}
   - component: {fileID: 6342387736226811096}
   - component: {fileID: 6342387736226811099}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: "citiao-\u602A\u7269"
   m_TagString: Guaiwu
   m_Icon: {fileID: 0}
