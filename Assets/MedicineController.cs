@@ -21,22 +21,27 @@ public class MedicineController : MonoBehaviour
     public bool Guaiwu;
     public bool IsTrue;
     public bool Isshi;
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    public bool Isrun;
+    private void Update()
     {
+
         //给两个判断获取值
         try
         {
             IfMedicine = GameObject.FindWithTag("Yao");
             IfGuaiwu = GameObject.FindWithTag("Guaiwu");
-            Medicine = IfMedicine.GetComponent<Medicine>();
+            Medicine = IfMedicine.GetComponent<Medicine>().IsMedicine;
             Guaiwu = IfGuaiwu.GetComponent<Guaiwu>().Isguaiwu;
-            Isshi=GameObject.FindWithTag("shi").GetComponent<Shi>().Isshi;
+            Isshi = GameObject.FindWithTag("shi").GetComponent<Shi>().Isshi;
         }
         catch
         { }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Isrun = GameObject.FindWithTag("mailbox").GetComponent<MailBoxManager>().isrun;
         PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
-        IsTrue = Guaiwu && Medicine&&Isshi;
+        IsTrue = Guaiwu && Medicine&&Isshi&&Isrun;
         if (IsTrue)
         {
             this.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;

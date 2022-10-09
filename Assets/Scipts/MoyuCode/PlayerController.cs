@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.LowLevel;
 
@@ -53,7 +54,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //切换速度
-        if (CurrentSp > MaxSp / 10 && isRun)
+
+        if ((CurrentSp > MaxSp / 10 && isRun)&&x!=0)
         {
             currentspeed = maxspeed;
             ChangeSp(-1);
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
             ChangeSp(2);
             isRun = false;
         }
+
         Move(x);
         //计时器
         Timer -= Time.fixedDeltaTime;
@@ -144,5 +147,5 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    
+
 }

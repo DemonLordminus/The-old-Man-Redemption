@@ -19,6 +19,8 @@ TagManager:
   - 2
   - 3
   - shi
+  - mailbox
+  - button
   layers:
   - Default
   - TransparentFX
@@ -33,7 +35,7 @@ TagManager:
   - Confiner
   - Player
   - Enemy
-  - 
+  - mailbox
   - 
   - 
   - 

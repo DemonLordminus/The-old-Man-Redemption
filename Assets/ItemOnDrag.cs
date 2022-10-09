@@ -45,10 +45,8 @@ public class ItemOnDrag: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                     GetItem.Num -= 1;
                     PackageManager.RefreshItem();
                     GetComponent<CanvasGroup>().blocksRaycasts = true;
-                    if (GetItem.Num == 0)
-                    {
-                        Destroy(this.gameObject);
-                    }
+                    Destroy(this.gameObject);
+
                 }
                 return;//ÍË³ö
             }
