@@ -20,7 +20,8 @@ public class EnemyController : MonoBehaviour
     public bool Guaiwu;
     public bool IsTrue;
     public bool Isshi;
-    private void OnCollisionEnter2D(Collision2D collision)
+    public bool Isrun;
+    private void Update()
     {
         //给两个判断获取值
         try
@@ -33,8 +34,12 @@ public class EnemyController : MonoBehaviour
         }
         catch
         { }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Isrun = GameObject.FindWithTag("mailbox").GetComponent<MailBoxManager>().isrun;
         PlayerController playerController =collision.gameObject.GetComponent<PlayerController>();
-        IsTrue = Guaiwu && Green&Isshi;
+        IsTrue = Guaiwu && Green&&Isshi&& Isrun;
         if (IsTrue)
         {
             try
