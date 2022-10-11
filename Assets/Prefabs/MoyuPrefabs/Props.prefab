@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalParent: {fileID: 0}
-  GetItem: {fileID: 11400000, guid: bc3f56d0d7313f641b6de46349f57edc, type: 2}
+  GetItem: {fileID: 0}
 --- !u!1 &5448910150894615598
 GameObject:
   m_ObjectHideFlags: 0

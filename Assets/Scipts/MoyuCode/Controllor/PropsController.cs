@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MedicineController : MonoBehaviour
+public class PropsController : MonoBehaviour
 {
     private void Start()
     {
@@ -15,6 +15,7 @@ public class MedicineController : MonoBehaviour
     #region 碰撞
     //声明两个判断变量
     public bool Medicine;
+    public bool Cabinets;
     public bool Guaiwu;
     public bool IsTrue;
     public bool Isshi;
@@ -25,7 +26,8 @@ public class MedicineController : MonoBehaviour
         //给两个判断获取值
         try
         {
-            Medicine = GameObject.FindWithTag("citiao").GetComponent<CitiaoManager>().isgreen;
+            Cabinets = GameObject.FindWithTag("citiao").GetComponent<CitiaoManager>().iscabinets;
+            Medicine = GameObject.FindWithTag("citiao").GetComponent<CitiaoManager>().ismedicine;
             Guaiwu = GameObject.FindWithTag("citiao").GetComponent<CitiaoManager>().isguaiwu;
             Isshi = GameObject.FindWithTag("citiao").GetComponent<CitiaoManager>().isshi;
         }
@@ -36,7 +38,14 @@ public class MedicineController : MonoBehaviour
     {
         Isrun = GameObject.FindWithTag("mailbox").GetComponent<MailBoxManager>().isrun;
         PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
-        IsTrue = Guaiwu && Medicine&&Isshi&&Isrun;
+        switch(GetItem.Name)
+        {
+            case "medicine": IsTrue = Guaiwu && Medicine && Isshi && Isrun;
+                break;
+            case "Yaoping": IsTrue = Guaiwu && Cabinets && Isshi && Isrun;
+                break;
+                default: break;
+        }
         if (IsTrue)
         {
             this.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
@@ -45,6 +54,11 @@ public class MedicineController : MonoBehaviour
         if (playerController != null && !IsTrue)
         {
             AddNewItem();
+            if(GetItem.Name=="Yaoping")
+            {
+                this.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                return;
+            }
             Destroy(this.gameObject);
             Destroy(this.transform.parent.gameObject);
         }
@@ -59,9 +73,13 @@ public class MedicineController : MonoBehaviour
     {
         if (!Package.Items.Contains(GetItem))
         {
+            GetItem.Num = 1;
             Package.Items.Add(GetItem);
         }
+        else
+        {
             GetItem.Num += 1;
+        }
         PackageManager.RefreshItem();
     }
     #endregion

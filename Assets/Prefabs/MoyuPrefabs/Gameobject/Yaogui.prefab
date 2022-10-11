@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 7627913613569656075}
   - component: {fileID: 3199973270642189185}
   - component: {fileID: 23519859159065880}
-  - component: {fileID: 6095976610281047666}
+  - component: {fileID: 5238548695156956886}
   m_Layer: 0
   m_Name: YaoguiCollision
   m_TagString: Yaogui
@@ -212,7 +212,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.097269, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6095976610281047666
+--- !u!114 &5238548695156956886
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,6 +221,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 9048896812521362786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 250cc8e669a22a14da60c8811614ee28, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ce68e5018e5dc14d87eec95b98e23f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Medicine: 0
+  Cabinets: 0
+  Guaiwu: 0
+  IsTrue: 0
+  Isshi: 0
+  Isrun: 0
+  GetItem: {fileID: 11400000, guid: a93f90949f1b3ce45bd4905438f7e99f, type: 2}
+  Package: {fileID: 11400000, guid: f00214f0403b6df4e9ea17cc1f710764, type: 2}

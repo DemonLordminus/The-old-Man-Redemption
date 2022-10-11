@@ -14,7 +14,7 @@ public class ItemOnDrag: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         //起始所属赋值
         originalParent = transform.parent;
         //跳出所属画布
-        transform.SetParent(transform.parent.parent.parent);
+        transform.SetParent(transform.parent.parent);
         //跟随鼠标移动
         transform.position = eventData.position;
         //修改这个类的属性，阻止物理射线穿透
@@ -29,7 +29,7 @@ public class ItemOnDrag: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
             {
                 //使拖拽对象归到鼠标当前位置的框中
                 transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
-                transform.position = eventData.pointerCurrentRaycast.gameObject.transform.parent.position;
+                transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
                 //使原有对象返回到拖拽对象的原始位置
                 eventData.pointerCurrentRaycast.gameObject.transform.position = originalParent.position;
                 eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalParent);
@@ -44,9 +44,8 @@ public class ItemOnDrag: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                     playerController.ChangeHealth(10);
                     GetItem.Num -= 1;
                     PackageManager.RefreshItem();
-                    GetComponent<CanvasGroup>().blocksRaycasts = true;
                     Destroy(this.gameObject);
-
+                    GetComponent<CanvasGroup>().blocksRaycasts = true;
                 }
                 return;//退出
             }
