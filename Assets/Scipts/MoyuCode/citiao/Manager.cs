@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
-
+//词条在UI中生成
 public class Manager : MonoBehaviour
 {
+    //声明一个特有的静态字段
     static Manager instance;
-
     public Inventory inventory;
     public GameObject Grid;
     public citiao citiaoPrefab;
@@ -21,6 +21,7 @@ public class Manager : MonoBehaviour
 
     public static void CreateNewcitiao(Getcitiao getcitiao)
     {
+        //在在网格的位置生成一个词条预制件
         citiao newcitiao = Instantiate(instance.citiaoPrefab, instance.Grid.transform.position, Quaternion.identity);
         newcitiao.gameObject.transform.SetParent(instance.Grid.transform);
         newcitiao.citiaoName = getcitiao;
@@ -29,6 +30,7 @@ public class Manager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //使词条在左边满了之后在右边生成
         if (Grid.transform.childCount == 4)
         {
             Grid = GameObject.FindGameObjectWithTag("Grid1");

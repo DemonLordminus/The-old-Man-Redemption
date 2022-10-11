@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+//物品的管理器，用来获取物品
 public class PropsController : MonoBehaviour
 {
     private void Start()
@@ -13,7 +13,7 @@ public class PropsController : MonoBehaviour
         Package.Items.Clear();
     }
     #region 碰撞
-    //声明两个判断变量
+    //声明判断变量
     public bool Medicine;
     public bool Cabinets;
     public bool Guaiwu;
@@ -23,7 +23,7 @@ public class PropsController : MonoBehaviour
     private void Update()
     {
 
-        //给两个判断获取值
+        //给判断获取值
         try
         {
             Cabinets = GameObject.FindWithTag("citiao").GetComponent<CitiaoManager>().iscabinets;
@@ -36,9 +36,10 @@ public class PropsController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //判断是否接收到信
         Isrun = GameObject.FindWithTag("mailbox").GetComponent<MailBoxManager>().isrun;
         PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
-        switch(GetItem.Name)
+        switch(GetItem.Name)//根据GetItem组件中的Name属性来判断是否运行
         {
             case "medicine": IsTrue = Guaiwu && Medicine && Isshi && Isrun;
                 break;

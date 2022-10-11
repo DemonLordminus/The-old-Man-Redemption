@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
         Rigidbody2D Rigidbody2d = GetComponent<Rigidbody2D>();
     }
     #region 碰撞
-    //声明两个判断变量
+    //声明判断变量
     public bool Green;
     public bool Guaiwu;
     public bool IsTrue;
@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     public bool Isrun;
     private void Update()
     {
-        //给两个判断获取值
+        //给判断获取值
         try
         {
             Green = GameObject.FindWithTag("citiao").GetComponent<CitiaoManager>().isgreen;

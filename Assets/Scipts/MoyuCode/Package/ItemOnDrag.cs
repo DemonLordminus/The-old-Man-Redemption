@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+//背包中物品的使用，拖拽到主角上生效
 public class ItemOnDrag: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     //声明起始组类

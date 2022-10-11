@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+//血条管理器
 public class HealthyBarManager : MonoBehaviour
 {
     //创建公有静态,获取当前血条本身
