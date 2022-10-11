@@ -17,7 +17,10 @@ public class PackageManager : MonoBehaviour
             Destroy(this);
         instance = this;
     }
-
+    private void OnEnable()
+    {
+        RefreshItem();
+    }
     public static void CreateNewItem(GetItem getItem)
     {
         Item newitem = Instantiate(instance.itemPrefab, instance.Grid.transform.position, Quaternion.identity);
@@ -30,10 +33,8 @@ public class PackageManager : MonoBehaviour
     public static void RefreshItem()
     {
         for(int i=0;i<instance.Grid.transform.childCount;i++)
-        {
-            if (instance.Grid.transform.childCount == 0)
-                break;
-            Destroy(instance.Grid.transform.GetChild(0).gameObject);
+        { 
+            Destroy(instance.Grid.transform.GetChild(i).gameObject);
         }
         for(int i=0;i<instance.Package.Items.Count;i++)
         {
