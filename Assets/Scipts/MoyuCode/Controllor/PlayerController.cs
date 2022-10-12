@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.TextCore.LowLevel;
 
@@ -104,6 +105,12 @@ public class PlayerController : MonoBehaviour
     {
         CurrentHealthy = Mathf.Clamp(CurrentHealthy + amount, 0, MaxHealthy);
         HealthyBarManager.Instance.SetValue(CurrentHealthy / (float)MaxHealthy);
+        if(CurrentHealthy<=0)
+        { 
+            isDie=true;
+            Time.timeScale = 0f;
+            gameOver.SetActive(isDie);
+        }
     }
 
     public void ChangeSp(int amount)
@@ -117,7 +124,7 @@ public class PlayerController : MonoBehaviour
     public GameObject myBar;
     public GameObject myBag;
     bool isOpean;
-
+    bool isDie;
     void OpenMyBag()
     {
         if (Input.GetKeyDown(KeyCode.X))
@@ -130,5 +137,5 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-
+    public GameObject gameOver;
 }
