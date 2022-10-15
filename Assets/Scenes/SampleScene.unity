@@ -1141,6 +1141,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1482042968}
+        m_TargetAssemblyTypeName: time, Assembly-CSharp
+        m_MethodName: begin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1482042972}
+        m_TargetAssemblyTypeName: destory, Assembly-CSharp
+        m_MethodName: destoryit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &343638657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1664,11 +1688,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
-  m_LocalPosition: {x: -21.625496, y: -1.0198929, z: -10}
-=======
-  m_LocalPosition: {x: -19.594772, y: -1.0165968, z: -10}
->>>>>>> 7adffc9ab4bafcbb1c2c90c202ada8a886ede100
+  m_LocalPosition: {x: -16.52298, y: -1.0116107, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1953,7 +1973,7 @@ GameObject:
   - component: {fileID: 649655080}
   - component: {fileID: 649655079}
   m_Layer: 0
-  m_Name: xinzhi
+  m_Name: xinzhi(tishi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2553,7 +2573,7 @@ PrefabInstance:
     - target: {fileID: 7817603151117308384, guid: 98d292679bf4fda45ad5a465ed3b81e6, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: a04becfa554874c46a854f773d7f34f5, type: 2}
+      objectReference: {fileID: 9100000, guid: a93e74e0ec177a84aab65e736f581954, type: 2}
     - target: {fileID: 7976868450538457762, guid: 98d292679bf4fda45ad5a465ed3b81e6, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -2666,7 +2686,7 @@ PrefabInstance:
     - target: {fileID: 7817603151117308384, guid: 98d292679bf4fda45ad5a465ed3b81e6, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: a04becfa554874c46a854f773d7f34f5, type: 2}
+      objectReference: {fileID: 9100000, guid: a93e74e0ec177a84aab65e736f581954, type: 2}
     - target: {fileID: 7976868450538457762, guid: 98d292679bf4fda45ad5a465ed3b81e6, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -2682,8 +2702,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1076581740}
-  - component: {fileID: 1076581742}
-  - component: {fileID: 1076581741}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -2709,42 +2727,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
---- !u!95 &1076581741
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1076581739}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a93e74e0ec177a84aab65e736f581954, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &1076581742
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1076581739}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
-=======
->>>>>>> 7adffc9ab4bafcbb1c2c90c202ada8a886ede100
 --- !u!1 &1155438414
 GameObject:
   m_ObjectHideFlags: 0
@@ -3405,8 +3387,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: -23.17}
-  m_SizeDelta: {x: 399.99, y: -46.34}
+  m_AnchoredPosition: {x: 200, y: -17.1665}
+  m_SizeDelta: {x: 399.99, y: -34.3331}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1442695862
 MonoBehaviour:
@@ -3517,6 +3499,7 @@ GameObject:
   - component: {fileID: 1482042969}
   - component: {fileID: 1482042968}
   - component: {fileID: 1482042967}
+  - component: {fileID: 1482042972}
   m_Layer: 5
   m_Name: opencaidan
   m_TagString: Untagged
@@ -3675,6 +3658,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482042965}
   m_CullTransparentMesh: 1
+--- !u!114 &1482042972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482042965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f2c316834b9a274ba41dbe8855532f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xinzhi: {fileID: 649655078}
 --- !u!1 &1608666357
 GameObject:
   m_ObjectHideFlags: 0
@@ -4597,7 +4593,7 @@ Animator:
   m_GameObject: {fileID: 1916007611}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a04becfa554874c46a854f773d7f34f5, type: 2}
+  m_Controller: {fileID: 9100000, guid: a93e74e0ec177a84aab65e736f581954, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -9007,7 +9003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7652950547724771659, guid: 98d292679bf4fda45ad5a465ed3b81e6, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.000039
+      value: 1.0000392
       objectReference: {fileID: 0}
     - target: {fileID: 7652950547724771659, guid: 98d292679bf4fda45ad5a465ed3b81e6, type: 3}
       propertyPath: m_LocalPosition.x
