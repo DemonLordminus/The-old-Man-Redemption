@@ -8,6 +8,12 @@ public class ItemOnDrag: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     //声明起始组类
     public Transform originalParent;
     public GetItem GetItem;
+    public Package Package;
+    private void Start()
+    {
+        Package = GameObject.Find("UI").GetComponent<PackageManager>().Package;
+        GetItem=gameObject.GetComponent<Item>().itemname;
+    }
     //鼠标点击触发
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -41,8 +47,12 @@ public class ItemOnDrag: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                 PlayerController playerController = eventData.pointerCurrentRaycast.gameObject.GetComponent<PlayerController>();
                 if (playerController != null)
                 {
-                    playerController.ChangeHealth(10);
+                    playerController.ChangeHealth(2);
                     GetItem.Num -= 1;
+                    if(GetItem.Num==0)
+                    {
+                        Package.Items.Remove(GetItem);
+                    }
                     PackageManager.RefreshItem();
                     Destroy(this.gameObject);
                     GetComponent<CanvasGroup>().blocksRaycasts = true;
@@ -52,7 +62,7 @@ public class ItemOnDrag: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         }
         catch
         { }
-        transform.parent = originalParent;
+        transform.SetParent(originalParent);
         transform.position = originalParent.GetChild(0).position;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
