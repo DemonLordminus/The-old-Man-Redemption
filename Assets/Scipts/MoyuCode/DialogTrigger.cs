@@ -18,7 +18,7 @@ public class DialogTrigger : MonoBehaviour
         {
             Time.timeScale = 0f;
             Dialog.SetActive(true);
-            this.gameObject.GetComponent<BoxCollider2D>().isTrigger=true;
+            Destroy(this.gameObject);
         }
     }
 }

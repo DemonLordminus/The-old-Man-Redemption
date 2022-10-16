@@ -54,12 +54,17 @@ public class PropsController : MonoBehaviour
         }
         if (playerController != null && !IsTrue)
         {
-            AddNewItem();
             if(GetItem.Name=="Yaoping")
             {
                 this.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                if(collision.gameObject.GetComponent<PlayerController>().Gold > 50)
+                {
+                    AddNewItem();
+                    collision.gameObject.GetComponent<PlayerController>().Gold -= 50;
+                }
                 return;
             }
+            AddNewItem();
             Destroy(this.gameObject);
             Destroy(this.transform.parent.gameObject);
         }

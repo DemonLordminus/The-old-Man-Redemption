@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
     public float MaxSp;
     public float CurrentSp;
     public float HappinessIndex;
-
+    public float Gold;
 
     public void ChangeHealth(int amount)
     {
