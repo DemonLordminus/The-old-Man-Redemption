@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b9210afd44896e4bb165f805738fa15, type: 3}
-  m_Name: cabinets
+  m_Name: hospital
   m_EditorClassIdentifier: 
-  Name: cabinets
-  Image: {fileID: 21300000, guid: 08cb572180ed6684185216d2fecbe1db, type: 3}
+  Name: hospital
+  Image: {fileID: 21300000, guid: 4ed4e10235372874aba93dec587a6dd8, type: 3}

@@ -26,10 +26,7 @@ public class PropsController : MonoBehaviour
         //给判断获取值
         try
         {
-            Cabinets = GameObject.FindWithTag("citiao").GetComponent<CitiaoManager>().iscabinets;
-            Medicine = GameObject.FindWithTag("citiao").GetComponent<CitiaoManager>().ismedicine;
-            Guaiwu = GameObject.FindWithTag("citiao").GetComponent<CitiaoManager>().isguaiwu;
-            Isshi = GameObject.FindWithTag("citiao").GetComponent<CitiaoManager>().isshi;
+            
         }
         catch
         { }

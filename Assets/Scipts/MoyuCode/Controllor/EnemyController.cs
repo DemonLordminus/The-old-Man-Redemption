@@ -23,9 +23,7 @@ public class EnemyController : MonoBehaviour
         //给判断获取值
         try
         {
-            Green = GameObject.FindWithTag("citiao").GetComponent<CitiaoManager>().isgreen;
-            Guaiwu = GameObject.FindWithTag("citiao").GetComponent<CitiaoManager>().isguaiwu;
-            Isshi= GameObject.FindWithTag("citiao").GetComponent<CitiaoManager>().isshi;
+            
         }
         catch
         { }
