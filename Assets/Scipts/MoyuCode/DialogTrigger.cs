@@ -16,7 +16,7 @@ public class DialogTrigger : MonoBehaviour
         PlayerController collsion = GetComponent<PlayerController>();
         if(collision != null)
         {
-            Time.timeScale = 0f;
+            collision.gameObject.GetComponent<PlayerController>().isPalse=true;
             Dialog.SetActive(true);
             Destroy(this.gameObject);
         }

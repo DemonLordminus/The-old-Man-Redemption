@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5114230751547709220}
   - component: {fileID: 6350346124282911851}
   - component: {fileID: 7048700771046842490}
-  - component: {fileID: 627494973374203667}
+  - component: {fileID: 3031431745486046970}
   m_Layer: 12
   m_Name: EnemyConllision
   m_TagString: Enemy
@@ -81,7 +81,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1082834, y: 0.6419315}
   m_EdgeRadius: 0
---- !u!114 &627494973374203667
+--- !u!114 &3031431745486046970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,14 +90,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4085783858532039006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 525290c097044574cb55b837dcf5a516, type: 3}
+  m_Script: {fileID: 11500000, guid: 61f9ec4b0c7e45a45a7b85f9fa5ed6e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Green: 0
-  Guaiwu: 0
-  IsTrue: 0
-  Isshi: 0
-  Isrun: 0
 --- !u!1 &7652950547724771655
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,6 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   getcitiao: {fileID: 11400000, guid: f7ad19bd4970afc49aeccf8caf0ba862, type: 2}
   Inventory: {fileID: 11400000, guid: 341cfb8a2542e6449aaeca1f561f19e7, type: 2}
+  ifUse: 0
 --- !u!54 &7652950547724771662
 Rigidbody:
   m_ObjectHideFlags: 0
