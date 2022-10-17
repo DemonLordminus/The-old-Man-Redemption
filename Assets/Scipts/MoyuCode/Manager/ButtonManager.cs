@@ -9,11 +9,11 @@ public class ButtonManager : MonoBehaviour
     public GameObject myLetter;
     public bool issent;
     public bool lawOrAct;
-    public GameObject CitiaoManager;
+    public GameObject Player;
     public string what;
     void Start()
     {
-        CitiaoManager = GameObject.Find("CitiaoManager");
+        Player = GameObject.Find("Player");
         //获取按钮组件
         Button button = GetComponent<Button>();
         //往按钮的点击事件添加方法
@@ -33,7 +33,7 @@ public class ButtonManager : MonoBehaviour
     //给词条管理器赋值
     public void Click0()
     {
-        for (int i = 0; i < gameObject.transform.parent.childCount; i++)
+        for (int i = 0; i < gameObject.transform.parent.childCount-1; i++)
         {
             //判断规律还是行动
             lawOrAct = false;
@@ -70,27 +70,27 @@ public class ButtonManager : MonoBehaviour
             case 0://主语
                 switch (what)
                 {
-                    case "cabinets": CitiaoManager.GetComponent<CitiaoManager>().cabinets = true; break;
-                    case "hospital": CitiaoManager.GetComponent<CitiaoManager>().hospital = true; break;
-                    case "HRM": CitiaoManager.GetComponent<CitiaoManager>().HRM = true; break;
-                    case "illness": CitiaoManager.GetComponent<CitiaoManager>().illness = true; break;
-                    case "pharmacy": CitiaoManager.GetComponent<CitiaoManager>().pharmacy = true; break;
-                    case "TCM": CitiaoManager.GetComponent<CitiaoManager>().TCM = true; break;
+                    case "cabinets": Player.GetComponent<PlayerController>().cabinets = true; break;
+                    case "hospital": Player.GetComponent<PlayerController>().hospital = true; break;
+                    case "HRM": Player.GetComponent<PlayerController>().HRM = true; break;
+                    case "illness": Player.GetComponent<PlayerController>().illness_bad = true; break;
+                    case "pharmacy": Player.GetComponent<PlayerController>().pharmacy_bad = true; break;
+                    case "TCM": Player.GetComponent<PlayerController>().TCM = true; break;
                     default: break;
                 };
                 break;
             case 1://谓语
                 switch (what)
                 {
-                    case "shi": CitiaoManager.GetComponent<CitiaoManager>().shi= true; break;
+                    case "shi": Player.GetComponent<PlayerController>().shi= true; break;
                         default : break;
                 };
                 break;
             case 2://宾语
                 switch(what)
                 {
-                    case "bad": CitiaoManager.GetComponent<CitiaoManager>().bad= true; break;
-                    case "good": CitiaoManager.GetComponent<CitiaoManager>().good= true; break;
+                    case "bad": Player.GetComponent<PlayerController>().bad= true; break;
+                    case "good": Player.GetComponent<PlayerController>().good= true; break;
                     default:break;
                 };
                 break;
@@ -105,23 +105,23 @@ public class ButtonManager : MonoBehaviour
             case 0://谓语
                 switch (what)
                 {
-                    case "avoid": CitiaoManager.GetComponent<CitiaoManager>().avoid= true; break;
-                    case "eat": CitiaoManager.GetComponent<CitiaoManager>().eat= true; break;
-                    case "entry": CitiaoManager.GetComponent<CitiaoManager>().entry= true; break;
-                    case "exercise": CitiaoManager.GetComponent<CitiaoManager>().exercise= true; break;
-                    case "relax": CitiaoManager.GetComponent<CitiaoManager>().relax = true; break;
+                    case "avoid": Player.GetComponent<PlayerController>().avoid= true; break;
+                    case "eat": Player.GetComponent<PlayerController>().eat= true; break;
+                    case "entry": Player.GetComponent<PlayerController>().entry= true; break;
+                    case "exercise": Player.GetComponent<PlayerController>().exercise= true; break;
+                    case "relax": Player.GetComponent<PlayerController>().relax = true; break;
                     default: break;
                 };
                 break;
             case 1://宾语
                 switch (what)
                 {
-                    case "cabinets": CitiaoManager.GetComponent<CitiaoManager>().cabinets = true; break;
-                    case "hospital": CitiaoManager.GetComponent<CitiaoManager>().hospital = true; break;
-                    case "HRM": CitiaoManager.GetComponent<CitiaoManager>().HRM = true; break;
-                    case "illness": CitiaoManager.GetComponent<CitiaoManager>().illness = true; break;
-                    case "pharmacy": CitiaoManager.GetComponent<CitiaoManager>().pharmacy = true; break;
-                    case "TCM": CitiaoManager.GetComponent<CitiaoManager>().TCM = true; break;
+                    case "cabinets": Player.GetComponent<PlayerController>().cabinets = true; break;
+                    case "hospital": Player.GetComponent<PlayerController>().hospital = true; break;
+                    case "HRM": Player.GetComponent<PlayerController>().HRM = true; break;
+                    case "illness": Player.GetComponent<PlayerController>().illness_avoid = true; break;
+                    case "pharmacy": Player.GetComponent<PlayerController>().pharmacy_avoid = true; break;
+                    case "TCM": Player.GetComponent<PlayerController>().TCM = true; break;
                     default: break;
                 };
                 break;

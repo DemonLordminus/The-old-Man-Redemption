@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MouseManager : MonoBehaviour
+public class InkManager : MonoBehaviour
 {
-    public Texture2D ink;
-    public bool ifUse;
+    public bool ifUseInk;
     private void Start()
     {
         Button button = GetComponent<Button>();
@@ -14,7 +13,6 @@ public class MouseManager : MonoBehaviour
     }
     public void Click()
     {
-        Cursor.SetCursor(ink,new Vector2(16,16),CursorMode.Auto);
-        ifUse = true;
+        ifUseInk = true;
     }
 }

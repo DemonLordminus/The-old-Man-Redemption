@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3439905378766505138}
   - component: {fileID: 647262080231135890}
   m_Layer: 0
-  m_Name: Yaogui
+  m_Name: Yaofang
   m_TagString: Yaogui
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,8 +113,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a586d8d0c173df418422f1a676fc8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getcitiao: {fileID: 11400000, guid: 396d6acf512f72c41984ac097913ac9a, type: 2}
+  getcitiao: {fileID: 11400000, guid: 8ce510d6db35fe54c8c55f518e7d5a0b, type: 2}
   Inventory: {fileID: 11400000, guid: 341cfb8a2542e6449aaeca1f561f19e7, type: 2}
+  ifUse: 0
 --- !u!54 &647262080231135890
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -224,11 +225,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce68e5018e5dc14d87eec95b98e23f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Medicine: 0
-  Cabinets: 0
-  Guaiwu: 0
-  IsTrue: 0
-  Isshi: 0
-  Isrun: 0
   GetItem: {fileID: 11400000, guid: a93f90949f1b3ce45bd4905438f7e99f, type: 2}
   Package: {fileID: 11400000, guid: f00214f0403b6df4e9ea17cc1f710764, type: 2}

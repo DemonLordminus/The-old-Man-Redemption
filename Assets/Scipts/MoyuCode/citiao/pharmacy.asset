@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: pharmacy
   m_EditorClassIdentifier: 
   Name: pharmacy
-  Image: {fileID: 21300000, guid: 7ab1da0c1213ec24c835900c12102862, type: 3}
+  Image: {fileID: 21300000, guid: dcfb655cf58db5843bc24d8d0760ea77, type: 3}

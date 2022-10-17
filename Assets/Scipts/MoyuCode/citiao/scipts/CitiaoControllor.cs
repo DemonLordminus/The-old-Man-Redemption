@@ -10,42 +10,11 @@ public class CitiaoControllor : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     public Transform originalParent;
     //声明判断变量
     public string what;
-    public bool avoid;
-    public bool bad;
-    public bool cabinets;
-    public bool eat;
-    public bool entry;
-    public bool exercise;
-    public bool good;
-    public bool hospital;
-    public bool HRM;
-    public bool illness;
-    public bool pharmacy;
-    public bool relax;
-    public bool shi;
-    public bool TCM;
     //获取属性来区分
     void JudgeWhat()
     {
         citiao citiao = this.gameObject.GetComponent<citiao>();
-        switch(citiao.citiaoName.Name)
-        {
-            case "avoid":what="avoid"; break;
-            case "bad":what="bad"; break;
-            case "cabinets":what="cabinets"; break;
-            case "eat":what ="eat"; break;
-            case "entry":what="entry"; break;
-            case "exercise":what="exercise"; break;
-            case "good":what="good"; break;
-            case "hospital":what="hospital"; break;
-            case "HRM":what="HRM"; break;
-            case "illness":what="illness"; break;
-            case "pharmacy":what="pharmacy"; break;
-            case "relax":what="relax"; break;
-            case "shi":what="shi"; break;
-            case "TCM":what="TCM"; break;
-                default:break;
-        }
+        what = citiao.citiaoName.Name;
     }
     //鼠标点击触发
     public void OnBeginDrag(PointerEventData eventData)

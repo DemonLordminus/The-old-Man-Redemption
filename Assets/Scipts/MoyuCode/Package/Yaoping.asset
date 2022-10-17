@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15fc4b9e03446ce45ba3d58e58acc1af, type: 3}
-  m_Name: Yao
+  m_Name: Yaoping
   m_EditorClassIdentifier: 
   Name: Yaoping
   Image: {fileID: 21300000, guid: 31a7a93a7056b74469850e6d1a7cedfe, type: 3}

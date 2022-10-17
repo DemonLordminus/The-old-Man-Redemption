@@ -76,6 +76,10 @@ public class PlayerController : MonoBehaviour
                 NewSpeed();
             }
         }
+        else
+        {
+            Move(0);
+        }
     }
     //移动
     public void Move(int i)
@@ -138,4 +142,111 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     public GameObject gameOver;
+    #region 碰撞
+    public bool avoid;
+    public bool bad;
+    public bool cabinets;
+    public bool eat;
+    public bool entry;
+    public bool exercise;
+    public bool good;
+    public bool hospital;
+    public bool HRM;
+    public bool illness_bad;
+    public bool illness_avoid;
+    public bool pharmacy_bad;
+    public bool pharmacy_avoid;
+    public bool relax;
+    public bool shi;
+    public bool TCM;
+    public bool IsTrue;
+    public bool Isrun;
+    public GetItem GetItem;
+    public Package Package;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //判断是否接收到信
+        Isrun = GameObject.FindWithTag("mailbox").GetComponent<MailBoxManager>().isrun;
+        EnemyManager enemyController = collision.gameObject.GetComponent<EnemyManager>();
+        MailBoxManager mailBoxManager = collision.gameObject.GetComponent<MailBoxManager>();
+        PropsController propsController = collision.gameObject.GetComponent<PropsController>();
+        if (propsController != null)//判断为物品
+        {
+            GetItem = collision.gameObject.GetComponent<PropsController>().GetItem;
+            Package = collision.gameObject.GetComponent<PropsController>().Package;
+            switch (GetItem.Name)//根据GetItem组件中的Name属性来判断是否运行
+            {
+                case "Yaoping":
+                    IsTrue = (pharmacy_bad && shi && bad || avoid && pharmacy_avoid) && Isrun;
+                    if (avoid)
+                    {
+                        pharmacy_avoid = false;
+                    }; break;
+                default: break;
+            }
+            if (IsTrue)
+            {
+                collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                return;
+            }
+            else
+            {
+                if (GetItem.Name == "Yaoping")
+                {
+                    collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                    if (Gold > 50)
+                    {
+                        AddNewItem();
+                        Gold -= 50;
+                    }
+                    return;
+                }
+                AddNewItem();
+                Destroy(this.gameObject);
+                Destroy(this.transform.parent.gameObject);
+            }
+        }
+        else if (enemyController != null)
+        {
+            IsTrue = (illness_bad && shi && bad || illness_avoid && avoid) && Isrun;
+            if (avoid)
+            {
+                illness_avoid = false;
+            }
+            if (IsTrue)
+            {
+                try
+                {
+                    collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                }
+                catch
+                { };
+
+            }
+            else
+            {
+                ChangeHealth(-10);
+                Destroy(collision.gameObject);
+                Destroy(collision.transform.parent.gameObject);
+            }
+        }
+
+    }
+    #endregion
+
+    #region 获取
+    public void AddNewItem()
+    {
+        if (!Package.Items.Contains(GetItem))
+        {
+            GetItem.Num = 1;
+            Package.Items.Add(GetItem);
+        }
+        else
+        {
+            GetItem.Num += 1;
+        }
+        PackageManager.RefreshItem();
+    }
+    #endregion
 }

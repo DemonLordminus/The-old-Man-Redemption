@@ -14,11 +14,11 @@ public class LetterManager : MonoBehaviour
             //使信生成在触发器
             tragger.SetActive(true);
             //重置触发器的内容
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 for (int j = 0; j < tragger.transform.GetChild(i).childCount; j++)
                 {
-                    Destroy(tragger.transform.GetChild(i).GetChild(0).gameObject);
+                    Destroy(tragger.transform.GetChild(i).GetChild(j).gameObject);
                 }
             }
             Destroy(this.gameObject);
