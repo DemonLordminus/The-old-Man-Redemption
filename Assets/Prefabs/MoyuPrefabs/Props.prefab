@@ -121,6 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalParent: {fileID: 0}
   GetItem: {fileID: 0}
+  Package: {fileID: 0}
+  tragger: {fileID: 2458764253719206424, guid: 0f7dcbbbb2723dc48b1eda9b0a9646f8, type: 3}
 --- !u!1 &5448910150894615598
 GameObject:
   m_ObjectHideFlags: 0

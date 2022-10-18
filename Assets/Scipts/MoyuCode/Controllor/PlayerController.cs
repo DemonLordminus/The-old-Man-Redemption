@@ -182,6 +182,7 @@ public class PlayerController : MonoBehaviour
                     {
                         pharmacy_avoid = false;
                     }; break;
+                case "xin":AddNewItem(); collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true; return;
                 default: break;
             }
             if (IsTrue)
@@ -202,8 +203,8 @@ public class PlayerController : MonoBehaviour
                     return;
                 }
                 AddNewItem();
-                Destroy(this.gameObject);
-                Destroy(this.transform.parent.gameObject);
+                Destroy(collision.gameObject);
+                Destroy(collision.transform.parent.gameObject);
             }
         }
         else if (enemyController != null)
