@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 //背包中物品的使用，拖拽到主角上生效
@@ -9,10 +10,12 @@ public class ItemOnDrag: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     public Transform originalParent;
     public GetItem GetItem;
     public Package Package;
+    public GameObject traggerManager;
     private void Start()
     {
+        traggerManager = GameObject.Find("TraggerManager");
         Package = GameObject.Find("UI").GetComponent<PackageManager>().Package;
-        GetItem=gameObject.GetComponent<Item>().itemname;
+        GetItem=this.gameObject.GetComponent<Item>().itemname;
     }
     //鼠标点击触发
     public void OnBeginDrag(PointerEventData eventData)
@@ -47,7 +50,15 @@ public class ItemOnDrag: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                 PlayerController playerController = eventData.pointerCurrentRaycast.gameObject.GetComponent<PlayerController>();
                 if (playerController != null)
                 {
-                    playerController.ChangeHealth(2);
+                    switch (GetItem.Name)
+                    {
+                        case "Yaoping": playerController.ChangeHealth(10); break;
+                        case "xin":if(!traggerManager.GetComponent<TraggerManager>().Open())
+                            {
+                                GetItem.Num+=1;
+                            };break;
+                        default: break;
+                    }
                     GetItem.Num -= 1;
                     if(GetItem.Num==0)
                     {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4185261135644652914}
   - component: {fileID: 4185261135644652877}
   - component: {fileID: 4185261135644652876}
-  - component: {fileID: 4185261135644652915}
+  - component: {fileID: 8520190633055397445}
   m_Layer: 0
   m_Name: xinzhi
   m_TagString: Untagged
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &4185261135644652915
+--- !u!114 &8520190633055397445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4185261135644652879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9f672fc015529148b145f4882f06b18, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ce68e5018e5dc14d87eec95b98e23f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tragger: {fileID: 0}
+  GetItem: {fileID: 11400000, guid: 07082168f80eb1a4fa3a2627c408baee, type: 2}
+  Package: {fileID: 11400000, guid: f00214f0403b6df4e9ea17cc1f710764, type: 2}
