@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
-using UnityEditor.Build.Content;
+using System;
 using UnityEngine;
-using UnityEngine.TextCore.LowLevel;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,8 +22,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Initialize();
         animator = GetComponent<Animator>();
         isPalse = false;
+        CurrentBp = MaxBp;
         CurrentHealthy = MaxHealthy;
         CurrentSp = MaxSp;
         currentspeed = maxspeed;
@@ -44,7 +42,7 @@ public class PlayerController : MonoBehaviour
     //初始化速度
     void NewSpeed()
     {
-        if (CurrentSp == MaxSp && isRun == false)
+        if (CurrentSp >= MaxSp / 1.01 && isRun == false)
         {
             isRun = true;
         }
@@ -53,28 +51,65 @@ public class PlayerController : MonoBehaviour
     {
         if (!isPalse)
         {
+            if (CurrentSp < MaxSp / 9 && debuffs[4])
+            {
+                ChangeHealth(-1);
+            }
             //切换速度，使得在体力条小于10%不能奔跑，跑步消耗体力，走路休息恢复体力
-            if ((CurrentSp > MaxSp / 10 && isRun) && x != 0)
+            if ((CurrentSp > MaxSp / 10 && isRun) && x != 0 && !debuffs[2])//fali)
             {
                 currentspeed = maxspeed;
                 ChangeSp(-1);
             }
             else
             {
+                if (debuffs[4])//huxikunnan)
+                {
+                    ChangeSp(1);
+                }
+                else
+                {
+                    ChangeSp(2);
+                }
                 currentspeed = maxspeed / 2;
-                ChangeSp(2);
                 isRun = false;
             }
             Move(x);
+            if (debuffs[1])//fare)
+            {
+                ChangeSp(-1);
+            }
+            if (debuffs[3])//outufuxie)
+            {
+                ChangeHealth(Convert.ToInt32(-1 - times[3] / 10));
+            }
+            if (debuffs[7])//yiyu
+            {
+                ChangeBP(-2);
+            }
             //计时器
             Timer -= Time.fixedDeltaTime;
             if (Timer <= 0)
             {
                 //初始化
                 x = Random.Range(0, 2);
+                if (debuffs[0])//zhongdu)
+                {
+                    ChangeHealth(-2);
+                }
+                if (debuffs[1])//fare)
+                {
+                    MaxSp -= 5;
+                }
                 Timer = 1.5f;
                 NewSpeed();
             }
+            if (debuffs[6] && times[6]-CurrentTime>5)//jianwang)
+            {
+                Jianwang();
+                CurrentTime=times[6];
+            }
+            AddDebuffTime();
         }
         else
         {
@@ -88,7 +123,14 @@ public class PlayerController : MonoBehaviour
         { currentspeed = 0; }
         //获取当前对象所在位置
         Vector2 position = transform.position;
-        position.x = position.x + currentspeed * i * Time.fixedDeltaTime;
+        if (debuffs[2])//fali)
+        {
+            position.x = position.x + currentspeed / 2 * i * Time.fixedDeltaTime;
+        }
+        else
+        {
+            position.x = position.x + currentspeed * i * Time.fixedDeltaTime;
+        }
         Rigidbody2D.position = position;
         animator.SetFloat("MoveX", currentspeed);
     }
@@ -97,11 +139,12 @@ public class PlayerController : MonoBehaviour
     #region 数值系统
     public float MaxHealthy;
     public float CurrentHealthy;
-    public float Wealthy;
     public float MaxSp;
     public float CurrentSp;
-    public float HappinessIndex;
+    public float MaxBp;
+    public float CurrentBp;
     public float Gold;
+    public float CurrentTime;//处理健忘
 
     public void ChangeHealth(int amount)
     {
@@ -120,8 +163,97 @@ public class PlayerController : MonoBehaviour
         CurrentSp = Mathf.Clamp(CurrentSp + amount, 0, MaxSp);
         SpBarManager.Instance.SetValue(CurrentSp / (float)MaxSp);
     }
-    #endregion
 
+    public void ChangeBP(int amount)
+    {
+        CurrentBp = Mathf.Clamp(CurrentBp + amount, 0, MaxBp);
+        BlissBarManager.Instance.SetValue(CurrentBp / (float)MaxBp);
+    }
+
+
+    #endregion
+    #region debuff
+    //0=中毒
+    //1=发热
+    //2=乏力
+    //3=呕吐腹泻
+    //4=呼吸困难
+    //5=混乱
+    //6=健忘
+    //7=抑郁
+    //8=焦躁
+    //9=盲目
+    public bool[] debuffs = new bool[10];
+    /*public bool zhongdu;
+    public bool fare;
+    public bool fali;
+    public bool outufuxie;
+    public bool huxikunnan;
+    public bool hunluan;
+    public bool jianwang;
+    public bool yiyu;
+    public bool jiaozao;
+    public bool mangmu;*/
+    public float[] times = new float[10];
+    /*public float zhongdutime;
+    public float faretime;
+    public float falitime;
+    public float oututime;
+    public float huxitime;
+    public float hunluantime;
+    public float jianwangtime;
+    public float yiyutime;
+    public float jiaozaotime;
+    public float mangmutime;*/
+    public float keeptime;
+    void Initialize()
+    {
+        for (int i = 0; i < times.Length; i++)
+        {
+            times[i] = 0;
+            debuffs[i] = false;
+        }
+    }
+    void AddDebuffTime()
+    {
+        for (int i = 0; i < debuffs.Length; i++)
+        {
+            if (debuffs[i])
+            {
+                times[i] += Time.fixedDeltaTime;
+            }
+            ReDebuff();
+        }
+    }
+    void ReDebuff()
+    {
+        for (int i = 0; i < times.Length; i++)
+        {
+            if (times[i] >= keeptime)
+            {
+                debuffs[i] = false;
+                times[i] = 0;
+            }
+        }
+    }
+    /*void Debuff(int amount)
+    {
+        switch (amount)
+        {
+            case 1: zhongdu = true; break;
+            case 2: fare = true; break;
+            case 3: fali = true; break;
+            case 4: outufuxie = true; break;
+            case 5: huxikunnan = true; break;
+            case 6: hunluan = true; break;
+            case 7: jianwang = true; break;
+            case 8: yiyu = true; break;
+            case 9: jiaozao = true; break;
+            case 10: mangmu = true; break;
+            default: break;
+        }
+    }*/
+    #endregion
     #region 切换UI
     public GameObject myBar;
     public GameObject myBag;
@@ -143,90 +275,170 @@ public class PlayerController : MonoBehaviour
 
     public GameObject gameOver;
     #region 碰撞
-    public bool avoid;
-    public bool bad;
-    public bool cabinets;
-    public bool eat;
-    public bool entry;
-    public bool exercise;
-    public bool good;
-    public bool hospital;
-    public bool HRM;
-    public bool illness_bad;
-    public bool illness_avoid;
-    public bool pharmacy_bad;
-    public bool pharmacy_avoid;
-    public bool relax;
-    public bool shi;
-    public bool TCM;
+    public bool[] citiaos = new bool[20];
+    //0public bool avoid;
+    //1public bool bad;
+    //2public bool cabinets_bad;
+    //3public bool cabinets_avoid;
+    //4public bool eat;
+    //5public bool entry;
+    //6public bool exercise;
+    //7public bool good;
+    //8public bool hospital_bad;
+    //9public bool hospital_avoid;
+    //10public bool HRM_bad;
+    //11public bool HRM_avoid;
+    //12public bool illness_bad;
+    //13public bool illness_avoid;
+    //14public bool pharmacy_bad;
+    //15public bool pharmacy_avoid;
+    //16public bool relax;
+    //17public bool shi;
+    //18public bool TCM_bad;
+    //19public bool TCM_avoid;
     public bool IsTrue;
     public bool Isrun;
+    public string whatEnemy;
     public GetItem GetItem;
     public Package Package;
+    public bool IfHunluan()
+    {
+        if (debuffs[5] && Random.Range(1, 7) < 5)
+        {
+            return false;
+        }
+        return true;
+    }
+    public int num;
+    public int[] citiaos_ = new int[20];
+    void Jianwang()
+    {
+        num = 0;
+        for(int i=0;i<citiaos_.Length;i++)
+        {
+            citiaos_[i]=0; 
+        }
+        for (int i = 0; i < citiaos.Length; i++)
+        {
+            if (citiaos[i])
+            {
+                citiaos_[num] = i;
+                num += 1;
+            }
+        }
+        citiaos[citiaos_[Random.Range(0, num)]] = false;
+
+        /*
+        switch(Random.Range(1,17))
+        {
+            case 1:avoid=false; break;
+            case 2:bad=false; break;
+            case 3:cabinets=false; break;
+            case 4:eat=false; break;
+            case 5:entry=false; break;
+            case 6:exercise=false; break;
+            case 7:good=false; break;
+            case 8:hospital=false; break;
+            case 9:HRM=false; break;
+            case 10:illness_bad=false; break;
+            case 11:illness_avoid=false; break;
+            case 12:pharmacy_avoid=false; break;
+            case 13:pharmacy_bad=false; break;
+            case 14:relax=false; break;
+            case 15:shi=false; break;
+            case 16:TCM=false; break;
+            default:break;
+        }*/
+    }
+    public bool Probability(int amount)
+    {
+        if (Random.Range(0, 101) < amount)
+        {
+            return true;
+        }
+        return false;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //判断是否接收到信
         Isrun = GameObject.FindWithTag("mailbox").GetComponent<MailBoxManager>().isrun;
         EnemyManager enemyController = collision.gameObject.GetComponent<EnemyManager>();
-        MailBoxManager mailBoxManager = collision.gameObject.GetComponent<MailBoxManager>();
         PropsController propsController = collision.gameObject.GetComponent<PropsController>();
         if (propsController != null)//判断为物品
         {
-            GetItem = collision.gameObject.GetComponent<PropsController>().GetItem;
-            Package = collision.gameObject.GetComponent<PropsController>().Package;
-            switch (GetItem.Name)//根据GetItem组件中的Name属性来判断是否运行
+            if (IfHunluan())
             {
-                case "Yaoping":
-                    IsTrue = (pharmacy_bad && shi && bad || avoid && pharmacy_avoid) && Isrun;
-                    if (avoid)
+                GetItem = propsController.GetItem;
+                Package = propsController.Package;
+                switch (GetItem.Name)//根据GetItem组件中的Name属性来判断是否运行
+                {
+                    case "Yaoping":
+                        IsTrue = (citiaos[14] && citiaos[17] && citiaos[1] || citiaos[0] && citiaos[15]) && Isrun;
+                        if (citiaos[0])
+                        {
+                            citiaos[15] = false;
+                        }; break;
+                    case "xin": AddNewItem(); collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true; return;
+                    default: break;
+                }
+                if (IsTrue)
+                {
+                    collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                    return;
+                }
+                else
+                {
+                    if (GetItem.Name == "Yaoping")
                     {
-                        pharmacy_avoid = false;
-                    }; break;
-                case "xin":AddNewItem(); collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true; return;
-                default: break;
-            }
-            if (IsTrue)
-            {
-                collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-                return;
+                        collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                        if (Gold > 50)
+                        {
+                            AddNewItem();
+                            Gold -= 50;
+                        }
+                        return;
+                    }
+                    AddNewItem();
+                    Destroy(collision.gameObject);
+                    Destroy(collision.transform.parent.gameObject);
+                }
             }
             else
             {
-                if (GetItem.Name == "Yaoping")
-                {
-                    collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-                    if (Gold > 50)
-                    {
-                        AddNewItem();
-                        Gold -= 50;
-                    }
-                    return;
-                }
-                AddNewItem();
-                Destroy(collision.gameObject);
-                Destroy(collision.transform.parent.gameObject);
+                collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
             }
         }
         else if (enemyController != null)
         {
-            IsTrue = (illness_bad && shi && bad || illness_avoid && avoid) && Isrun;
-            if (avoid)
-            {
-                illness_avoid = false;
-            }
-            if (IsTrue)
-            {
-                try
+            if (IfHunluan())
+            { 
+                IsTrue = (citiaos[12] && citiaos[17] && citiaos[1] || citiaos[13] && citiaos[0]) && Isrun;
+                if (citiaos[0])
                 {
-                    collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                    citiaos[13] = false;
                 }
-                catch
-                { };
+                if (IsTrue)
+                {
+                    try
+                    {
+                        collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                    }
+                    catch
+                    { };
 
+                }
+                else
+                {
+                    ChangeHealth(-10);
+                    whatEnemy = enemyController.whatEnemy;
+                    Destroy(collision.gameObject);
+                    Destroy(collision.transform.parent.gameObject);
+                }
             }
             else
             {
                 ChangeHealth(-10);
+                whatEnemy = enemyController.whatEnemy;
                 Destroy(collision.gameObject);
                 Destroy(collision.transform.parent.gameObject);
             }

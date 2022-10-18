@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-//血条管理器
-public class HealthyBarManager : MonoBehaviour
+public class HIPManager : MonoBehaviour
 {
-    //单例化血条,获取当前血条本身
-    public static HealthyBarManager Instance { get; private set; }
+    public static HIPManager Instance { get; private set; }
     public Image mask;
     float originalSize;
     private void Awake()
@@ -20,6 +18,6 @@ public class HealthyBarManager : MonoBehaviour
 
     public void SetValue(float value)
     {
-        mask .rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize*value);
+        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * value);
     }
 }

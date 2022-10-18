@@ -70,27 +70,27 @@ public class ButtonManager : MonoBehaviour
             case 0://÷˜”Ô
                 switch (what)
                 {
-                    case "cabinets": Player.GetComponent<PlayerController>().cabinets = true; break;
-                    case "hospital": Player.GetComponent<PlayerController>().hospital = true; break;
-                    case "HRM": Player.GetComponent<PlayerController>().HRM = true; break;
-                    case "illness": Player.GetComponent<PlayerController>().illness_bad = true; break;
-                    case "pharmacy": Player.GetComponent<PlayerController>().pharmacy_bad = true; break;
-                    case "TCM": Player.GetComponent<PlayerController>().TCM = true; break;
+                    case "cabinets": Player.GetComponent<PlayerController>().citiaos[2] = true; break;
+                    case "hospital": Player.GetComponent<PlayerController>().citiaos[8] = true; break;
+                    case "HRM": Player.GetComponent<PlayerController>().citiaos[10] = true; break;
+                    case "illness": Player.GetComponent<PlayerController>().citiaos[12] = true; break;
+                    case "pharmacy": Player.GetComponent<PlayerController>().citiaos[14] = true; break;
+                    case "TCM": Player.GetComponent<PlayerController>().citiaos[18] = true; break;
                     default: break;
                 };
                 break;
             case 1://ŒΩ”Ô
                 switch (what)
                 {
-                    case "shi": Player.GetComponent<PlayerController>().shi= true; break;
+                    case "shi": Player.GetComponent<PlayerController>().citiaos[17] = true; break;
                         default : break;
                 };
                 break;
             case 2://±ˆ”Ô
                 switch(what)
                 {
-                    case "bad": Player.GetComponent<PlayerController>().bad= true; break;
-                    case "good": Player.GetComponent<PlayerController>().good= true; break;
+                    case "bad": Player.GetComponent<PlayerController>().citiaos[1] = true; break;
+                    case "good": Player.GetComponent<PlayerController>().citiaos[7] = true; break;
                     default:break;
                 };
                 break;
@@ -105,23 +105,23 @@ public class ButtonManager : MonoBehaviour
             case 0://ŒΩ”Ô
                 switch (what)
                 {
-                    case "avoid": Player.GetComponent<PlayerController>().avoid= true; break;
-                    case "eat": Player.GetComponent<PlayerController>().eat= true; break;
-                    case "entry": Player.GetComponent<PlayerController>().entry= true; break;
-                    case "exercise": Player.GetComponent<PlayerController>().exercise= true; break;
-                    case "relax": Player.GetComponent<PlayerController>().relax = true; break;
+                    case "avoid": Player.GetComponent<PlayerController>().citiaos[0] = true; break;
+                    case "eat": Player.GetComponent<PlayerController>().citiaos[4] = true; break;
+                    case "entry": Player.GetComponent<PlayerController>().citiaos[5] = true; break;
+                    case "exercise": Player.GetComponent<PlayerController>().citiaos[6] = true; break;
+                    case "relax": Player.GetComponent<PlayerController>().citiaos[16] = true; break;
                     default: break;
                 };
                 break;
             case 1://±ˆ”Ô
                 switch (what)
                 {
-                    case "cabinets": Player.GetComponent<PlayerController>().cabinets = true; break;
-                    case "hospital": Player.GetComponent<PlayerController>().hospital = true; break;
-                    case "HRM": Player.GetComponent<PlayerController>().HRM = true; break;
-                    case "illness": Player.GetComponent<PlayerController>().illness_avoid = true; break;
-                    case "pharmacy": Player.GetComponent<PlayerController>().pharmacy_avoid = true; break;
-                    case "TCM": Player.GetComponent<PlayerController>().TCM = true; break;
+                    case "cabinets": Player.GetComponent<PlayerController>().citiaos[3] = true; break;
+                    case "hospital": Player.GetComponent<PlayerController>().citiaos[9] = true; break;
+                    case "HRM": Player.GetComponent<PlayerController>().citiaos[11] = true; break;
+                    case "illness": Player.GetComponent<PlayerController>().citiaos[13] = true; break;
+                    case "pharmacy": Player.GetComponent<PlayerController>().citiaos[15] = true; break;
+                    case "TCM": Player.GetComponent<PlayerController>().citiaos[19] = true; break;
                     default: break;
                 };
                 break;
