@@ -7,7 +7,7 @@ using UnityEngine;
 public class Get: MonoBehaviour
 {
     //获取getciao和inventory这个类的属性，并从unity界面选择
-    public Getcitiao getcitiao;
+    public ScrObjcitiao getcitiao;
     public Inventory Inventory;
     public bool ifUse;
     //添加词条

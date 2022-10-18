@@ -39,7 +39,7 @@ public class ButtonManager : MonoBehaviour
             lawOrAct = false;
             for (int j = 0; j < gameObject.transform.parent.GetChild(i).childCount; j++)
             {
-                if (gameObject.transform.parent.GetChild(i).GetChild(j).GetComponent<citiao>().citiaoName.Name == "shi")
+                if (gameObject.transform.parent.GetChild(i).GetChild(j).GetComponent<citiao>().citiaoScrObj.Name == "shi")
                 {
                     lawOrAct = true;
                     break;
