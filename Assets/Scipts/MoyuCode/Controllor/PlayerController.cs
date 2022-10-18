@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Dmld;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -51,19 +53,19 @@ public class PlayerController : MonoBehaviour
     {
         if (!isPalse)
         {
-            if (CurrentSp < MaxSp / 9 && debuffs[4])
+            if (CurrentSp < MaxSp / 9 && debuffs[4].isEnable)
             {
                 ChangeHealth(-1);
             }
             //切换速度，使得在体力条小于10%不能奔跑，跑步消耗体力，走路休息恢复体力
-            if ((CurrentSp > MaxSp / 10 && isRun) && x != 0 && !debuffs[2])//fali)
+            if ((CurrentSp > MaxSp / 10 && isRun) && x != 0 && !debuffs[2].isEnable)//fali)
             {
                 currentspeed = maxspeed;
                 ChangeSp(-1);
             }
             else
             {
-                if (debuffs[4])//huxikunnan)
+                if (debuffs[4].isEnable)//huxikunnan)
                 {
                     ChangeSp(1);
                 }
@@ -75,15 +77,15 @@ public class PlayerController : MonoBehaviour
                 isRun = false;
             }
             Move(x);
-            if (debuffs[1])//fare)
+            if (debuffs[1].isEnable)//fare)
             {
                 ChangeSp(-1);
             }
-            if (debuffs[3])//outufuxie)
+            if (debuffs[3].isEnable)//outufuxie)
             {
-                ChangeHealth(Convert.ToInt32(-1 - times[3] / 10));
+                ChangeHealth(Convert.ToInt32(-1 - debuffs[3].keepTime / 10));
             }
-            if (debuffs[7])//yiyu
+            if (debuffs[7].isEnable)//yiyu
             {
                 ChangeBP(-2);
             }
@@ -93,23 +95,23 @@ public class PlayerController : MonoBehaviour
             {
                 //初始化
                 x = Random.Range(0, 2);
-                if (debuffs[0])//zhongdu)
+                if (debuffs[0].isEnable)//zhongdu)
                 {
                     ChangeHealth(-2);
                 }
-                if (debuffs[1])//fare)
+                if (debuffs[1].isEnable)//fare)
                 {
                     MaxSp -= 5;
                 }
                 Timer = 1.5f;
                 NewSpeed();
             }
-            if (debuffs[6] && times[6]-CurrentTime>5)//jianwang)
+            if (debuffs[6].isEnable && debuffs[6].keepTime - CurrentTime>5)//jianwang)
             {
                 Jianwang();
-                CurrentTime=times[6];
+                CurrentTime=debuffs[6].keepTime;
             }
-            AddDebuffTime();
+            UpdateDebuffTime();
         }
         else
         {
@@ -123,7 +125,7 @@ public class PlayerController : MonoBehaviour
         { currentspeed = 0; }
         //获取当前对象所在位置
         Vector2 position = transform.position;
-        if (debuffs[2])//fali)
+        if (debuffs[2].isEnable)//fali)
         {
             position.x = position.x + currentspeed / 2 * i * Time.fixedDeltaTime;
         }
@@ -183,59 +185,59 @@ public class PlayerController : MonoBehaviour
     //7=抑郁
     //8=焦躁
     //9=盲目
-    public bool[] debuffs = new bool[10];
-    /*public bool zhongdu;
-    public bool fare;
-    public bool fali;
-    public bool outufuxie;
-    public bool huxikunnan;
-    public bool hunluan;
-    public bool jianwang;
-    public bool yiyu;
-    public bool jiaozao;
-    public bool mangmu;*/
-    public float[] times = new float[10];
-    /*public float zhongdutime;
-    public float faretime;
-    public float falitime;
-    public float oututime;
-    public float huxitime;
-    public float hunluantime;
-    public float jianwangtime;
-    public float yiyutime;
-    public float jiaozaotime;
-    public float mangmutime;*/
-    public float keeptime;
+ 
+    public DebuffClass[] debuffs;
+
+    [HideInInspector]
+    public const int maxDebuffNum=10;//最大病症数量
+
     void Initialize()
     {
-        for (int i = 0; i < times.Length; i++)
+        //for (int i = 0; i < times.Length; i++)
+        //{
+        //    times[i] = 0;
+        //    debuffs[i] = false;
+        //}
+        debuffs = new DebuffClass[maxDebuffNum];
+        for(int order=0;order<maxDebuffNum;++order)
         {
-            times[i] = 0;
-            debuffs[i] = false;
+            debuffs[order] = new DebuffClass(order);
         }
     }
-    void AddDebuffTime()
+    void UpdateDebuffTime()
     {
-        for (int i = 0; i < debuffs.Length; i++)
+        //for (int i = 0; i < debuffs.Length; i++)
+        //{
+        //    if (debuffs[i])
+        //    {
+        //        times[i] += Time.fixedDeltaTime;
+        //    }
+        //    ReDebuff();
+        //}
+        foreach (DebuffClass debuff in debuffs)
         {
-            if (debuffs[i])
+            if (debuff.keepTime>0)
             {
-                times[i] += Time.fixedDeltaTime;
+                debuff.keepTime -= Time.fixedDeltaTime;
+                if (debuff.keepTime < 0)
+                { 
+                    debuff.isEnable = false;
+                    debuff.keepTime = 0;
+                }
             }
-            ReDebuff();
         }
     }
-    void ReDebuff()
-    {
-        for (int i = 0; i < times.Length; i++)
-        {
-            if (times[i] >= keeptime)
-            {
-                debuffs[i] = false;
-                times[i] = 0;
-            }
-        }
-    }
+    //void ReDebuff()
+    //{
+    //    //for (int i = 0; i < times.Length; i++)
+    //    //{
+    //    //    if (times[i] >= keeptime)
+    //    //    {
+    //    //        debuffs[i] = false; 
+    //    //        times[i] = 0;
+    //    //    }
+    //    //}
+    //}
     /*void Debuff(int amount)
     {
         switch (amount)
@@ -303,7 +305,7 @@ public class PlayerController : MonoBehaviour
     public Package Package;
     public bool IfHunluan()
     {
-        if (debuffs[5] && Random.Range(1, 7) < 5)
+        if (debuffs[5].isEnable && Random.Range(1, 7) < 5)
         {
             return false;
         }

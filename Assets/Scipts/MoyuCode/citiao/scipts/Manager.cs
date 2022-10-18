@@ -19,21 +19,22 @@ public class Manager : MonoBehaviour
         Grid = GameObject.FindGameObjectWithTag("Grid");
     }
 
-    public static void CreateNewcitiao(Getcitiao getcitiao)
+    public static void CreateNewcitiao(ScrObjcitiao getcitiao)
     {
         //在在网格的位置生成一个词条预制件
         citiao newcitiao = Instantiate(instance.citiaoPrefab, instance.Grid.transform.position, Quaternion.identity);
         newcitiao.gameObject.transform.SetParent(instance.Grid.transform);
-        newcitiao.citiaoName = getcitiao;
-        newcitiao.image.sprite = getcitiao.Image;
+        newcitiao.citiaoScrObj = getcitiao;
+        int r = UnityEngine.Random.Range(0, getcitiao.Image.Length);
+        newcitiao.image = getcitiao.Image[r];
     }
 
     private void FixedUpdate()
     {
         //使词条在左边满了之后在右边生成
-        if (Grid.transform.childCount == 4)
-        {
-            Grid = GameObject.FindGameObjectWithTag("Grid1");
-        }
+        //if (Grid.transform.childCount == 4)
+        //{
+        //    Grid = GameObject.FindGameObjectWithTag("Grid1");
+        //}
     }
 }

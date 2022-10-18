@@ -8,7 +8,7 @@ public class MouseManager : MonoBehaviour
     public bool ifUseInk;
     void Start()
     {
-        Cursor.SetCursor(normal, new Vector2(16, 16), CursorMode.Auto);
+        Cursor.SetCursor(normal, new Vector2(0, 0), CursorMode.Auto);
     }
     private void Update()
     {
@@ -19,7 +19,7 @@ public class MouseManager : MonoBehaviour
         }
         else
         {
-            Cursor.SetCursor(normal, new Vector2(16, 16), CursorMode.Auto);
+            Cursor.SetCursor(normal, new Vector2(0, 0), CursorMode.Auto); //∏ƒŒ™0£¨0   ≈‰÷∏’Î
         }
     }
 
