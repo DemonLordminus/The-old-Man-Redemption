@@ -2176,7 +2176,7 @@ GameObject:
   - component: {fileID: 691572810}
   m_Layer: 0
   m_Name: EventElement
-  m_TagString: Untagged
+  m_TagString: EventElement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3585,7 +3585,7 @@ GameObject:
   - component: {fileID: 1469956494}
   m_Layer: 0
   m_Name: maliboxes
-  m_TagString: Untagged
+  m_TagString: EventElement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5020,6 +5020,10 @@ PrefabInstance:
     - target: {fileID: 7652950547724771655, guid: 98d292679bf4fda45ad5a465ed3b81e6, type: 3}
       propertyPath: m_Name
       value: Enemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7652950547724771655, guid: 98d292679bf4fda45ad5a465ed3b81e6, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7652950547724771659, guid: 98d292679bf4fda45ad5a465ed3b81e6, type: 3}
       propertyPath: m_RootOrder

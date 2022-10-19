@@ -362,90 +362,96 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //判断是否接收到信
-        Isrun = GameObject.FindWithTag("mailbox").GetComponent<MailBoxManager>().isrun;
-        EnemyManager enemyController = collision.gameObject.GetComponent<EnemyManager>();
-        PropsController propsController = collision.gameObject.GetComponent<PropsController>();
-        if (propsController != null)//判断为物品
-        {
-            if (IfHunluan())
-            {
-                GetItem = propsController.GetItem;
-                Package = propsController.Package;
-                switch (GetItem.Name)//根据GetItem组件中的Name属性来判断是否运行
-                {
-                    case "Yaoping":
-                        IsTrue = (citiaos[14] && citiaos[17] && citiaos[1] || citiaos[0] && citiaos[15]) && Isrun;
-                        if (citiaos[0])
-                        {
-                            citiaos[15] = false;
-                        }; break;
-                    case "xin": AddNewItem(); collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true; return;
-                    default: break;
-                }
-                if (IsTrue)
-                {
-                    collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-                    return;
-                }
-                else
-                {
-                    if (GetItem.Name == "Yaoping")
-                    {
-                        collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-                        if (Gold > 50)
-                        {
-                            AddNewItem();
-                            Gold -= 50;
-                        }
-                        return;
-                    }
-                    AddNewItem();
-                    Destroy(collision.gameObject);
-                    Destroy(collision.transform.parent.gameObject);
-                }
-            }
-            else
-            {
-                collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-            }
-        }
-        else if (enemyController != null)
-        {
-            if (IfHunluan())
-            { 
-                IsTrue = (citiaos[12] && citiaos[17] && citiaos[1] || citiaos[13] && citiaos[0]) && Isrun;
-                if (citiaos[0])
-                {
-                    citiaos[13] = false;
-                }
-                if (IsTrue)
-                {
-                    try
-                    {
-                        collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-                    }
-                    catch
-                    { };
+        #region 老代码
+        ////判断是否接收到信
+        //Isrun = GameObject.FindWithTag("mailbox").GetComponent<MailBoxManager>().isrun;
+        //EnemyManager enemyController = collision.gameObject.GetComponent<EnemyManager>();
+        //PropsController propsController = collision.gameObject.GetComponent<PropsController>();
+        //if (propsController != null)//判断为物品
+        //{
+        //    if (IfHunluan())
+        //    {
+        //        GetItem = propsController.GetItem;
+        //        Package = propsController.Package;
+        //        switch (GetItem.Name)//根据GetItem组件中的Name属性来判断是否运行
+        //        {
+        //            case "Yaoping":
+        //                IsTrue = (citiaos[14] && citiaos[17] && citiaos[1] || citiaos[0] && citiaos[15]) && Isrun;
+        //                if (citiaos[0])
+        //                {
+        //                    citiaos[15] = false;
+        //                }; break;
+        //            case "xin": AddNewItem(); collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true; return;
+        //            default: break;
+        //        }
+        //        if (IsTrue)
+        //        {
+        //            collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            if (GetItem.Name == "Yaoping")
+        //            {
+        //                collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+        //                if (Gold > 50)
+        //                {
+        //                    AddNewItem();
+        //                    Gold -= 50;
+        //                }
+        //                return;
+        //            }
+        //            AddNewItem();
+        //            Destroy(collision.gameObject);
+        //            Destroy(collision.transform.parent.gameObject);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+        //    }
+        //}
+        //else if (enemyController != null)
+        //{
+        //    if (IfHunluan())
+        //    { 
+        //        IsTrue = (citiaos[12] && citiaos[17] && citiaos[1] || citiaos[13] && citiaos[0]) && Isrun;
+        //        if (citiaos[0])
+        //        {
+        //            citiaos[13] = false;
+        //        }
+        //        if (IsTrue)
+        //        {
+        //            try
+        //            {
+        //                collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+        //            }
+        //            catch
+        //            { };
 
-                }
-                else
-                {
-                    ChangeHealth(-10);
-                    whatEnemy = enemyController.whatEnemy;
-                    Destroy(collision.gameObject);
-                    Destroy(collision.transform.parent.gameObject);
-                }
-            }
-            else
-            {
-                ChangeHealth(-10);
-                whatEnemy = enemyController.whatEnemy;
-                Destroy(collision.gameObject);
-                Destroy(collision.transform.parent.gameObject);
-            }
+        //        }
+        //        else
+        //        {
+        //            ChangeHealth(-10);
+        //            whatEnemy = enemyController.whatEnemy;
+        //            Destroy(collision.gameObject);
+        //            Destroy(collision.transform.parent.gameObject);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        ChangeHealth(-10);
+        //        whatEnemy = enemyController.whatEnemy;
+        //        Destroy(collision.gameObject);
+        //        Destroy(collision.transform.parent.gameObject);
+        //    }
+        //}
+        #endregion 
+        if(collision.gameObject.tag=="EventElment")
+        {
+            collision.gameObject.GetComponent<eventElmentFather>().getEventPerform();
         }
-
+    
     }
     #endregion
 

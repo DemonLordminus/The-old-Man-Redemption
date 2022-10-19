@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8090852374713034981}
   m_Layer: 0
   m_Name: mailbox 1
-  m_TagString: mailbox
+  m_TagString: EventElement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

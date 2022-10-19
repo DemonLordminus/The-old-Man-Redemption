@@ -19,6 +19,7 @@ TagManager:
   - button
   - Yaogui
   - citiao
+  - EventElement
   layers:
   - Default
   - TransparentFX
