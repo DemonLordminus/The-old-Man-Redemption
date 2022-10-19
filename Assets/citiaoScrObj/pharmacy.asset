@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e0a2cd972193c43aa55e410d551ce7, type: 3}
   m_Name: pharmacy
   m_EditorClassIdentifier: 
-  Name: 
-  Image: []
+  Name: pharmacy
+  Image:
+  - {fileID: 21300000, guid: fe2b8e49c29bafc42bf75be4a126b980, type: 3}
+  - {fileID: 21300000, guid: da49f15f3849680408ea8720d346f2e7, type: 3}
+  - {fileID: 21300000, guid: f37884cc57ed8c644a177a2497afb649, type: 3}

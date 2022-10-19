@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e0a2cd972193c43aa55e410d551ce7, type: 3}
   m_Name: HRM
   m_EditorClassIdentifier: 
-  Name: 
-  Image: []
+  Name: HRM
+  Image:
+  - {fileID: 21300000, guid: ef44c41ea1fba2940afda9956613543d, type: 3}
+  - {fileID: 21300000, guid: 2a99753bc9ee42b48a5ebffb4a68b4df, type: 3}
+  - {fileID: 21300000, guid: 849cc8a480d84124c86df0daee942947, type: 3}

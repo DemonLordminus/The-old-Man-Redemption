@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca363c2ac1c0c64e8ad90e344bc0e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  citiaoScrObj: {fileID: 11400000, guid: 85278d5dec79d104ba2390348daba8f0, type: 2}
+  citiaoScrObj: {fileID: 0}
   citiaoName: 
   image: {fileID: 0}
 --- !u!114 &3019363469756504755

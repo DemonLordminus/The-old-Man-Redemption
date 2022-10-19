@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e0a2cd972193c43aa55e410d551ce7, type: 3}
   m_Name: shi
   m_EditorClassIdentifier: 
-  Name: 
-  Image: []
+  Name: shi
+  Image:
+  - {fileID: 21300000, guid: 303f95468dd814343af0da80dbaeff0d, type: 3}
+  - {fileID: 21300000, guid: 9e3bb93f8a6680a448f4bee162300787, type: 3}
+  - {fileID: 21300000, guid: 355c5a150f679534cb8c5899c52d24cd, type: 3}

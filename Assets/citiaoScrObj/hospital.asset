@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e0a2cd972193c43aa55e410d551ce7, type: 3}
   m_Name: hospital
   m_EditorClassIdentifier: 
-  Name: 
-  Image: []
+  Name: hospital
+  Image:
+  - {fileID: 21300000, guid: a40256f6d0030b644983042b9bcf2fc5, type: 3}
+  - {fileID: 21300000, guid: d65629a99c27eb74792854c244d50add, type: 3}
+  - {fileID: 21300000, guid: 0b4f9d15a62220142a02247d7b7c0136, type: 3}
