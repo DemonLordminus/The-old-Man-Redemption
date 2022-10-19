@@ -16,7 +16,6 @@ public class Manager : MonoBehaviour
         if (instance != null)
             Destroy(this);
         instance = this;
-        Grid = GameObject.FindGameObjectWithTag("Grid");
     }
 
     public static void CreateNewcitiao(ScrObjcitiao getcitiao)

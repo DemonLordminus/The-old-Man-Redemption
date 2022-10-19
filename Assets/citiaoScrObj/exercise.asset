@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e0a2cd972193c43aa55e410d551ce7, type: 3}
   m_Name: exercise
   m_EditorClassIdentifier: 
-  Name: 
-  Image: []
+  Name: exercise
+  Image:
+  - {fileID: 21300000, guid: 6269085db6ddce64d93a7170c2c26ff7, type: 3}
+  - {fileID: 21300000, guid: 03e3e411903bf83428eca579ad7e13d8, type: 3}
+  - {fileID: 21300000, guid: efbf1251f7b6768479b0af70cc31eb9f, type: 3}

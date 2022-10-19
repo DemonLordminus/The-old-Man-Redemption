@@ -3,6 +3,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using Dmld;
 using System.Collections;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -49,10 +50,27 @@ public class PlayerController : MonoBehaviour
             isRun = true;
         }
     }
+    public float mangmuTime;
     void FixedUpdate()
     {
         if (!isPalse)
         {
+            if (debuffs[9].isEnable)
+            {
+                if (debuffs[9].keepTime > 116)
+                {
+                    mangmuTime = -1;
+                }
+                else if(debuffs[9].keepTime >50 )
+                {
+                    mangmuTime = 0f;
+                }
+                else
+                {
+                    mangmuTime =1/10f;
+                }
+                virtualCamera.m_Lens.OrthographicSize = Mathf.Clamp(virtualCamera.m_Lens.OrthographicSize + mangmuTime * Time.fixedDeltaTime, 2, 5);
+            }
             if (CurrentSp < MaxSp / 9 && debuffs[4].isEnable)
             {
                 ChangeHealth(-1);
@@ -185,7 +203,8 @@ public class PlayerController : MonoBehaviour
     //7=ÒÖÓô
     //8=½¹Ôê
     //9=Ã¤Ä¿
- 
+
+    public CinemachineVirtualCamera virtualCamera;
     public DebuffClass[] debuffs;
 
     [HideInInspector]
@@ -193,11 +212,6 @@ public class PlayerController : MonoBehaviour
 
     void Initialize()
     {
-        //for (int i = 0; i < times.Length; i++)
-        //{
-        //    times[i] = 0;
-        //    debuffs[i] = false;
-        //}
         debuffs = new DebuffClass[maxDebuffNum];
         for(int order=0;order<maxDebuffNum;++order)
         {
@@ -206,14 +220,6 @@ public class PlayerController : MonoBehaviour
     }
     void UpdateDebuffTime()
     {
-        //for (int i = 0; i < debuffs.Length; i++)
-        //{
-        //    if (debuffs[i])
-        //    {
-        //        times[i] += Time.fixedDeltaTime;
-        //    }
-        //    ReDebuff();
-        //}
         foreach (DebuffClass debuff in debuffs)
         {
             if (debuff.keepTime>0)
@@ -227,34 +233,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    //void ReDebuff()
-    //{
-    //    //for (int i = 0; i < times.Length; i++)
-    //    //{
-    //    //    if (times[i] >= keeptime)
-    //    //    {
-    //    //        debuffs[i] = false; 
-    //    //        times[i] = 0;
-    //    //    }
-    //    //}
-    //}
-    /*void Debuff(int amount)
-    {
-        switch (amount)
-        {
-            case 1: zhongdu = true; break;
-            case 2: fare = true; break;
-            case 3: fali = true; break;
-            case 4: outufuxie = true; break;
-            case 5: huxikunnan = true; break;
-            case 6: hunluan = true; break;
-            case 7: jianwang = true; break;
-            case 8: yiyu = true; break;
-            case 9: jiaozao = true; break;
-            case 10: mangmu = true; break;
-            default: break;
-        }
-    }*/
     #endregion
     #region ÇÐ»»UI
     public GameObject myBar;
