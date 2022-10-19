@@ -9,7 +9,8 @@ public class PackageManager : MonoBehaviour
 {
     static PackageManager instance;
 
-    public Package Package;
+    //public Package Package;
+    public List<GetItem> Package;
     public GameObject Grid;
     public Item itemPrefab;
     void Awake()
@@ -17,6 +18,10 @@ public class PackageManager : MonoBehaviour
         if(instance != null)
             Destroy(this);
         instance = this;
+    }
+    private void Start()
+    {
+        Package = DataManager.instance.controller.ItemsPackage;
     }
     private void OnEnable()
     {
@@ -37,9 +42,9 @@ public class PackageManager : MonoBehaviour
         { 
             Destroy(instance.Grid.transform.GetChild(i).gameObject);
         }
-        for(int i=0;i<instance.Package.Items.Count;i++)
+        for(int i=0;i<instance.Package.Count;i++)
         {
-            CreateNewItem(instance.Package.Items[i]);
+            CreateNewItem(instance.Package[i]);
         }
     }
 }

@@ -13,12 +13,10 @@ public class DialogTrigger : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        PlayerController collsion = GetComponent<PlayerController>();
-        if(collision != null)
-        {
-            collision.gameObject.GetComponent<PlayerController>().isPalse=true;
+
+            DataManager.instance.controller.isPalse=true;
             Dialog.SetActive(true);
             Destroy(this.gameObject);
-        }
+
     }
 }

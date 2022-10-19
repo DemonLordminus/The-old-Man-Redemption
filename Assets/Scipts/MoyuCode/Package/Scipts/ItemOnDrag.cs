@@ -9,12 +9,10 @@ public class ItemOnDrag: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     //声明起始组类
     public Transform originalParent;
     public GetItem GetItem;
-    public Package Package;
     public GameObject traggerManager;
     private void Start()
     {
         traggerManager = GameObject.Find("TraggerManager");
-        Package = GameObject.Find("UI").GetComponent<PackageManager>().Package;
         GetItem=this.gameObject.GetComponent<Item>().itemname;
     }
     //鼠标点击触发
@@ -62,7 +60,7 @@ public class ItemOnDrag: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                     GetItem.Num -= 1;
                     if(GetItem.Num==0)
                     {
-                        Package.Items.Remove(GetItem);
+                       DataManager.instance.controller.ItemsPackage.Remove(GetItem);
                     }
                     PackageManager.RefreshItem();
                     Destroy(this.gameObject);

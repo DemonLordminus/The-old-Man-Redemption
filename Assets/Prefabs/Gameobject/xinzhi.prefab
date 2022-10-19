@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4185261135644652877}
   - component: {fileID: 4185261135644652876}
   - component: {fileID: 8520190633055397445}
+  - component: {fileID: 6794069901188157897}
   m_Layer: 0
   m_Name: xinzhi
   m_TagString: EventElement
@@ -124,5 +125,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce68e5018e5dc14d87eec95b98e23f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetItem: {fileID: 11400000, guid: 07082168f80eb1a4fa3a2627c408baee, type: 2}
-  Package: {fileID: 11400000, guid: f00214f0403b6df4e9ea17cc1f710764, type: 2}
+--- !u!114 &6794069901188157897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4185261135644652879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86233e5ddbec50842931aa3e1363c9db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 07082168f80eb1a4fa3a2627c408baee, type: 2}

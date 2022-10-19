@@ -4,6 +4,8 @@ using Random = UnityEngine.Random;
 using Dmld;
 using System.Collections;
 using Cinemachine;
+using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 
 public class PlayerController : MonoBehaviour
 {
@@ -161,7 +163,7 @@ public class PlayerController : MonoBehaviour
     public float CurrentHealthy;
     public float MaxSp;
     public float CurrentSp;
-    public float MaxBp;
+    public float MaxBp;//幸福值
     public float CurrentBp;
     public float Gold;
     public float CurrentTime;//处理健忘
@@ -279,8 +281,9 @@ public class PlayerController : MonoBehaviour
     public bool IsTrue;
     public bool Isrun;
     public string whatEnemy;
-    public GetItem GetItem;
-    public Package Package;
+    //public GetItem getItem;
+    //public Package Package;
+    public List<GetItem> ItemsPackage;
     public bool IfHunluan()
     {
         if (debuffs[5].isEnable && Random.Range(1, 7) < 5)
@@ -359,7 +362,7 @@ public class PlayerController : MonoBehaviour
         //                {
         //                    citiaos[15] = false;
         //                }; break;
-        //            case "xin": AddNewItem(); collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true; return;
+        //            case "xin": ; collision.gameObject.GetComponent<AddNewItem()BoxCollider2D>().isTrigger = true; return;
         //            default: break;
         //        }
         //        if (IsTrue)
@@ -425,7 +428,7 @@ public class PlayerController : MonoBehaviour
         //    }
         //}
         #endregion 
-        if(collision.gameObject.tag=="EventElment")
+        if(collision.gameObject.tag=="EventElement")
         {
             collision.gameObject.GetComponent<eventElmentFather>().getEventPerform();
         }
@@ -434,18 +437,51 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region 获取
-    public void AddNewItem()
+    //public void AddNewItem()
+    //{
+    //    if (!Package.Items.Contains(getItem))
+    //    {
+    //        getItem.Num = 1;
+    //        Package.Items.Add(getItem);
+    //    }
+    //    else
+    //    {
+    //        getItem.Num += 1;
+    //    }
+    //    PackageManager.RefreshItem();
+    //}
+    public void AddNewItem(GetItem item)
     {
-        if (!Package.Items.Contains(GetItem))
+        if(!ItemsPackage.Contains(item))
         {
-            GetItem.Num = 1;
-            Package.Items.Add(GetItem);
+            item.Num = 1;
+            ItemsPackage.Add(item);
+
         }
         else
         {
-            GetItem.Num += 1;
+            item.Num++;
         }
-        PackageManager.RefreshItem();
+            PackageManager.RefreshItem();
+
+    }
+    public void AddNewItem(GetItem []Item)
+    {
+        foreach (GetItem item in Item)
+        {
+            if (!ItemsPackage.Contains(item))
+            {
+                item.Num = 1;
+                ItemsPackage.Add(item);
+
+            }
+            else
+            {
+                item.Num++;
+            }
+        }
+            PackageManager.RefreshItem();
+        
     }
     #endregion
 }
