@@ -10,10 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69e0a2cd972193c43aa55e410d551ce7, type: 3}
-  m_Name: good
+  m_Name: shi
   m_EditorClassIdentifier: 
-  Name: good
+  Name: shi
   Image:
-  - {fileID: 21300000, guid: 82e8cbce6621ed541a0c23aead3755ac, type: 3}
-  - {fileID: 21300000, guid: f660b5936a5d5cd4b96313f04d28c207, type: 3}
-  - {fileID: 21300000, guid: 0eb1e2cfd91e85a42b66c7e414e3713a, type: 3}
+  - {fileID: 21300000, guid: 303f95468dd814343af0da80dbaeff0d, type: 3}
+  - {fileID: 21300000, guid: 9e3bb93f8a6680a448f4bee162300787, type: 3}
+  - {fileID: 21300000, guid: 355c5a150f679534cb8c5899c52d24cd, type: 3}
+  Content: "\u662F"
+  type: 0
+  reverseWord: {fileID: 0}
+  serialNum: 10

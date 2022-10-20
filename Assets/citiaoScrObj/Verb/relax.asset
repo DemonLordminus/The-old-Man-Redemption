@@ -10,10 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69e0a2cd972193c43aa55e410d551ce7, type: 3}
-  m_Name: exercise
+  m_Name: relax
   m_EditorClassIdentifier: 
-  Name: exercise
+  Name: relax
   Image:
-  - {fileID: 21300000, guid: 6269085db6ddce64d93a7170c2c26ff7, type: 3}
-  - {fileID: 21300000, guid: 03e3e411903bf83428eca579ad7e13d8, type: 3}
-  - {fileID: 21300000, guid: efbf1251f7b6768479b0af70cc31eb9f, type: 3}
+  - {fileID: 21300000, guid: 5566620e184f70a4c815c2dd89f2e2e9, type: 3}
+  - {fileID: 21300000, guid: 9f40e8930713af44e9659da0e0b91466, type: 3}
+  - {fileID: 21300000, guid: b7193d50469abc74a9ad51f34f487441, type: 3}
+  Content: "\u4F11\u606F"
+  type: 0
+  reverseWord: {fileID: 11400000, guid: 3364477484a033c4e8f72fff4e4f66d6, type: 2}
+  serialNum: 9

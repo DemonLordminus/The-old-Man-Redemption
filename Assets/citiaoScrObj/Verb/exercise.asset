@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69e0a2cd972193c43aa55e410d551ce7, type: 3}
+  m_Name: exercise
+  m_EditorClassIdentifier: 
+  Name: exercise
+  Image:
+  - {fileID: 21300000, guid: 6269085db6ddce64d93a7170c2c26ff7, type: 3}
+  - {fileID: 21300000, guid: 03e3e411903bf83428eca579ad7e13d8, type: 3}
+  - {fileID: 21300000, guid: efbf1251f7b6768479b0af70cc31eb9f, type: 3}
+  Content: "\u953B\u70BC"
+  type: 3
+  reverseWord: {fileID: 11400000, guid: d25ff8d07153ffb4dbb6c082fcbb8e60, type: 2}
+  serialNum: 3

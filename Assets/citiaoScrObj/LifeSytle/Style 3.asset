@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69e0a2cd972193c43aa55e410d551ce7, type: 3}
-  m_Name: relax
+  m_Name: Style 3
   m_EditorClassIdentifier: 
-  Name: relax
-  Image:
-  - {fileID: 21300000, guid: 5566620e184f70a4c815c2dd89f2e2e9, type: 3}
-  - {fileID: 21300000, guid: 9f40e8930713af44e9659da0e0b91466, type: 3}
-  - {fileID: 21300000, guid: b7193d50469abc74a9ad51f34f487441, type: 3}
+  Name: 
+  Image: []
+  Content: "\u6D3B\u52A8\u7B4B\u9AA8"
+  type: 1
+  reverseWord: {fileID: 11400000, guid: 87066684ca20c32428cc369cbe142db7, type: 2}
+  serialNum: 0

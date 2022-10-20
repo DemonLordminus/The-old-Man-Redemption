@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0120494480cd4084185179453e6c467a, type: 3}
+  m_Name: WordDataManagerScr
+  m_EditorClassIdentifier: Assembly-CSharp::WordDataManagerScrObj
+  eventElementWordList:
+  - {fileID: 11400000, guid: 9431f02bb8b9ea143941a1646ff3db29, type: 2}
+  - {fileID: 11400000, guid: afa133964f325fb4b9524c21135cbce2, type: 2}
+  - {fileID: 11400000, guid: b9186c8cf101cd94bb5fe6a1cc0a1966, type: 2}
+  - {fileID: 11400000, guid: f7ad19bd4970afc49aeccf8caf0ba862, type: 2}
+  - {fileID: 11400000, guid: 8ce510d6db35fe54c8c55f518e7d5a0b, type: 2}
+  - {fileID: 11400000, guid: 597ae88e727ceb8409286065348ad029, type: 2}
+  lifeSytleWordList:
+  - {fileID: 11400000, guid: 134029cd7dca7b84cb9850ef8b886dfe, type: 2}
+  - {fileID: 11400000, guid: cef8019be2a595c4189e6cb80988de65, type: 2}
+  - {fileID: 11400000, guid: 089f6506530f00540aa51c4f036687bf, type: 2}
+  - {fileID: 11400000, guid: 87066684ca20c32428cc369cbe142db7, type: 2}
+  - {fileID: 11400000, guid: e7a630d881ac79046857b8b1a22f55b3, type: 2}
+  - {fileID: 11400000, guid: b77eaf9e8d4bbe64aae9e24cab30fd5f, type: 2}
+  - {fileID: 11400000, guid: 7023266399f2ad446853650315dc07a8, type: 2}
+  - {fileID: 11400000, guid: e1bff0f34c7c0b9408e4236be6916fb9, type: 2}
+  - {fileID: 11400000, guid: 6e47e091e72694d4fb5c795d201ba8bc, type: 2}
+  - {fileID: 11400000, guid: 3328bea841527444f8ad2e572c927f12, type: 2}
+  verbWordList:
+  - {fileID: 11400000, guid: 85278d5dec79d104ba2390348daba8f0, type: 2}
+  - {fileID: 11400000, guid: 1397148a667adac4f9d41b440f9a962e, type: 2}
+  - {fileID: 11400000, guid: 3364477484a033c4e8f72fff4e4f66d6, type: 2}
+  - {fileID: 11400000, guid: d25ff8d07153ffb4dbb6c082fcbb8e60, type: 2}
+  isWordList:
+  - {fileID: 11400000, guid: fa89d872c259fa7469a2596300570b9e, type: 2}
+  goodOrBadWordList:
+  - {fileID: 11400000, guid: 6646d616e7d084643a24210271e74d7f, type: 2}
+  - {fileID: 11400000, guid: deac88cb972cac449bd47a221cced63a, type: 2}

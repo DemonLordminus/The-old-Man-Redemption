@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+//我打算重新搞一个class来做这个citiao，这个代码不是不行，但是不够好 by Demon
 public enum CitiaosType
 {
     avoid = 0,

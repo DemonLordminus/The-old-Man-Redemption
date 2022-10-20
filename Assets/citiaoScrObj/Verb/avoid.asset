@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69e0a2cd972193c43aa55e410d551ce7, type: 3}
+  m_Name: avoid
+  m_EditorClassIdentifier: 
+  Name: avoid
+  Image:
+  - {fileID: 21300000, guid: b5add49783a905d47b9553e16f9cdcdc, type: 3}
+  - {fileID: 21300000, guid: 703e2bdaaa462374fbeabd162e98ad0e, type: 3}
+  - {fileID: 21300000, guid: 90b8b90e64c4e9043aa78bc8f0a4a4aa, type: 3}
+  Content: "\u907F\u5F00"
+  type: 3
+  reverseWord: {fileID: 11400000, guid: 1397148a667adac4f9d41b440f9a962e, type: 2}
+  serialNum: 0

@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69e0a2cd972193c43aa55e410d551ce7, type: 3}
-  m_Name: illness
+  m_Name: Style 6
   m_EditorClassIdentifier: 
-  Name: illness
-  Image:
-  - {fileID: 21300000, guid: e6bf2d61f3eb5b84e8dc70abb96bd227, type: 3}
-  - {fileID: 21300000, guid: 62a500d833d4f0b498dbca7f8dbf38c7, type: 3}
-  - {fileID: 21300000, guid: 721c3244c6e42a543bfc14a5f6070479, type: 3}
+  Name: 
+  Image: []
+  Content: "\u6478\u9C7C\u6446\u70C2"
+  type: 1
+  reverseWord: {fileID: 11400000, guid: e7a630d881ac79046857b8b1a22f55b3, type: 2}
+  serialNum: 11

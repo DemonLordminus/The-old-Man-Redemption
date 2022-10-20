@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69e0a2cd972193c43aa55e410d551ce7, type: 3}
+  m_Name: HRM
+  m_EditorClassIdentifier: 
+  Name: HRM
+  Image:
+  - {fileID: 21300000, guid: ef44c41ea1fba2940afda9956613543d, type: 3}
+  - {fileID: 21300000, guid: 2a99753bc9ee42b48a5ebffb4a68b4df, type: 3}
+  - {fileID: 21300000, guid: 849cc8a480d84124c86df0daee942947, type: 3}
+  Content: "\u4EBA\u624D\u5E02\u573A"
+  type: 0
+  reverseWord: {fileID: 0}
+  serialNum: 6

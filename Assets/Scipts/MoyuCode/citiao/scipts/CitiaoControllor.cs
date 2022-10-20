@@ -11,6 +11,9 @@ public class CitiaoControllor : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     //声明判断变量
     public int whatNo;
     public string what;
+
+    private bool isOnLetter;//Demon测试用变量，是否在信上
+
     //获取属性来区分
     void JudgeWhat()
     {
@@ -62,6 +65,7 @@ public class CitiaoControllor : MonoBehaviour, IBeginDragHandler, IEndDragHandle
         JudgeWhat();
         try//防止因获取空值异常
         {
+            #region
             //if (eventData.pointerCurrentRaycast.gameObject.layer == 3)//这个代码获取鼠标射线现在碰撞的物体的图层     //citiao调换位置
             //{
             //    //设置当前对象所属
@@ -90,13 +94,19 @@ public class CitiaoControllor : MonoBehaviour, IBeginDragHandler, IEndDragHandle
             //    GetComponent<CanvasGroup>().blocksRaycasts = true;
             //    return;
             //}
+            #endregion
             //定到触发区
             if (eventData.pointerCurrentRaycast.gameObject.tag == "Tragger") //定到正确位置，使词条管理器对应属性生效
             {
                 transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
                 transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
                 GetComponent<CanvasGroup>().blocksRaycasts = true;
+                isOnLetter = true;
                 return;
+            }
+            else {
+                
+                isOnLetter = false; 
             }
         }
         catch
