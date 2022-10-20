@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6350346124282911851}
   - component: {fileID: 7048700771046842490}
   - component: {fileID: 3031431745486046970}
+  - component: {fileID: 1841987105297798713}
   m_Layer: 12
   m_Name: EnemyConllision
   m_TagString: EventElement
@@ -94,6 +95,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whatEnemy: 
+--- !u!114 &1841987105297798713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4085783858532039006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d0d1e0e8c6cd664fb3a80af33e7bd4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7652950547724771655
 GameObject:
   m_ObjectHideFlags: 0

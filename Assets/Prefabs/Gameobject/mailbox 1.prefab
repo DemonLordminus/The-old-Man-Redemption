@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4572920150648964024}
   - component: {fileID: 8090852374713034979}
   - component: {fileID: 8090852374713034981}
+  - component: {fileID: 2379146541234359301}
   m_Layer: 0
   m_Name: mailbox 1
   m_TagString: EventElement
@@ -126,3 +127,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ishave: 0
   isrun: 0
+--- !u!114 &2379146541234359301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873198554982885114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520acc399b0c0034db4cdafef69d97d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -10,6 +10,8 @@ public class DataManager : MonoBehaviour
     public GameObject player;
     [SerializeField]
     public PlayerController controller;
+    [SerializeField]
+    public LawOrActLists lawOrActLists;
     void Awake()
     {
         if (instance != null)
@@ -19,7 +21,7 @@ public class DataManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (player == null || controller == null)
+        if (player == null || controller == null||lawOrActLists==null)
         {
             Debug.LogWarning("DataManager≥ı÷µŒ¥…Ë÷√");
         }

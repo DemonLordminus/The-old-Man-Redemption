@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class eventElmentFather : MonoBehaviour
+public class eventElmentFather : LawOrActLists
 {
    
     // Start is called before the first frame update

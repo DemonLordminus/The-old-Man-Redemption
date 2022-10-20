@@ -9,12 +9,37 @@ public class CitiaoControllor : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     //声明起始组类
     public Transform originalParent;
     //声明判断变量
+    public int whatNo;
     public string what;
     //获取属性来区分
     void JudgeWhat()
     {
-        citiao citiao = this.gameObject.GetComponent<citiao>();
-        what = citiao.citiaoName;
+        switch( what)
+        {
+            case "avoid": { whatNo=0; break; }
+            case "bad": {  whatNo=1; break; }
+            case "cabinets": { whatNo=2; break; }
+            //case "cabinets_bad": { whatNo =3; break; }
+            case "eat": { whatNo =4; break; }
+
+            case "entry": { whatNo =5; break; }
+            case "exercise": { whatNo =6; break; }
+            case "good": { whatNo =7; break; }
+            case "hospital": {whatNo =8; break; }
+            //case "hospital_bad": { whatNo =9; break; }
+
+            case "HRM": { whatNo =10; break; }
+            //case "HRM_bad": { whatNo=11; break; }
+            case "illness": { whatNo =12; break; }
+            //case "illness_bad": {whatNo =13; break; }
+            case "pharmacy": { whatNo=14; break; }
+
+            //case "pharmacy_bad": {whatNo=15; break; }
+            case "relax": { whatNo=16; break; }
+            case "shi": { whatNo =17; break; }
+            case "TCM": { whatNo =18; break; }
+            //case "TCM_bad": { whatNo =19; break; }
+        }
     }
     //鼠标点击触发
     public void OnBeginDrag(PointerEventData eventData)
@@ -32,6 +57,8 @@ public class CitiaoControllor : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     //鼠标结束拖拽触发
     public void OnEndDrag(PointerEventData eventData)
     {
+        citiao citiao = this.gameObject.GetComponent<citiao>();
+        what = citiao.citiaoName;
         JudgeWhat();
         try//防止因获取空值异常
         {

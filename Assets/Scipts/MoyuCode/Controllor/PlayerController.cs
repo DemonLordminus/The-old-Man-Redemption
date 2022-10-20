@@ -63,13 +63,13 @@ public class PlayerController : MonoBehaviour
                 {
                     mangmuTime = -1;
                 }
-                else if(debuffs[9].keepTime >50 )
+                else if (debuffs[9].keepTime > 50)
                 {
                     mangmuTime = 0f;
                 }
                 else
                 {
-                    mangmuTime =1/10f;
+                    mangmuTime = 1 / 10f;
                 }
                 virtualCamera.m_Lens.OrthographicSize = Mathf.Clamp(virtualCamera.m_Lens.OrthographicSize + mangmuTime * Time.fixedDeltaTime, 2, 5);
             }
@@ -126,10 +126,10 @@ public class PlayerController : MonoBehaviour
                 Timer = 1.5f;
                 NewSpeed();
             }
-            if (debuffs[6].isEnable && debuffs[6].keepTime - CurrentTime>5)//jianwang)
+            if (debuffs[6].isEnable && debuffs[6].keepTime - CurrentTime > 5)//jianwang)
             {
                 Jianwang();
-                CurrentTime=debuffs[6].keepTime;
+                CurrentTime = debuffs[6].keepTime;
             }
             UpdateDebuffTime();
         }
@@ -210,12 +210,12 @@ public class PlayerController : MonoBehaviour
     public DebuffClass[] debuffs;
 
     [HideInInspector]
-    public const int maxDebuffNum=10;//最大病症数量
+    public const int maxDebuffNum = 10;//最大病症数量
 
     void Initialize()
     {
         debuffs = new DebuffClass[maxDebuffNum];
-        for(int order=0;order<maxDebuffNum;++order)
+        for (int order = 0; order < maxDebuffNum; ++order)
         {
             debuffs[order] = new DebuffClass(order);
         }
@@ -224,11 +224,11 @@ public class PlayerController : MonoBehaviour
     {
         foreach (DebuffClass debuff in debuffs)
         {
-            if (debuff.keepTime>0)
+            if (debuff.keepTime > 0)
             {
                 debuff.keepTime -= Time.fixedDeltaTime;
                 if (debuff.keepTime < 0)
-                { 
+                {
                     debuff.isEnable = false;
                     debuff.keepTime = 0;
                 }
@@ -257,7 +257,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject gameOver;
     #region 碰撞
-    public bool[] citiaos = new bool[20];
+    //public bool[] citiaos = new bool[20];
     //0public bool avoid;
     //1public bool bad;
     //2public bool cabinets_bad;
@@ -293,13 +293,14 @@ public class PlayerController : MonoBehaviour
         return true;
     }
     public int num;
-    public int[] citiaos_ = new int[20];
+    //public int[] citiaos_ = new int[20];
     void Jianwang()
     {
-        num = 0;
-        for(int i=0;i<citiaos_.Length;i++)
+        DataManager.instance.lawOrActLists.RemoveLaw(Random.Range(0,DataManager.instance.lawOrActLists.CitiaoInlawlists.Count/3));
+        /*num = 0;
+        for (int i = 0; i < citiaos_.Length; i++)
         {
-            citiaos_[i]=0; 
+            citiaos_[i] = 0;
         }
         for (int i = 0; i < citiaos.Length; i++)
         {
@@ -310,7 +311,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         citiaos[citiaos_[Random.Range(0, num)]] = false;
-
+*/
         /*
         switch(Random.Range(1,17))
         {
@@ -343,96 +344,107 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        #region 老代码
-        ////判断是否接收到信
-        //Isrun = GameObject.FindWithTag("mailbox").GetComponent<MailBoxManager>().isrun;
-        //EnemyManager enemyController = collision.gameObject.GetComponent<EnemyManager>();
-        //PropsController propsController = collision.gameObject.GetComponent<PropsController>();
-        //if (propsController != null)//判断为物品
-        //{
-        //    if (IfHunluan())
-        //    {
-        //        GetItem = propsController.GetItem;
-        //        Package = propsController.Package;
-        //        switch (GetItem.Name)//根据GetItem组件中的Name属性来判断是否运行
-        //        {
-        //            case "Yaoping":
-        //                IsTrue = (citiaos[14] && citiaos[17] && citiaos[1] || citiaos[0] && citiaos[15]) && Isrun;
-        //                if (citiaos[0])
-        //                {
-        //                    citiaos[15] = false;
-        //                }; break;
-        //            case "xin": ; collision.gameObject.GetComponent<AddNewItem()BoxCollider2D>().isTrigger = true; return;
-        //            default: break;
-        //        }
-        //        if (IsTrue)
-        //        {
-        //            collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-        //            return;
-        //        }
-        //        else
-        //        {
-        //            if (GetItem.Name == "Yaoping")
-        //            {
-        //                collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-        //                if (Gold > 50)
-        //                {
-        //                    AddNewItem();
-        //                    Gold -= 50;
-        //                }
-        //                return;
-        //            }
-        //            AddNewItem();
-        //            Destroy(collision.gameObject);
-        //            Destroy(collision.transform.parent.gameObject);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-        //    }
-        //}
-        //else if (enemyController != null)
-        //{
-        //    if (IfHunluan())
-        //    { 
-        //        IsTrue = (citiaos[12] && citiaos[17] && citiaos[1] || citiaos[13] && citiaos[0]) && Isrun;
-        //        if (citiaos[0])
-        //        {
-        //            citiaos[13] = false;
-        //        }
-        //        if (IsTrue)
-        //        {
-        //            try
-        //            {
-        //                collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-        //            }
-        //            catch
-        //            { };
+        if (collision.gameObject.name == "mailbox")
+        {
+            collision.gameObject.GetComponent<eventElmentFather>().getEventPerform(); return;
+        }
+        if(IfHunluan())
+        {
+            OnEvent(collision);
+        }
+        else
+        {
+            collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+        }
+     #region 老代码
+        /*if (propsController != null)//判断为物品
+        {
+            if (IfHunluan())
+            {
+                GetItem = propsController.GetItem;
+                Package = propsController.Package;
+                switch (GetItem.Name)//根据GetItem组件中的Name属性来判断是否运行
+                {
+                    case "Yaoping":
+                        IsTrue = (citiaos[14] && citiaos[17] && citiaos[1] || citiaos[0] && citiaos[15]) && Isrun;
+                        if (citiaos[0])
+                        {
+                            citiaos[15] = false;
+                        }; break;
+                    case "xin":; collision.gameObject.GetComponent < AddNewItem()BoxCollider2D > ().isTrigger = true; return;
+                    default: break;
+                }
+                if (IsTrue)
+                {
+                    collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                    return;
+                }
+                else
+                {
+                    if (GetItem.Name == "Yaoping")
+                    {
+                        collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                        if (Gold > 50)
+                        {
+                            AddNewItem();
+                            Gold -= 50;
+                        }
+                        return;
+                    }
+                    AddNewItem();
+                    Destroy(collision.gameObject);
+                    Destroy(collision.transform.parent.gameObject);
+                }
+            }
+            else
+            {
+                collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+            }
+        }
+        else if (enemyController != null)
+        {
+            if (IfHunluan())
+            {
+                IsTrue = (citiaos[12] && citiaos[17] && citiaos[1] || citiaos[13] && citiaos[0]) && Isrun;
+                if (citiaos[0])
+                {
+                    citiaos[13] = false;
+                }
+                if (IsTrue)
+                {
+                    try
+                    {
+                        collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                    }
+                    catch
+                    { };
 
-        //        }
-        //        else
-        //        {
-        //            ChangeHealth(-10);
-        //            whatEnemy = enemyController.whatEnemy;
-        //            Destroy(collision.gameObject);
-        //            Destroy(collision.transform.parent.gameObject);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        ChangeHealth(-10);
-        //        whatEnemy = enemyController.whatEnemy;
-        //        Destroy(collision.gameObject);
-        //        Destroy(collision.transform.parent.gameObject);
-        //    }
-        //}
-        #endregion 
-        if(collision.gameObject.tag=="EventElement")
+                }
+                else
+                {
+                    ChangeHealth(-10);
+                    whatEnemy = enemyController.whatEnemy;
+                    Destroy(collision.gameObject);
+                    Destroy(collision.transform.parent.gameObject);
+                }
+            }
+            else
+            {
+                ChangeHealth(-10);
+                whatEnemy = enemyController.whatEnemy;
+                Destroy(collision.gameObject);
+                Destroy(collision.transform.parent.gameObject);
+            }
+        }*/
+        #endregion
+
+    }
+    void OnEvent(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "EventElement")
         {
             collision.gameObject.GetComponent<eventElmentFather>().getEventPerform();
         }
-    
     }
     #endregion
 
@@ -452,7 +464,7 @@ public class PlayerController : MonoBehaviour
     //}
     public void AddNewItem(GetItem item)
     {
-        if(!ItemsPackage.Contains(item))
+        if (!ItemsPackage.Contains(item))
         {
             item.Num = 1;
             ItemsPackage.Add(item);
@@ -462,10 +474,10 @@ public class PlayerController : MonoBehaviour
         {
             item.Num++;
         }
-            PackageManager.RefreshItem();
+        PackageManager.RefreshItem();
 
     }
-    public void AddNewItem(GetItem []Item)
+    public void AddNewItem(GetItem[] Item)
     {
         foreach (GetItem item in Item)
         {
@@ -480,8 +492,8 @@ public class PlayerController : MonoBehaviour
                 item.Num++;
             }
         }
-            PackageManager.RefreshItem();
-        
+        PackageManager.RefreshItem();
+
     }
     #endregion
 }

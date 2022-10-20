@@ -13,6 +13,7 @@ public class xinzhiEvent : eventElmentFather
 
     public override void getEventPerform()
     {
+        //item = gameObject.GetComponent<GetItem[]>();
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         DataManager.instance.controller.AddNewItem(item);
         Debug.Log("–≈÷ΩªÒ»°");
