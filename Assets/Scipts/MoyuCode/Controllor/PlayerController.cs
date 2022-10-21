@@ -257,32 +257,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject gameOver;
     #region Åö×²
-    //public bool[] citiaos = new bool[20];
-    //0public bool avoid;
-    //1public bool bad;
-    //2public bool cabinets_bad;
-    //3public bool cabinets_avoid;
-    //4public bool eat;
-    //5public bool entry;
-    //6public bool exercise;
-    //7public bool good;
-    //8public bool hospital_bad;
-    //9public bool hospital_avoid;
-    //10public bool HRM_bad;
-    //11public bool HRM_avoid;
-    //12public bool illness_bad;
-    //13public bool illness_avoid;
-    //14public bool pharmacy_bad;
-    //15public bool pharmacy_avoid;
-    //16public bool relax;
-    //17public bool shi;
-    //18public bool TCM_bad;
-    //19public bool TCM_avoid;
     public bool IsTrue;
     public bool Isrun;
     public string whatEnemy;
-    //public GetItem getItem;
-    //public Package Package;
     public List<GetItem> ItemsPackage;
     public bool IfHunluan()
     {
@@ -293,46 +270,9 @@ public class PlayerController : MonoBehaviour
         return true;
     }
     public int num;
-    //public int[] citiaos_ = new int[20];
     void Jianwang()
     {
-        DataManager.instance.lawOrActLists.RemoveLaw(Random.Range(0,DataManager.instance.lawOrActLists.CitiaoInlawlists.Count/3));
-        /*num = 0;
-        for (int i = 0; i < citiaos_.Length; i++)
-        {
-            citiaos_[i] = 0;
-        }
-        for (int i = 0; i < citiaos.Length; i++)
-        {
-            if (citiaos[i])
-            {
-                citiaos_[num] = i;
-                num += 1;
-            }
-        }
-        citiaos[citiaos_[Random.Range(0, num)]] = false;
-*/
-        /*
-        switch(Random.Range(1,17))
-        {
-            case 1:avoid=false; break;
-            case 2:bad=false; break;
-            case 3:cabinets=false; break;
-            case 4:eat=false; break;
-            case 5:entry=false; break;
-            case 6:exercise=false; break;
-            case 7:good=false; break;
-            case 8:hospital=false; break;
-            case 9:HRM=false; break;
-            case 10:illness_bad=false; break;
-            case 11:illness_avoid=false; break;
-            case 12:pharmacy_avoid=false; break;
-            case 13:pharmacy_bad=false; break;
-            case 14:relax=false; break;
-            case 15:shi=false; break;
-            case 16:TCM=false; break;
-            default:break;
-        }*/
+        DataManager.instance.lawOrActLists.lawlists.RemoveRange(((int)Random.Range(0,DataManager.instance.lawOrActLists.lawlists.Count/3))*3,3);
     }
     public bool Probability(int amount)
     {
@@ -449,19 +389,6 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region »ñÈ¡
-    //public void AddNewItem()
-    //{
-    //    if (!Package.Items.Contains(getItem))
-    //    {
-    //        getItem.Num = 1;
-    //        Package.Items.Add(getItem);
-    //    }
-    //    else
-    //    {
-    //        getItem.Num += 1;
-    //    }
-    //    PackageManager.RefreshItem();
-    //}
     public void AddNewItem(GetItem item)
     {
         if (!ItemsPackage.Contains(item))

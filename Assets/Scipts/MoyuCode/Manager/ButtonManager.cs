@@ -8,22 +8,17 @@ using UnityEngine.UI;
 public class ButtonManager : MonoBehaviour
 {
     public GameObject myLetter;
-    public bool issent;
     public bool lawOrAct;
-    public GameObject Player;
-    public int whatNo;
-    public string what;
+    public ScrObjcitiao ScrObjcitiao;
     public LawOrActLists LawOrActLists;
     void Start()
     {
-        Player = GameObject.Find("Player");
         //获取按钮组件
         Button button = GetComponent<Button>();
         //往按钮的点击事件添加方法
         button.onClick.AddListener(Click0);
-        //button.onClick.AddListener(Click1);
     }
-
+    #region old
     /*public void Click1()
     {
         //发送
@@ -34,10 +29,9 @@ public class ButtonManager : MonoBehaviour
         myLetter.SetActive(false);
     }*/
     //给词条管理器赋值
+    #endregion
     public void Click0()
     {
-        //发送
-        issent = true;
         //找到第一个信箱并使它具有信
         GameObject.Find("mailbox").GetComponent<MailboxEvent>().ishave = true;
         //使信隐藏
@@ -48,7 +42,7 @@ public class ButtonManager : MonoBehaviour
             lawOrAct = false;
             for (int j = 0; j < gameObject.transform.parent.GetChild(i).childCount; j++)
             {
-                if (gameObject.transform.parent.GetChild(i).GetChild(j).GetComponent<citiao>().citiaoScrObj.Name == "shi")
+                if (gameObject.transform.parent.GetChild(i).GetChild(j).GetComponent<citiao>().citiaoScrObj.type == (wordType)2)
                 {
                     lawOrAct = true;
                     break;
@@ -56,51 +50,45 @@ public class ButtonManager : MonoBehaviour
             }
             if (lawOrAct && gameObject.transform.parent.GetChild(i).childCount == 3)
             {
-                citiaoClasses = new CitiaoClass[3];
+                citiao = new string[3];
                 for (int k = 0; k < 3; k++)
                 {
                     AssignmentLaw(i, k);
-                    if (citiaoClasses[k]==null)
+                    if (citiao[k] == null)
                     {
                         return;
                     }
                 }
-                for (int k = 0; k < 3; k++)
-                {
-                    LawOrActLists.CitiaoInlawlists.Add(citiaoClasses[k]);
-                    LawOrActLists.LawNum += 1;
-                }
+
+                LawOrActLists.lawlists.Add(citiao[0] + citiao[1] + citiao[2]);
+
             }
             if (!lawOrAct && gameObject.transform.parent.GetChild(i).childCount <= 2)
             {
-                citiaoClasses = new CitiaoClass[2];
+                citiao = new string[2];
                 for (int k = 0; k < gameObject.transform.parent.GetChild(i).childCount; k++)
                 {
                     AssignmentAct(i, k);
-                    if (citiaoClasses[k] == null)
+                    if (citiao[k] == null)
                     {
                         return;
                     }
                 }
-                for (int k = 0; k < 2; k++)
-                {
-                    LawOrActLists.CitiaoInActLists.Add(citiaoClasses[k]);
-                    LawOrActLists.ActNum += 1;
-                }
+                LawOrActLists.ActLists.Add(citiao[0] + citiao[i]);
             }
         }
     }
-    public CitiaoClass[] citiaoClasses;
+    public string[] citiao;
     public void AssignmentLaw(int i, int k)
     {
-        what = gameObject.transform.parent.GetChild(i).GetChild(k).gameObject.GetComponent<CitiaoControllor>().what;
-        whatNo = gameObject.transform.parent.GetChild(i).GetChild(k).gameObject.GetComponent<CitiaoControllor>().whatNo;
+        ScrObjcitiao = gameObject.transform.parent.GetChild(i).GetChild(k).gameObject.GetComponent<citiao>().citiaoScrObj;
         switch (k)
         {
             case 0://主语
+                #region 旧日
                 /*switch (what)
                 {
-                    case "cabinets": citiaoClasses[k]=new CitiaoClass(whatNo); break;
+                    case "cabinets": citiao[k]=new CitiaoClass(whatNo); break;
                     case "hospital": Player.GetComponent<PlayerController>().citiaos[8] = true; break;
                     case "HRM": Player.GetComponent<PlayerController>().citiaos[10] = true; break;
                     case "illness": Player.GetComponent<PlayerController>().citiaos[12] = true; break;
@@ -108,44 +96,54 @@ public class ButtonManager : MonoBehaviour
                     case "TCM": Player.GetComponent<PlayerController>().citiaos[18] = true; break;
                     default: break;
                 };*/
-                if(what== "cabinets"||what == "hospital"||what== "HRM"||what =="illness"||what=="pharmacy"||what =="TCM")
+                /*if(what== "cabinets"||what == "hospital"||what== "HRM"||what =="illness"||what=="pharmacy"||what =="TCM")
                 {
-                    citiaoClasses[k] = new CitiaoClass(whatNo);
+                    citiao[k] = new CitiaoClass(whatNo);
+                }
+                break;*/
+                #endregion
+                if (ScrObjcitiao.type == (wordType)0)
+                {
+                    citiao[k] = ScrObjcitiao.Content;
                 }
                 break;
             case 1://谓语
+                #region 旧日
                 /*switch (what)
                 {
                     case "shi": Player.GetComponent<PlayerController>().citiaos[17] = true; break;
                         default : break;
                 };*/
-                if(what=="shi")
+                #endregion
+                if (ScrObjcitiao.type == (wordType)2)
                 {
-                    citiaoClasses[k] = new CitiaoClass(whatNo);
+                    citiao[k] = ScrObjcitiao.Content;
                 }
                 break;
             case 2://宾语
+                #region 旧日
                 /*switch(what)
                 {
                     case "bad": Player.GetComponent<PlayerController>().citiaos[1] = true; break;
                     case "good": Player.GetComponent<PlayerController>().citiaos[7] = true; break;
                     default:break;
                 };*/
-                if(what=="bad"||what=="good")
+                #endregion
+                if (ScrObjcitiao.type == (wordType)4)
                 {
-                    citiaoClasses[k]=new CitiaoClass(whatNo);
+                    citiao[k] = ScrObjcitiao.Content;
                 }
                 break;
-            default:break;
+            default: break;
         }
     }
     public void AssignmentAct(int i, int k)
     {
-        what = gameObject.transform.parent.GetChild(i).GetChild(k).gameObject.GetComponent<CitiaoControllor>().what;
-        whatNo = gameObject.transform.parent.GetChild(i).GetChild(k).gameObject.GetComponent<CitiaoControllor>().whatNo;
+        ScrObjcitiao = gameObject.transform.parent.GetChild(i).GetChild(k).gameObject.GetComponent<citiao>().citiaoScrObj;
         switch (k)
         {
             case 0://谓语
+                #region 旧日
                 /*switch (what)
                 {
                     case "avoid": Player.GetComponent<PlayerController>().citiaos[0] = true; break;
@@ -155,12 +153,14 @@ public class ButtonManager : MonoBehaviour
                     case "relax": Player.GetComponent<PlayerController>().citiaos[16] = true; break;
                     default: break;
                 };*/
-                if(what=="avoid"||what =="eat"||what=="entry"||what=="exercise"||what =="relax")
+                #endregion
+                if (ScrObjcitiao.type == (wordType)3)
                 {
-                    citiaoClasses[k]= new CitiaoClass(whatNo);
+                    citiao[k] = ScrObjcitiao.Content;
                 }
                 break;
             case 1://宾语
+                #region 旧日
                 /*switch (what)
                 {
                     case "cabinets": Player.GetComponent<PlayerController>().citiaos[3] = true; break;
@@ -171,9 +171,10 @@ public class ButtonManager : MonoBehaviour
                     case "TCM": Player.GetComponent<PlayerController>().citiaos[19] = true; break;
                     default: break;
                 };*/
-                if (what == "cabinets" || what == "hospital" || what == "HRM" || what == "illness" || what == "pharmacy" || what == "TCM")
+                #endregion
+                if (ScrObjcitiao.type == (wordType)0)
                 {
-                    citiaoClasses[k] = new CitiaoClass(whatNo );
+                    citiao[k] = ScrObjcitiao.Content;
                 }
                 break;
             default: break;

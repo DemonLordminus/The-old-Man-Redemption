@@ -5,26 +5,29 @@ using UnityEngine;
 [Serializable]
 public class LawOrActLists : MonoBehaviour
 {
-    public List<CitiaoClass > CitiaoInlawlists=new List<CitiaoClass>() ;
-    public List<CitiaoClass > CitiaoInActLists=new List<CitiaoClass>() ;
-    public CitiaoClass[] citiaoClassesLaw;
-    public CitiaoClass[] citiaoClassesAct;
-    public int LawNum;
-    public int ActNum; 
-    public void RemoveLaw(int i)
+    public List<string> lawlists=new List<string>() ;
+    public List<string > ActLists=new List<string>() ;
+    public bool OnLaw(string LawName)
     {
-        CitiaoInlawlists.RemoveRange(i,3);
+        for (int i = 0; i < lawlists.Count; i ++)
+        {
+            if (lawlists[i]  == LawName)
+            {
+                return true;
+            }
+        }
+        return false;
     }
-    public void RemoveAct(int i)
+    public bool OnAct(string ActName)
     {
-        CitiaoInActLists.RemoveRange(i,2);
-    }
-    public virtual void OnLaw()
-    {
-
-    }
-    public virtual void OnAct()
-    {
-
+        for (int i = 0; i < ActLists.Count; i ++)
+        {
+            if (lawlists[i]  == ActName)
+            {
+                ActLists.RemoveAt(i);
+                return true;
+            }
+        }
+        return false;
     }
 }
