@@ -1,3 +1,4 @@
+using Dmld;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,6 +13,8 @@ public class DataManager : MonoBehaviour
     public PlayerController controller;
     [SerializeField]
     public LawOrActLists lawOrActLists;
+    [SerializeField]
+    public List<DebuffClass> debuffName;
     void Awake()
     {
         if (instance != null)
@@ -25,6 +28,7 @@ public class DataManager : MonoBehaviour
         {
             Debug.LogWarning("DataManager≥ı÷µŒ¥…Ë÷√");
         }
+        debuffName = new List<DebuffClass>();
     }
 
     // Update is called once per frame
