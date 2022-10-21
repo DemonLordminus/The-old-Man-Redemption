@@ -9,11 +9,10 @@ public class TCMEvent : eventElmentFather
     public GetItem[] items;
     public bool BadOrGood;
     public int price;
-    public float escapeF;
     public override void getEventPerform()
     {
 
-        if (OnLaw("中医院是坏的") || OnAct("避开中医院"))
+        if (!OnLaw("中医院是坏的") || !OnAct("避开中医院"))
         {
             if (BadOrGood)
             {
@@ -40,7 +39,7 @@ public class TCMEvent : eventElmentFather
             return;
         }
         //财富值不足时，有概率获得一份草药作为补贴，草药的效果为恢复健康值和体能值
-        else if (Random.Range(1,7)>4)
+        else if (Random.Range(0,100)>random)
         {
             DataManager.instance.controller.AddNewItem(items[1]);
         }
@@ -50,18 +49,18 @@ public class TCMEvent : eventElmentFather
 
     void BadRun()
     {
-        bool escape = Random.Range(0,escapeF) > 5;
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         //老人识破坑钱并跑路的概率默认为0
-        if (escape)
+        if (Random.Range(0, 100) < random) 
         {
+            Debug.Log("逃脱成功");
             return;
         }
         //需要的财富值比正规中医院稍贵
-        else if (DataManager.instance.controller.Gold > 1.2*price)
+        else if (DataManager.instance.controller.Gold > 1.2f*price)
         {
-            DataManager.instance.controller.AddNewItem(items[1]);
-            DataManager.instance.controller.Gold -= (float)1.2 * price;
+            DataManager.instance.controller.AddNewItem(items);
+            DataManager.instance.controller.Gold -= 1.2f * price;
             DataManager.instance.controller.ChangeBP(5);
             return;
         }

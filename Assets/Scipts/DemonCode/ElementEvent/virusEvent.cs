@@ -9,22 +9,22 @@ public class virusEvent : eventElmentFather
     public GetItem[] items;
     public bool BadOrGood;
     public int inlit;
-    public int random;
+    public int random1;
     public float escapeF;
     public override void getEventPerform()
     {
-        if(!BadOrGood)
+        if (!BadOrGood)
         {
             BadRun();
+            Destroy(gameObject.transform.parent.gameObject);
             Destroy(gameObject);
-            Destroy(gameObject.transform.gameObject);
             return;
         }
-        if (OnLaw("病魔是坏的") || OnAct("避开病魔"))
+        if (!OnLaw("病魔是坏的") || !OnAct("避开病魔"))
         {
             GoodRun();
+            Destroy(gameObject.transform.parent.gameObject);
             Destroy(gameObject);
-            Destroy(gameObject.transform.gameObject);
         }
         else
         {
@@ -35,7 +35,7 @@ public class virusEvent : eventElmentFather
     {
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         //同中药
-        if(Random.Range(1, 7)<inlit)
+        if (Random.Range(1, 7) < inlit)
         {
             DataManager.instance.controller.ChangeHealth(Random.Range(0, 11));
         }
@@ -62,22 +62,21 @@ public class virusEvent : eventElmentFather
             //增益;
         }
         //根据老人健康与否和规律合理与否，将判断是否患病，越健康越规律，则患病概率越低
-        else 
+        inlit = (int)DataManager.instance.controller.CurrentBp / (int)DataManager.instance.controller.MaxBp * 60 + DataManager.instance.lawOrActLists.HealthyLawLists.Count * 5;
+        random1 = Random.Range(0, inlit);
+        if (random1 < random)
         {
-            inlit = (int)DataManager.instance.controller.CurrentBp / (int)DataManager.instance.controller.MaxBp * 60 + DataManager.instance.lawOrActLists.HealthyLawLists.Count*5;
-            random=Random.Range(0, inlit);
-            if(random<40)
-            {
-                DataManager.instance.debuffName.AddRange(debuffClasses);
-            }
-            else if(random<50)
-            {
-                //消耗一定的数值
-            }
-            else
-            {
-                return;
-            }
+            DataManager.instance.controller.ChangeHealth(-20);
+            DataManager.instance.debuffName.AddRange(debuffClasses);
         }
+        else if (random1 < random )
+        {
+            DataManager.instance.controller.ChangeHealth(-10);
+        }
+        else
+        {
+            return;
+        }
+
     }
 }

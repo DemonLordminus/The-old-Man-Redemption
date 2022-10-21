@@ -8,12 +8,11 @@ public class HRMEvent : eventElmentFather
     public GetItem[] items;
     public bool BadOrGood;
     public int inlit;
-    public int random;
-    public float escapeF;
+    public int random1;
     public override void getEventPerform()
     {
 
-        if (OnLaw("人才市场是坏的") || OnAct("避开人才市场"))
+        if (!OnLaw("人才市场是坏的") || !OnAct("避开人才市场"))
         {
             if (BadOrGood)
             {
@@ -36,19 +35,18 @@ public class HRMEvent : eventElmentFather
         //消耗一个随机范围的体力值，消耗的体力越多获得的金钱越多
         if (DataManager.instance.controller.CurrentSp > inlit)
         {
-            random=Random.Range(0, 20);
-            DataManager.instance.controller.ChangeSp(-random);
-            DataManager.instance.controller.Gold+=random;
+            random1=Random.Range(0, 20);
+            DataManager.instance.controller.ChangeSp(-random1);
+            DataManager.instance.controller.Gold+=random1;
             return;
         }
     }
 
     void BadRun()
     {
-        bool escape = Random.Range(0, escapeF) > 5;
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         //老人有概率识破并跑路
-        if (escape)
+        if (Random.Range(0, 100) < random)
         {
             return;
         }
@@ -56,16 +54,16 @@ public class HRMEvent : eventElmentFather
         //如果体力值高于一定值，则随机消耗大量体力，且获得的金钱极少（黑中介）
         else if (DataManager.instance.controller.CurrentSp > 0.2 * inlit)
         {
-            random= Random.Range(40, 60);
-            DataManager.instance.controller.Gold -= (float)0.2 * random;
-            DataManager.instance.controller.ChangeSp(-random);
+            random1= Random.Range(40, 60);
+            DataManager.instance.controller.Gold += (float)0.2 * random1;
+            DataManager.instance.controller.ChangeSp(-random1);
         }
         //如果体力值低于一定值，则会少量消耗体力值，但是同时会付出财富值（违约惩罚）
         else
         {
-            random = Random.Range(0, 20);
-            DataManager.instance.controller.ChangeSp(-random);
-            DataManager.instance.controller.Gold-=2*random;
+            random1 = Random.Range(0, 20);
+            DataManager.instance.controller.ChangeSp(-random1);
+            DataManager.instance.controller.Gold-=2*random1;
         }
         if(Random.Range(1,7)<2)
         {

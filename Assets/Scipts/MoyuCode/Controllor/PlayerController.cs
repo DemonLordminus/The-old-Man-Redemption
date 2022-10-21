@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour
     public float Gold;
     public float CurrentTime;//´¦Àí½¡Íü
 
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(float amount)
     {
         CurrentHealthy = Mathf.Clamp(CurrentHealthy + amount, 0, MaxHealthy);
         HealthyBarManager.Instance.SetValue(CurrentHealthy / (float)MaxHealthy);
@@ -180,13 +180,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ChangeSp(int amount)
+    public void ChangeSp(float amount)
     {
         CurrentSp = Mathf.Clamp(CurrentSp + amount, 0, MaxSp);
         SpBarManager.Instance.SetValue(CurrentSp / (float)MaxSp);
     }
 
-    public void ChangeBP(int amount)
+    public void ChangeBP(float amount)
     {
         CurrentBp = Mathf.Clamp(CurrentBp + amount, 0, MaxBp);
         BlissBarManager.Instance.SetValue(CurrentBp / (float)MaxBp);

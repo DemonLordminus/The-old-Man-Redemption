@@ -9,11 +9,10 @@ public class HospitalEvent : eventElmentFather
     public GetItem[] items;
     public bool BadOrGood;
     public int price;
-    public float escapeF;
     public override void getEventPerform()
     {
 
-        if (OnLaw("医院是坏的") || OnAct("避开医院"))
+        if (!OnLaw("医院是坏的") || !OnAct("避开医院"))
         {
             if (BadOrGood)
             {
@@ -33,7 +32,7 @@ public class HospitalEvent : eventElmentFather
     {
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         //触发事件需要一定的财富值，此时会小概率出现政府援助之类的免医疗费事件
-        if (Random.Range(1, 7) > 5)
+        if (Random.Range(0,100) > random)
         {
             DataManager.instance.controller.AddNewItem(items);
             DataManager.instance.controller.ChangeHealth(Random.Range(10, 21));
@@ -57,10 +56,9 @@ public class HospitalEvent : eventElmentFather
 
     void BadRun()
     {
-        bool escape = Random.Range(0, escapeF) < 5;
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         //如果财富值足够，进行随机，有概率老人自行醒悟，退出避免被坑
-        if (DataManager.instance.controller.Gold > 2 * price && escape)
+        if (DataManager.instance.controller.Gold > 2 * price && Random.Range(0, 100) < random)
         {
             return;
         }
@@ -70,7 +68,7 @@ public class HospitalEvent : eventElmentFather
             DataManager.instance.controller.AddNewItem(items);
             DataManager.instance.controller.Gold -= 2 * price;
             //成功触发事件后大概率恢复少量健康度，小概率减少健康度
-            if (Random.Range(1, 7) < 5)
+            if (Random.Range(0,100)< random)
             {
                 DataManager.instance.controller.ChangeHealth(10);
             }
@@ -79,7 +77,7 @@ public class HospitalEvent : eventElmentFather
                 DataManager.instance.controller.ChangeHealth(-10);
             }
             //极小概率使得病症的持续值增加
-            if (Random.Range(1, 7) < 2)
+            if (Random.Range(0,100)<random)
             {
                 foreach (DebuffClass debuff in DataManager.instance.debuffName)
                 {

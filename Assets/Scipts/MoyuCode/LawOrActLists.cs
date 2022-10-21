@@ -9,7 +9,7 @@ public class LawOrActLists : MonoBehaviour
     public List<string> lawlists=new List<string>() ;
     public List<string > ActLists=new List<string>() ;
     public List <string> HealthyLawLists=new List<string>() ;
-    public DebuffClass[] debuffClasses;
+    public List<DebuffClass> debuffClasses=new List<DebuffClass>();
     public bool OnLaw(string LawName)
     {
         for (int i = 0; i < lawlists.Count; i ++)

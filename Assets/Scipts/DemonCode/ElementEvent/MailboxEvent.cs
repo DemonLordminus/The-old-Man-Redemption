@@ -8,16 +8,16 @@ public class MailboxEvent : eventElmentFather
     public GetItem[] items;
     public bool BadOrGood;
     public int price;
+    public bool ishave;
     public override void getEventPerform()
     {
 
-        if (OnLaw("邮箱是坏的") || OnAct("避开邮箱"))
+        if (!OnLaw("邮箱是坏的") || !OnAct("避开邮箱"))
         {
-            if (BadOrGood)
+            if (BadOrGood && ishave)
             {
                 GoodRun();
             }
-            else
             {
                 BadRun();
             }
@@ -33,13 +33,18 @@ public class MailboxEvent : eventElmentFather
         //不花费财富值
         //老人会将遇到上一个邮局之后的事件记录写成信件发给玩家
         //会提供中级信纸，有概率提供高级信纸
-        if (Random.Range(1,7)>4)
+        if (Random.Range(0,100)>random)
         {
             DataManager.instance.controller.AddNewItem(items);
         }
         else
         {
             DataManager.instance.controller.AddNewItem(items);
+        }
+        if(ishave)
+        {
+            DataManager.instance.controller.Isrun = true;
+            ishave = false;
         }
     }
 
@@ -51,7 +56,7 @@ public class MailboxEvent : eventElmentFather
         if (DataManager.instance.controller.Gold > price)
         {
             //会提供低级信纸，有概率提供中级信纸
-            if (Random.Range(1,7)>4)
+            if (Random.Range(0,100)>random)
             { DataManager.instance.controller.AddNewItem(items);}
             else
             { DataManager.instance.controller.AddNewItem(items);}
