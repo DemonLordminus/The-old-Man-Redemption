@@ -15,6 +15,10 @@ public class DataManager : MonoBehaviour
     public LawOrActLists lawOrActLists;
     [SerializeField]
     public List<DebuffClass> debuffName;
+    [SerializeField]
+    public List<string> Events;
+    [SerializeField]
+    public Package package;
     void Awake()
     {
         if (instance != null)
