@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -733062915
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1791004916, guid: c1de004387ddc624f9cdc4fe35681cc4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -151,16 +151,25 @@ MonoBehaviour:
   maxspeed: 3
   currentspeed: 0
   isRun: 0
+  mangmuTime: 0
   MaxHealthy: 100
   CurrentHealthy: 0
-  Wealthy: 0
   MaxSp: 100
   CurrentSp: 0
-  HappinessIndex: 0
+  MaxBp: 0
+  CurrentBp: 0
   Gold: 100
+  CurrentTime: 0
+  virtualCamera: {fileID: 0}
+  debuffs: []
   myBar: {fileID: 0}
   myBag: {fileID: 0}
   gameOver: {fileID: 0}
+  IsTrue: 0
+  Isrun: 0
+  whatEnemy: 
+  ItemsPackage: []
+  num: 0
 --- !u!95 &7970409439681811532
 Animator:
   serializedVersion: 4

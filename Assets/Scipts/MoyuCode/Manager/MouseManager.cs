@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class MouseManager : MonoBehaviour
 {
+    public InkManager inkM;
     public Texture2D ink, normal;
     public bool ifUseInk;
     void Start()
     {
         Cursor.SetCursor(normal, new Vector2(0, 0), CursorMode.Auto);
     }
-    private void Update()
+    private void Update() //这一堆不好 迟早要改
     {
-        ifUseInk = GameObject.Find("Ink").GetComponent<InkManager>().ifUseInk;
-        if(ifUseInk)
+        if (inkM != null)
         {
-            Cursor.SetCursor(ink, new Vector2(16, 16), CursorMode.Auto);
-        }
-        else
-        {
-            Cursor.SetCursor(normal, new Vector2(0, 0), CursorMode.Auto); //改为0，0 适配指针
+            ifUseInk = inkM.GetComponent<InkManager>().ifUseInk;
+            if (ifUseInk)
+            {
+                Cursor.SetCursor(ink, new Vector2(16, 16), CursorMode.Auto);
+            }
+            else
+            {
+                Cursor.SetCursor(normal, new Vector2(0, 0), CursorMode.Auto); //改为0，0 适配指针
+            }
         }
     }
 
