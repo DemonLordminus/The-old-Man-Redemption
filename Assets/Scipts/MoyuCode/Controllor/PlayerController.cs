@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public float maxspeed;
     public float currentspeed;
     public bool isRun;
+    public float reSp;
+    public int nlylcot;
     //声明刚性对象
     Rigidbody2D Rigidbody2D;
     //声明随机量
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AddNewItem(ItemsPackage[0]);
         Initialize();
         animator = GetComponent<Animator>();
         isPalse = false;
@@ -35,6 +38,8 @@ public class PlayerController : MonoBehaviour
         CurrentSp = MaxSp;
         currentspeed = maxspeed;
         isRun = true;
+        reSp = 1;
+        nlylcot = 0;
         //分别获取游戏对象
         x = Random.Range(0, 2);
         //获取刚性
@@ -109,6 +114,37 @@ public class PlayerController : MonoBehaviour
             {
                 ChangeBP(-2);
             }
+            #region 咕咕咕の代码
+            if (debuffs[10].isEnable == true)//中药的sp回复
+            {
+                reSp += 1;
+            }
+            if (debuffs[11].isEnable == true && nlylcot == 1)//能量饮料的sp回复
+            {
+                reSp += 1;
+            }
+            if (debuffs[11].isEnable == true && nlylcot >= 2)//能量饮料两层buff以上的效果
+            {
+                reSp += 1.5f;
+                ChangeHealth(-(nlylcot));
+            }
+            if (debuffs[11].isEnable == true)//能量饮料抑制乏力的效果
+            {
+                debuffs[2].isEnable = false;
+            }
+            if (debuffs[12].isEnable == true)//氧气瓶的sp回复效果
+            {
+                reSp += 1;
+            }
+            if (debuffs[16].isEnable == true)//止痛药的hp减少效果
+            {
+                ChangeHealth(-0.04f);
+            }
+            if (debuffs[15].isEnable == true)//眼药水的视野恢复
+            {
+                virtualCamera.m_Lens.OrthographicSize = Mathf.Clamp(virtualCamera.m_Lens.OrthographicSize - 0.002f, 2, 5);
+            }
+            #endregion
             //计时器
             Timer -= Time.fixedDeltaTime;
             if (Timer <= 0)
@@ -210,7 +246,7 @@ public class PlayerController : MonoBehaviour
     public DebuffClass[] debuffs;
 
     [HideInInspector]
-    public const int maxDebuffNum = 10;//最大病症数量
+    public const int maxDebuffNum = 17;//最大病症数量
 
     void Initialize()
     {
@@ -231,6 +267,14 @@ public class PlayerController : MonoBehaviour
                 {
                     debuff.isEnable = false;
                     debuff.keepTime = 0;
+                    if (debuff.DebuffOrder == 11)//能量饮料相关检测
+                    {
+                        nlylcot = 0;
+                        if (debuffs[2].keepTime > 0)
+                        {
+                            debuffs[2].isEnable = true;
+                        }
+                    }
                 }
             }
         }
@@ -383,6 +427,14 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "EventElement")
         {
+            if (debuffs[13].isEnable)
+            {
+                collision.gameObject.GetComponent<eventElmentFather>().random += 5;
+            }
+            if (collision.gameObject.GetComponent<virusEvent>() != null && debuffs[14].isEnable)
+            {
+                collision.gameObject.GetComponent<virusEvent>().random += 5;
+            }
             collision.gameObject.GetComponent<eventElmentFather>().getEventPerform();
         }
     }

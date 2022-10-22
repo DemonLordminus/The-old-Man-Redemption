@@ -88,7 +88,7 @@ public class ButtonManager : MonoBehaviour
                 #region æ…»’
                 /*switch (what)
                 {
-                    case "cabinets": citiao[k]=new CitiaoClass(whatNo); break;
+                    case "cabinets": citiao[k]=new ItemClass(whatNo); break;
                     case "hospital": Player.GetComponent<PlayerController>().citiaos[8] = true; break;
                     case "HRM": Player.GetComponent<PlayerController>().citiaos[10] = true; break;
                     case "illness": Player.GetComponent<PlayerController>().citiaos[12] = true; break;
@@ -98,7 +98,7 @@ public class ButtonManager : MonoBehaviour
                 };*/
                 /*if(what== "cabinets"||what == "hospital"||what== "HRM"||what =="illness"||what=="pharmacy"||what =="TCM")
                 {
-                    citiao[k] = new CitiaoClass(whatNo);
+                    citiao[k] = new ItemClass(whatNo);
                 }
                 break;*/
                 #endregion

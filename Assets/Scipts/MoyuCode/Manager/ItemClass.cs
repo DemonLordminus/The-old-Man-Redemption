@@ -29,26 +29,26 @@ public enum CitiaosType
     TCM_avoid = 19,
 }
 [Serializable]
-public class CitiaoClass 
+public class ItemClass 
 {
     public string CitiaoName;//词条的中文名字
     public int CitiaoOrder;
     public CitiaosType CitiaosType;//type枚举类型
     public bool isEnable;//效果是否触发
-    public CitiaoClass(string name, CitiaosType type)
+    public ItemClass(string name, CitiaosType type)
     {
         this.CitiaoName = name;
         this.CitiaosType = type;
         CitiaoOrder = (int)CitiaosType;
     }
 
-    public CitiaoClass(CitiaosType type)
+    public ItemClass(CitiaosType type)
     {
         this.CitiaosType = type;
         CitiaoOrder = (int)CitiaosType;
         autoRename();
     }
-    public CitiaoClass(int order)
+    public ItemClass(int order)
     {
         CitiaoOrder = order;
         this.CitiaosType = (CitiaosType)order;

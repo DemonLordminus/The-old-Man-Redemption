@@ -20,7 +20,14 @@ namespace Dmld
         jianwang = 6,
         yiyu = 7,
         jiaozao = 8,
-        mangmu = 9
+        mangmu = 9,
+        zhongyao = 10,
+        nlyl = 11,
+        yangqiping = 12,
+        shuji = 13,
+        kangshengsu = 14,
+        yanyaoshui = 15,
+        zhitongyao = 16
     }
 
     [Serializable]
@@ -35,7 +42,7 @@ namespace Dmld
         { 
             this.debuffName = name;
             this.debuffType = type;
-            this.keepTime = 0;
+            this.keepTime = 120;
             DebuffOrder =(int)debuffType;
         }
 
@@ -45,14 +52,14 @@ namespace Dmld
             this.debuffType = type;
             DebuffOrder = (int)debuffType;
             autoRename();
-            this.keepTime = 0;
+            this.keepTime = 120;
         }
        public DebuffClass(int order)
         {
             DebuffOrder = order;
             this.debuffType = (DebuffType)order;
             autoRename();
-            this.keepTime = 0;
+            this.keepTime = 120;
         }
         //以下为临时代码，之后需要再改
         void autoRename()
@@ -69,6 +76,13 @@ namespace Dmld
                 case DebuffType.yiyu: { debuffName = "抑郁"; break; }
                 case DebuffType.jiaozao: { debuffName = "焦躁"; break; }
                 case DebuffType.mangmu: { debuffName = "盲目"; break; }
+                case DebuffType.zhongyao: { debuffName = "中药"; break; }
+                case DebuffType.nlyl: { debuffName = "能量饮料"; break; }
+                case DebuffType.yangqiping: { debuffName = "氧气瓶"; break; }
+                case DebuffType.shuji: { debuffName = "书籍"; break; }
+                case DebuffType.kangshengsu: { debuffName = "抗生素"; break; }
+                case DebuffType.yanyaoshui: { debuffName = "眼药水"; break; }
+                case DebuffType.zhitongyao: { debuffName = "止痛药"; break; }
             }
         }
 

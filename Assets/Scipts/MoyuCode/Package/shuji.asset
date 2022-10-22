@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2583012e075b5d458b1a70516ca5ebc, type: 3}
-  m_Name: new package
+  m_Script: {fileID: 11500000, guid: 15fc4b9e03446ce45ba3d58e58acc1af, type: 3}
+  m_Name: shuji
   m_EditorClassIdentifier: 
-  Items:
-  - {fileID: 11400000, guid: bc3f56d0d7313f641b6de46349f57edc, type: 2}
-  - {fileID: 11400000, guid: a93f90949f1b3ce45bd4905438f7e99f, type: 2}
+  Name: shuji
+  Image: {fileID: 0}
+  Num: 0

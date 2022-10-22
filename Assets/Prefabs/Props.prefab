@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -9012484581268934546}
   - component: {fileID: 7375419664490373099}
   - component: {fileID: 6721787481182695830}
+  - component: {fileID: 7813053429986798747}
   m_Layer: 5
   m_Name: Props
   m_TagString: Package
@@ -121,8 +122,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalParent: {fileID: 0}
   GetItem: {fileID: 0}
-  Package: {fileID: 0}
-  tragger: {fileID: 2458764253719206424, guid: 0f7dcbbbb2723dc48b1eda9b0a9646f8, type: 3}
+  traggerManager: {fileID: 0}
+  count1: 0
+  kangshengsu: 5
+  swyl: 0
+  playerController: {fileID: 0}
+  virtualCamera: {fileID: 0}
+--- !u!114 &7813053429986798747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2375714548372599788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f777c91327f0949a7657f23d90ce24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5448910150894615598
 GameObject:
   m_ObjectHideFlags: 0
