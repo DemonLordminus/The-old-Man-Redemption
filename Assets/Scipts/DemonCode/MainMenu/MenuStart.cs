@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 //using UnityEditor.Timeline.Actions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
@@ -32,6 +33,7 @@ public class MenuStart : MonoBehaviour
     public float waitTimeForPaperContentOpen;
     public GameObject LetterPaperFront1;
     public GameObject LetterPaperFront2;
+    public string nextLevel;
     public void GameStart()
     {
         InvokeRepeating("titleMove",0, titleMoveFrqunce);
@@ -86,6 +88,12 @@ public class MenuStart : MonoBehaviour
         LetterPaperContent.SetActive(true);
         LetterPaperContent.transform.SetParent(LetterPaperContent.transform.parent.parent);
         LetterPaper.SetActive(false);
+    }
+
+    public void nextLeveL()
+    {
+        SceneManager.LoadScene(nextLevel);
+
     }
 
     private bool IsCameraVisible(Camera testCamera, GameObject testGo)
