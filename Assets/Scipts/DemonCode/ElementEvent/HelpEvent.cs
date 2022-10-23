@@ -7,7 +7,7 @@ public class HelpEvent : eventElmentFather
 {
     [SerializeField]
     public GetItem[] items;
-    public bool BadOrGood;
+    //public bool BadOrGood;
     public int price;
     [Header("背包获取的界限")]
     public int inlit;
@@ -17,7 +17,7 @@ public class HelpEvent : eventElmentFather
 
         if (!OnLaw("援助处是坏的") || !OnAct("避开援助处"))
         {
-            if (BadOrGood)
+            if (isGood)
             {
                 GoodRun();
             }

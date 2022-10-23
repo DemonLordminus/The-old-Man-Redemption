@@ -6,21 +6,32 @@ public class eventElmentFather : LawOrActLists
 {
     [Range(0, 100)]
     public float random;
+    public bool isVisible;
+    public bool isGood;
     // Start is called before the first frame update
-    void Start()
+    private void OnBecameInvisible()
     {
-
+        isVisible = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnBecameVisible()
     {
-        
+        isVisible = true;
     }
-
+    public void selfDestroyLater()
+    {
+        Invoke("DestroyForInvoke",0.1f);
+    }
+    private void DestroyForInvoke()
+    {
+        if(gameObject.transform.parent.transform.childCount <= 1)
+        {
+            Destroy(gameObject.transform.parent.gameObject);
+        }
+        Destroy(gameObject);
+    }
     public virtual void getEventPerform() 
     { 
-        //Ðéº¯ÊýÄã¶®Âð
-         
+        
     }
 }

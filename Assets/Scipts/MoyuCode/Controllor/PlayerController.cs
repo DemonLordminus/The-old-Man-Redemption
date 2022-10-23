@@ -305,6 +305,7 @@ public class PlayerController : MonoBehaviour
     public bool Isrun;
     public string whatEnemy;
     public List<GetItem> ItemsPackage;
+    public int eventCountPerformed;//经过的事件数
     public bool IfHunluan()
     {
         if (debuffs[5].isEnable && Random.Range(1, 7) < 5)
@@ -330,10 +331,12 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.name == "mailbox")
         {
+            eventCountPerformed++;
             collision.gameObject.GetComponent<eventElmentFather>().getEventPerform(); return;
         }
         if(IfHunluan())
         {
+            eventCountPerformed++;
             OnEvent(collision);
         }
         else

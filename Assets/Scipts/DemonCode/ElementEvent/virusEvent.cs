@@ -7,13 +7,13 @@ public class virusEvent : eventElmentFather
 {
     [SerializeField]
     public GetItem[] items;
-    public bool BadOrGood;
+    //public bool BadOrGood;
     public int inlit;
     public int random1;
     public float escapeF;
     public override void getEventPerform()
     {
-        if (!BadOrGood)
+        if (!isGood)
         {
             BadRun();
             Destroy(gameObject.transform.parent.gameObject);

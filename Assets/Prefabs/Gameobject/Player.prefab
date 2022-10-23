@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7970409440125648819}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -26.71, y: -0.56, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -151,6 +151,8 @@ MonoBehaviour:
   maxspeed: 3
   currentspeed: 0
   isRun: 0
+  reSp: 0
+  nlylcot: 0
   mangmuTime: 0
   MaxHealthy: 100
   CurrentHealthy: 0
@@ -169,6 +171,7 @@ MonoBehaviour:
   Isrun: 0
   whatEnemy: 
   ItemsPackage: []
+  eventCountPerformed: 0
   num: 0
 --- !u!95 &7970409439681811532
 Animator:

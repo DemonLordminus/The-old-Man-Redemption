@@ -7,14 +7,14 @@ public class TCMEvent : eventElmentFather
 {
     [SerializeField]
     public GetItem[] items;
-    public bool BadOrGood;
+    //public bool BadOrGood;
     public int price;
     public override void getEventPerform()
     {
 
         if (!OnLaw("中医院是坏的") || !OnAct("避开中医院"))
         {
-            if (BadOrGood)
+            if (isGood)
             {
                 GoodRun();
             }

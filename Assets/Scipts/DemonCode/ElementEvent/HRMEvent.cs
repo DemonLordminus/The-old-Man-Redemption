@@ -6,7 +6,7 @@ public class HRMEvent : eventElmentFather
 {
     [SerializeField]
     public GetItem[] items;
-    public bool BadOrGood;
+    //public bool BadOrGood;
     public int inlit;
     public int random1;
     public override void getEventPerform()
@@ -14,7 +14,7 @@ public class HRMEvent : eventElmentFather
 
         if (!OnLaw("人才市场是坏的") || !OnAct("避开人才市场"))
         {
-            if (BadOrGood)
+            if (isGood)
             {
                 GoodRun();
             }

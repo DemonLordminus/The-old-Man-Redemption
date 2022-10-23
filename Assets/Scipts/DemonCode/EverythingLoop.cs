@@ -8,6 +8,7 @@ public class EverythingLoop : MonoBehaviour
     public List<GameObject> GameObjectForLoop;
     public Transform LoopMarkStr, LoopMarkEnd;
     public AutoFloorCreate atuofloor;
+    public GameObject ElementFather;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,10 @@ public class EverythingLoop : MonoBehaviour
         if(atuofloor==null)
         {
             atuofloor=GameObject.Find("AtuoFloor").GetComponent<AutoFloorCreate>(); 
+        }
+        if(ElementFather==null)
+        {
+            ElementFather = DataManager.instance.eventElementFather;
         }
     }
 
@@ -35,7 +40,25 @@ public class EverythingLoop : MonoBehaviour
             }
             DataManager.instance.player.transform.position -= vectorDifference;
             atuofloor.floorLoop();
+            elementAtuoDestory(playerPos.x);
         }
     }
-    
+
+
+    private void elementAtuoDestory(float playerX)
+    {
+        eventElmentFather[] elements = ElementFather.transform.GetComponentsInChildren<eventElmentFather>();
+        foreach(eventElmentFather element in elements)
+        {
+            if(element.gameObject.transform.position.x<playerX)
+            {
+                if(!element.isVisible)
+                {
+                    element.selfDestroyLater();
+                }
+            }
+        }
+    }
+
+
 }

@@ -21,6 +21,8 @@ public class DataManager : MonoBehaviour
     public Package package;
     [SerializeField]
     public GameObject tragger;
+    [SerializeField]
+    public GameObject eventElementFather;
     void Awake()
     {
         if (instance != null)

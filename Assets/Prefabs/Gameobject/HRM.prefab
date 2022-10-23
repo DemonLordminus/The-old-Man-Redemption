@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2989533578288028787}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.206665, y: 0.6290474, z: -20}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -230,8 +230,8 @@ MonoBehaviour:
   HealthyLawLists: []
   debuffClasses: []
   random: 0
+  isVisible: 0
+  isGood: 0
   items: []
-  BadOrGood: 0
   inlit: 0
   random1: 0
-  escapeF: 0

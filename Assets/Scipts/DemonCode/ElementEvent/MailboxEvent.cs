@@ -6,7 +6,7 @@ public class MailboxEvent : eventElmentFather
 {
     [SerializeField]
     public GetItem[] items;
-    public bool BadOrGood;
+    //public bool BadOrGood;
     public int price;
     public bool ishave;
     public override void getEventPerform()
@@ -14,7 +14,7 @@ public class MailboxEvent : eventElmentFather
 
         if (!OnLaw("” œ‰ «ªµµƒ") || !OnAct("±‹ø™” œ‰"))
         {
-            if (BadOrGood && ishave)
+            if (isGood && ishave)
             {
                 GoodRun();
             }
