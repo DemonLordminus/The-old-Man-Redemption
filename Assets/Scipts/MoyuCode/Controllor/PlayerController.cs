@@ -5,7 +5,7 @@ using Dmld;
 using System.Collections;
 using Cinemachine;
 using System.Collections.Generic;
-//using UnityEditorInternal.Profiling.Memory.Experimental;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AddNewItem(ItemsPackage[0]);
+
         Initialize();
         animator = GetComponent<Animator>();
         isPalse = false;

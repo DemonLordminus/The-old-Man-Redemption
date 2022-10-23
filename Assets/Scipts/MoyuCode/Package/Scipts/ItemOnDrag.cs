@@ -2,7 +2,7 @@ using Cinemachine;
 using Dmld;
 using System.Collections;
 using System.Collections.Generic;
-//using UnityEditor.Experimental.GraphView;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 //背包中物品的使用，拖拽到主角上生效
@@ -29,7 +29,7 @@ public class ItemOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
         //起始所属赋值
         originalParent = transform.parent;
         //跳出所属画布
-        transform.SetParent(transform.parent.parent);
+        //transform.SetParent(transform.parent.parent);
         //跟随鼠标移动
         transform.position = eventData.position;
         //修改这个类的属性，阻止物理射线穿透

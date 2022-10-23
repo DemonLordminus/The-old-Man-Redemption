@@ -9,7 +9,7 @@ public class WhatScipts : MonoBehaviour
     {
         switch (gameObject.GetComponent<Item>().itemname.Name)
         {
-            case "baojianping": { gameObject.AddComponent<Baojianpin>(); break; }
+            case "baojianpin": { gameObject.AddComponent<Baojianpin>(); break; }
             case "jieduji": { gameObject.AddComponent<Jieduji>(); break; }
             case "jsyw": { gameObject.AddComponent<Jsyw>();break; }
             case "kangshengsu": { gameObject.AddComponent<Kangshengsu>(); break; }
@@ -23,7 +23,7 @@ public class WhatScipts : MonoBehaviour
             case "yanyaoshui": { gameObject.AddComponent<Yanyaoshui >(); break; }
             case "zhitongyao": { gameObject.AddComponent<Zhitongyao>(); break; }
             case "zhongyao": { gameObject.AddComponent<Zhongyao>(); break; }
-            case "xin": break;
+            case "xin": gameObject.AddComponent<Xin>(); break;
         }
     }
 }

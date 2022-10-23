@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class CitiaoControllor : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     //声明起始组类
-    public Transform originalParent;
+    public Transform originalPosition;
     private bool isOnLetter;//Demon测试用变量，是否在信上
 
     //鼠标点击触发
@@ -15,7 +15,7 @@ public class CitiaoControllor : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     {
         transform.SetAsLastSibling();
         //起始所属赋值
-        originalParent = transform.parent;
+        originalPosition = transform;
         //跟随鼠标移动
         transform.position = eventData.position;
         //修改这个类的属性，使物理射线穿透当前对象
@@ -26,16 +26,26 @@ public class CitiaoControllor : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     {
         try//防止因获取空值异常
         {
-            if (eventData.pointerCurrentRaycast.gameObject.layer == 3&&transform.parent.name=="tragger"||eventData.pointerCurrentRaycast.gameObject.layer==3&&eventData.pointerCurrentRaycast.gameObject.transform.parent.name=="tragger")//这个代码获取鼠标射线现在碰撞的物体的图层     //citiao调换位置
+            if (/*eventData.pointerCurrentRaycast.gameObject.layer == 3&&*/transform.parent.tag=="Tragger")//这个代码获取鼠标射线现在碰撞的物体的图层     
+            {
+                /*//设置当前对象位置
+                transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;*/
+                //设置当前对象所属
+                transform.SetParent(GameObject.Find("inventory").transform);
+                GetComponent<CanvasGroup>().blocksRaycasts = true;
+                return;
+            }
+            //遇到词条，并且词条在触发区上
+            if(eventData.pointerCurrentRaycast.gameObject.layer == 3 && eventData.pointerCurrentRaycast.gameObject.transform.parent.tag == "Tragger")
             {
                 //设置当前对象所属
                 transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
                 //设置当前对象位置
-                transform.position = eventData.pointerCurrentRaycast.gameObject.transform.parent.position;
+                transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
                 //设置鼠标获取对象位置
-                eventData.pointerCurrentRaycast.gameObject.transform.position = originalParent.position;
+                eventData.pointerCurrentRaycast.gameObject.transform.position = originalPosition.position;
                 //设置鼠标获取对象所属
-                eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalParent);
+                eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalPosition.parent);
                 GetComponent<CanvasGroup>().blocksRaycasts = true;
                 return;
             }

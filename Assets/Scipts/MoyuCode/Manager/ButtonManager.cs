@@ -11,6 +11,7 @@ public class ButtonManager : MonoBehaviour
     public bool lawOrAct;
     public ScrObjcitiao ScrObjcitiao;
     public LawOrActLists LawOrActLists;
+    public int citiaoNum;
     void Start()
     {
         //获取按钮组件
@@ -38,18 +39,31 @@ public class ButtonManager : MonoBehaviour
         myLetter.SetActive(false);
         for (int i = 0; i < gameObject.transform.parent.childCount-1; i++)
         {
+            citiaon = "";
+            citiaoNum = 0;
+            citiaoNo = new int[3];
             //判断规律还是行动
             lawOrAct = false;
-            for (int j = 0; j < gameObject.transform.parent.GetChild(i).childCount; j++)
+            for (int j = 0; j < 3; j++)
             {
-                if (gameObject.transform.parent.GetChild(i).GetChild(j).GetComponent<citiao>().citiaoScrObj.type == (wordType)2)
+                try
                 {
-                    lawOrAct = true;
-                    break;
+                    if (gameObject.transform.parent.GetChild(i).GetChild(j).GetChild(0) != null)
+                    { }
+                    citiaoNo[citiaoNum] = j;
+                    citiaoNum++;
+                    if (gameObject.transform.parent.GetChild(i).GetChild(j).GetChild(0).GetComponent<citiao>().citiaoScrObj.type == (wordType)2)
+                    {
+                        lawOrAct = true;
+                    }
                 }
+                catch
+                { }
             }
-            if (lawOrAct && gameObject.transform.parent.GetChild(i).childCount == 3)
+            Debug.Log("规律" + citiaoNum);
+            if (lawOrAct && citiaoNum == 3)
             {
+                Debug.Log("规律"+citiaoNum);
                 citiao = new string[3];
                 for (int k = 0; k < 3; k++)
                 {
@@ -58,30 +72,33 @@ public class ButtonManager : MonoBehaviour
                     {
                         return;
                     }
+                    citiaon+=citiao[k];
                 }
-
-                LawOrActLists.lawlists.Add(citiao[0] + citiao[1] + citiao[2]);
+                LawOrActLists.lawlists.Add(citiaon);
 
             }
-            if (!lawOrAct && gameObject.transform.parent.GetChild(i).childCount <= 2)
+            if (!lawOrAct && citiaoNum <= 2)
             {
                 citiao = new string[2];
-                for (int k = 0; k < gameObject.transform.parent.GetChild(i).childCount; k++)
+                for (int k = 0; k < citiaoNum; k++)
                 {
                     AssignmentAct(i, k);
                     if (citiao[k] == null)
                     {
                         return;
                     }
+                    citiaon+= citiao[k] ;
                 }
-                LawOrActLists.ActLists.Add(citiao[0] + citiao[i]);
+                LawOrActLists.ActLists.Add(citiaon);
             }
         }
     }
+    public string citiaon;
     public string[] citiao;
+    public int[] citiaoNo;
     public void AssignmentLaw(int i, int k)
     {
-        ScrObjcitiao = gameObject.transform.parent.GetChild(i).GetChild(k).gameObject.GetComponent<citiao>().citiaoScrObj;
+        ScrObjcitiao = gameObject.transform.parent.GetChild(i).GetChild(citiaoNo[k]).GetChild(0).gameObject.GetComponent<citiao>().citiaoScrObj;
         switch (k)
         {
             case 0://主语
@@ -139,7 +156,7 @@ public class ButtonManager : MonoBehaviour
     }
     public void AssignmentAct(int i, int k)
     {
-        ScrObjcitiao = gameObject.transform.parent.GetChild(i).GetChild(k).gameObject.GetComponent<citiao>().citiaoScrObj;
+        ScrObjcitiao = gameObject.transform.parent.GetChild(i).GetChild(citiaoNo[k]).GetChild(0).gameObject.GetComponent<citiao>().citiaoScrObj;
         switch (k)
         {
             case 0://谓语

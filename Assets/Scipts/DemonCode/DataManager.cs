@@ -19,6 +19,8 @@ public class DataManager : MonoBehaviour
     public List<string> Events;
     [SerializeField]
     public Package package;
+    [SerializeField]
+    public GameObject tragger;
     void Awake()
     {
         if (instance != null)
@@ -28,11 +30,12 @@ public class DataManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (player == null || controller == null||lawOrActLists==null)
+        if (player == null || controller == null||lawOrActLists==null||tragger==null)
         {
             Debug.LogWarning("DataManager≥ı÷µŒ¥…Ë÷√");
         }
         debuffName = new List<DebuffClass>();
+        package.Items.Clear();
     }
 
     // Update is called once per frame
