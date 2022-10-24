@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 //using UnityEditor.Timeline.Actions;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using UnityEngineInternal;
 
 public class MenuStart : MonoBehaviour
 {
@@ -34,6 +36,15 @@ public class MenuStart : MonoBehaviour
     public GameObject LetterPaperFront1;
     public GameObject LetterPaperFront2;
     public string nextLevel;
+    [Header("相机缩小")]
+    public float camSizeReduce;
+    public float camSizeFrequnce;
+    public float camMinSize;
+    public Transform camTargetPos;
+    public float camMovePower;
+    public float camMoveMinDis;
+    public Button enterButton;
+    public GameObject enterText;
     public void GameStart()
     {
         InvokeRepeating("titleMove",0, titleMoveFrqunce);
@@ -89,8 +100,41 @@ public class MenuStart : MonoBehaviour
         LetterPaperContent.transform.SetParent(LetterPaperContent.transform.parent.parent);
         LetterPaper.SetActive(false);
     }
+    public void cameraFocusSwitch()
+    {
+        Destroy(enterButton);
+        enterText.SetActive(false);
+        InvokeRepeating("camReduce", 0, camSizeFrequnce);
+    }
+    private void camReduce()
+    {
+        Vector3 moveDir = camTargetPos.position - camCamera.transform.position;
+        if (moveDir.magnitude > camMoveMinDis)
+        {
+            camCamera.transform.Translate(camMovePower * moveDir.normalized);
+        }
+        if ((camCamera.orthographicSize -= camSizeReduce)<=camMinSize)
+        {
+            CancelInvoke();
+            Invoke("goTonextLeveL", 0.5f);
+            //goTonextLeveL();
+        }
+          
+    }
 
-    public void nextLeveL()
+
+    [EditorButton]
+    public void ScreenShotFile()
+    {
+        UnityEngine.ScreenCapture.CaptureScreenshot(Application.dataPath + "/fileName01.png");//截图并保存截图文件
+        Debug.Log("截取了一张图片}");
+
+#if UNITY_EDITOR
+        UnityEditor.AssetDatabase.Refresh();//刷新Unity的资产目录
+#endif
+    }
+
+    public void goTonextLeveL()
     {
         SceneManager.LoadScene(nextLevel);
 

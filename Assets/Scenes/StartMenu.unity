@@ -307,8 +307,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.012667}
-  m_SizeDelta: {x: 1920, y: 1130.3}
+  m_AnchoredPosition: {x: -11, y: -22}
+  m_SizeDelta: {x: 2256.6, y: 1422.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &13673365
 MonoBehaviour:
@@ -743,7 +743,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.87, y: 2.82}
+  m_AnchoredPosition: {x: 6.7, y: 0.6}
   m_SizeDelta: {x: 184.26, y: 44.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &309464360
@@ -878,9 +878,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: -2.7}
+  m_AnchoredPosition: {x: -1.707077, y: -0.45976257}
   m_SizeDelta: {x: 84.87, y: 217.42}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.48010254, y: 0.51016515}
 --- !u!114 &341765551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1045,6 +1045,14 @@ MonoBehaviour:
   LetterPaperFront1: {fileID: 1232671408}
   LetterPaperFront2: {fileID: 523444000}
   nextLevel: SampleScene
+  camSizeReduce: 0.03
+  camSizeFrequnce: 0.01
+  camMinSize: 0.01
+  camTargetPos: {fileID: 1737973547}
+  camMovePower: 2
+  camMoveMinDis: 5
+  enterButton: {fileID: 1737973548}
+  enterText: {fileID: 309464358}
 --- !u!4 &451118011
 Transform:
   m_ObjectHideFlags: 0
@@ -1169,8 +1177,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -10.997986, y: -22.174011}
+  m_SizeDelta: {x: 336.61, y: 291.87}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &510896281
 MonoBehaviour:
@@ -3691,7 +3699,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 451118010}
         m_TargetAssemblyTypeName: MenuStart, Assembly-CSharp
-        m_MethodName: nextLeveL
+        m_MethodName: cameraFocusSwitch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
