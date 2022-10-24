@@ -13,18 +13,24 @@ public class Close : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHan
     Image image;
     public float timer;
     Rigidbody2D Rigidbody2D;
+    public GameObject position;
     void Start()
     {
         Rigidbody2D = GetComponent<Rigidbody2D>();
         HintColor = Color.black;
         image = GetComponent<Image>();
     }
+    private void OnDisable()
+    {
+        gameObject.transform.parent.transform.GetChild(0).gameObject.GetComponent<Text>().text = "";
+        Destroy(gameObject);
+    }
     private void FixedUpdate()
     {
         timer+=Time.fixedDeltaTime;
         if (timer > 2f)
         {
-            HintColor.a = Mathf.PingPong(5 * Time.time, 1F);//5*Time.time是闪烁频率，大家可以自己改，1F就是颜色的a的最大的值，意思就是从完全透明到完全不透明
+            HintColor.a = Mathf.PingPong(5 * Time.time, 1F);//5*Time.time是闪烁频率，1F就是颜色的a的最大的值，意思就是从完全透明到完全不透明
             image.color = HintColor;//获取UI的image组件的颜色并把上面变化的hintcolor赋值给他
         }
     }
@@ -34,6 +40,7 @@ public class Close : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHan
     //鼠标点击触发
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Debug.Log("huoqu");
         originalPosition = transform;
         //起始所属赋值
         originalParent = transform.parent;
@@ -48,13 +55,23 @@ public class Close : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHan
     public float delta;
     public void OnEndDrag(PointerEventData eventData)
     {
-        delta = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - originalPosition.position.y;
+        delta = (Camera.main.ScreenToWorldPoint(Input.mousePosition).x - originalPosition.position.x);
         if(delta<0)
         {
             transform.SetParent(originalParent);
             transform.position = originalPosition.position;
             Dialog.SetActive(false);
-            GameObject.Find("Player").GetComponent<PlayerController>().isPalse = false;
+            DataManager.instance.controller.isPalse = false;
+            try
+            {
+                if (DataManager.instance.JuQingFinishin.Count == 8)
+                {
+                    DataManager.instance.controller.isPalse = true;
+                    DataManager.instance.EndEvent.SetActive(true);
+                }
+            }
+            catch
+            { }
             return;
         }
         transform.SetParent(originalParent);
@@ -65,7 +82,7 @@ public class Close : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHan
     public void OnDrag(PointerEventData eventData)
     {
         Vector2 position = transform.position;
-        position.y=eventData.position.y;
+        position.x=eventData.position.x;
         Rigidbody2D.position = position;
     }
 

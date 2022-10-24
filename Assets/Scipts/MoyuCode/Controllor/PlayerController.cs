@@ -210,9 +210,9 @@ public class PlayerController : MonoBehaviour
         HealthyBarManager.Instance.SetValue(CurrentHealthy / (float)MaxHealthy);
         if (CurrentHealthy <= 0)
         {
-            isDie = true;
             Time.timeScale = 0f;
-            gameOver.SetActive(isDie);
+            gameover=true;
+            DataManager.instance.EndEvent.SetActive(true);
         }
     }
 
@@ -284,7 +284,6 @@ public class PlayerController : MonoBehaviour
     public GameObject myBar;
     public GameObject myBag;
     bool isOpean;
-    bool isDie;
     void OpenMyBag()
     {
         if (!isPalse)
@@ -299,7 +298,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    public GameObject gameOver;
+    public bool gameover;
     #region Åö×²
     public bool IsTrue;
     public bool Isrun;

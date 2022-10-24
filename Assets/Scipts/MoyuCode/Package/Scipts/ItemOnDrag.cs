@@ -79,7 +79,9 @@ public class ItemOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     public virtual void ItemOnRun()
     {
         
-    }/*
+    }
+    #region ¹¾¹¾µÄ
+    /*
     void OnRun()
     {
         
@@ -198,4 +200,5 @@ public class ItemOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         return;//ÍË³ö
     }*/
+    #endregion
 }

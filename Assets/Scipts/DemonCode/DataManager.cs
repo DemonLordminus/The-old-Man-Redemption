@@ -1,4 +1,5 @@
 using Dmld;
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -17,12 +18,26 @@ public class DataManager : MonoBehaviour
     public List<DebuffClass> debuffName;
     [SerializeField]
     public List<string> Events;
-    [SerializeField]
-    public Package package;
+    /*[SerializeField]
+    public Package package;*/
     [SerializeField]
     public GameObject tragger;
     [SerializeField]
     public GameObject eventElementFather;
+    [SerializeField]
+    public ShijianList shijianList;
+    [SerializeField]
+    public ShijianList juqingList;
+    [SerializeField]
+    public List<string> eventFinishing;
+    [SerializeField]
+    public List<string> endFinishin;
+    [SerializeField]
+    public List <string> JuQingFinishin;
+    [SerializeField]
+    public GameObject allEvent;
+    [SerializeField]
+    public GameObject EndEvent;
     void Awake()
     {
         if (instance != null)
@@ -37,7 +52,10 @@ public class DataManager : MonoBehaviour
             Debug.LogWarning("DataManager≥ı÷µŒ¥…Ë÷√");
         }
         debuffName = new List<DebuffClass>();
-        package.Items.Clear();
+        eventFinishing = new List<string>();
+        endFinishin = new List<string>();
+        JuQingFinishin = new List<string>();
+        controller.ItemsPackage.Clear();
     }
 
     // Update is called once per frame

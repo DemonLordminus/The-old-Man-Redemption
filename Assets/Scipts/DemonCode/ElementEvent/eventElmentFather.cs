@@ -8,6 +8,7 @@ public class eventElmentFather : LawOrActLists
     public float random;
     public bool isVisible;
     public bool isGood;
+    public string information;
     // Start is called before the first frame update
     private void OnBecameInvisible()
     {
