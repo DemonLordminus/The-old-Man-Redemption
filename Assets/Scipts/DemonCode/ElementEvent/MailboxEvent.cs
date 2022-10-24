@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MailboxEvent : eventElmentFather
 {
@@ -14,13 +15,18 @@ public class MailboxEvent : eventElmentFather
 
         if (!OnLaw("邮箱是坏的") || !OnAct("避开邮箱"))
         {
+            OnPresent();
             if (isGood && ishave)
             {
+                information += "老人遇到了邮箱";
                 GoodRun();
             }
+            else
             {
+                information += "老人遇到了黑心邮箱";
                 BadRun();
             }
+            DataManager.instance.eventFinishing.Add(information);
         }
         else
         {
@@ -46,6 +52,7 @@ public class MailboxEvent : eventElmentFather
             DataManager.instance.controller.Isrun = true;
             ishave = false;
         }
+        information += "，获得了一些信纸";
     }
 
     void BadRun()
@@ -62,5 +69,22 @@ public class MailboxEvent : eventElmentFather
             { DataManager.instance.controller.AddNewItem(items);}
             DataManager.instance.controller.Gold -= price;
         }
+        information += "，花费一些金钱购买了拙劣的信纸";
+    }
+    void OnPresent()
+    {
+        foreach(string eventInformation in DataManager.instance.eventFinishing)
+        {
+            DataManager.instance.endFinishin.Add(eventInformation);
+            DataManager.instance.allEvent.transform.GetChild(0).gameObject.GetComponent<Text>().text += "\n"+eventInformation;
+        }
+        try
+        {
+            DataManager.instance.allEvent.SetActive(true);
+            DataManager.instance.controller.isPalse = true;
+        }
+        catch
+        { }
+        DataManager.instance.eventFinishing.Clear();
     }
 }
