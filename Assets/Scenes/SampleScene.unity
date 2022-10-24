@@ -1014,7 +1014,7 @@ RectTransform:
   m_GameObject: {fileID: 226931771}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 444857090}
@@ -1022,8 +1022,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 399.37, y: 89.4979}
-  m_SizeDelta: {x: 813.85, y: 178.9959}
+  m_AnchoredPosition: {x: 400.4, y: 95.1498}
+  m_SizeDelta: {x: 799.97, y: 159.9905}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &226931773
 MonoBehaviour:
@@ -1069,7 +1069,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -431255564, guid: c1091aba0ae9d484db844dc6b1791df4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f32df7623c8e26641a10b03a94b09fec, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3486,10 +3486,12 @@ MonoBehaviour:
   tragger: {fileID: 1699149121}
   eventElementFather: {fileID: 691572809}
   shijianList: {fileID: 11400000, guid: 876bd141529587d468df9bcbbcdbb465, type: 2}
+  juqingList: {fileID: 0}
   eventFinishing: []
   endFinishin: []
   JuQingFinishin: []
   allEvent: {fileID: 1155438414}
+  EndEvent: {fileID: 0}
 --- !u!1 &991376002
 GameObject:
   m_ObjectHideFlags: 0
@@ -5697,6 +5699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dialog: {fileID: 1155438414}
   timer: 0
+  position: {fileID: 0}
   originalParent: {fileID: 0}
   originalPosition: {fileID: 0}
   delta: 0
@@ -6576,7 +6579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inkM: {fileID: 1264249175}
   ink: {fileID: 2800000, guid: 1c8b013ada1cf7a4980b5ceca54bf04f, type: 3}
-  normal: {fileID: 2800000, guid: d69c7b56bcbb596418768076d74bfa61, type: 3}
+  normal: {fileID: 2800000, guid: 33eed9e896175fb4c8cc8d0f8106c4c2, type: 3}
   ifUseInk: 0
 --- !u!4 &1823377516
 Transform:

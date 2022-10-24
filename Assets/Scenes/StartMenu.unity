@@ -1044,7 +1044,7 @@ MonoBehaviour:
   waitTimeForPaperContentOpen: 0.5
   LetterPaperFront1: {fileID: 1232671408}
   LetterPaperFront2: {fileID: 523444000}
-  nextLevel: SampleScene
+  nextLevel: Turtorial
   camSizeReduce: 0.03
   camSizeFrequnce: 0.01
   camMinSize: 0.01

@@ -8,7 +8,7 @@ public class AutoFloorCreate : MonoBehaviour
     
     public GameObject floor;
     public float gap;
-    [Range(1,10)]
+    [Range(1,30)]
     public int num;
     public List<GameObject> floorList;
     public Transform StartPos;

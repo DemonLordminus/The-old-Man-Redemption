@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: d9a6a781bb7a6bf4aa7f6437b8dc25ae
   - enabled: 1
+    path: Assets/Scenes/Turtorial.unity
+    guid: fefc2f5465634814ab9cb473725de254
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 97198e0fd4cd20442afd01e0b0ccbf87
   m_configObjects: {}
