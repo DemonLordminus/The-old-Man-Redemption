@@ -78,6 +78,7 @@ MonoBehaviour:
   random: 0
   isVisible: 0
   isGood: 0
+  information: 
   items: []
   price: 0
 --- !u!1 &3970920339255684280
@@ -195,7 +196,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &345987820963763349
 MonoBehaviour:

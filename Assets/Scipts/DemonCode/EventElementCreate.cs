@@ -11,8 +11,9 @@ public class EventElementCreate : MonoBehaviour
     public float minDistance, maxDistance;
     private int eventDataPerformedCount;
     public float groundY;
+    public Transform startTransform;
     private Transform lastEventElements;
-    //public GameObject end;
+    public GameObject end;
     public void CreateElement()
     {
         List<eventElmentFather> newEventScrList= new List<eventElmentFather>();
@@ -41,7 +42,7 @@ public class EventElementCreate : MonoBehaviour
                 }
             }
         }
-        //end.transform.position =new Vector3(lastEventElements.position.x,groundY,0);
+        end.transform.position =new Vector3(lastEventElements.position.x,groundY,0);
         //Debug.Log(newEventScrList.Count);
         for (int nowBadNum=0;nowBadNum<badNum;++nowBadNum)
         {
@@ -55,14 +56,21 @@ public class EventElementCreate : MonoBehaviour
     {
         lastEventElements = DataManager.instance.player.transform;
         CreateElement();
-        CreateElement();
     }
+    public int loopNum;
     private void Update()
     {
-        if(DataManager.instance.controller.eventCountPerformed-eventDataPerformedCount>createNum)
+        /*if(DataManager.instance.controller.eventCountPerformed-eventDataPerformedCount>createNum)
         {
+            lastEventElements = startTransform;
             CreateElement();
             eventDataPerformedCount=DataManager.instance.controller.eventCountPerformed;
+        }*/
+        if(DataManager.instance.controller.loopNum>loopNum)
+        {
+            lastEventElements = startTransform;
+            CreateElement();
+            loopNum += 1;
         }
     }
     private int RandomEventElement()

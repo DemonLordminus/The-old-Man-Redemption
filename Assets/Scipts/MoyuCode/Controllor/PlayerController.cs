@@ -88,6 +88,8 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        /*Vector3 vector3= new Vector3(transform.position.x,transform.position.y,0);
+        transform.position= vector3;*/
         RunSpeed = Mathf.Clamp(RunSpeed, WalkSpeed, maxspeed);
         WalkSpeed = Mathf.Clamp(WalkSpeed, 0, RunSpeed);
         if (!isPalse)
