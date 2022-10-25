@@ -41,6 +41,7 @@ public class EverythingLoop : MonoBehaviour
             DataManager.instance.player.transform.position -= vectorDifference;
             atuofloor.floorLoop();
             elementAtuoDestory(playerPos.x);
+            DataManager.instance.controller.loopNum += 1;
         }
     }
 

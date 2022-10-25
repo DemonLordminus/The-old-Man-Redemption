@@ -9,13 +9,44 @@ using UnityEditorInternal.Profiling.Memory.Experimental;
 
 public class PlayerController : MonoBehaviour
 {
-    #region  移动
-    Animator animator;
+    [Header("移动数值")]
     //声明速度变量
     public bool isPalse;
     public float maxspeed;
     public float currentspeed;
     public bool isRun;
+    public float RunReduceSp;
+    public float WalkReduceSp;
+    public float BreakRecoverSp;
+    [Range(0, 100)]
+    public float RunSpRange;
+    [Range(0, 100)]
+    public float WalkSpRange;
+    [Range(0, 100)]
+    public float BreakSpRange;
+    [Range(0, 100)]
+    public float RestToSp;//休息恢复到的sp比例
+    public float RunSpeed;
+    public float WalkSpeed;
+    [Header("debuff需要的数值")]
+    public float FaliReduceSp;
+    public float mangmuTimeSmall;
+    public float mangmuTimeBig;
+    public float zhongduReduceHp;
+    public float fareReduceSp;
+    public float fareReduceSpMax;
+    public float yiyuReduceBp;
+    public float huxikunanReduceHp;
+    public float jiwangRunTime;
+    public float CurrentTime;//处理健忘
+    public float mangmuTime;
+    public CinemachineVirtualCamera virtualCamera;
+    public DebuffClass[] debuffs;
+    [Range(0, 100)]
+    public float hunluanRandom;
+    #region  移动
+    Animator animator;
+    [Header("道具需要的数值")]
     public float reSp;
     public int nlylcot;
     //声明刚性对象
@@ -25,7 +56,7 @@ public class PlayerController : MonoBehaviour
     //计时器
     float Timer;
     //声明位置
-    private Vector2 Vector2;
+    //private Vector2 Vector2;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +71,6 @@ public class PlayerController : MonoBehaviour
         isRun = true;
         reSp = 1;
         nlylcot = 0;
-        //分别获取游戏对象
         x = Random.Range(0, 2);
         //获取刚性
         Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -57,18 +87,19 @@ public class PlayerController : MonoBehaviour
             isRun = true;
         }
     }
-    public float mangmuTime;
     void FixedUpdate()
     {
+        RunSpeed = Mathf.Clamp(RunSpeed, WalkSpeed, maxspeed);
+        WalkSpeed = Mathf.Clamp(WalkSpeed, 0, RunSpeed);
         if (!isPalse)
         {
             if (debuffs[9].isEnable)
             {
-                if (debuffs[9].keepTime > 116)
+                if (debuffs[9].keepTime > mangmuTimeSmall)
                 {
                     mangmuTime = -1;
                 }
-                else if (debuffs[9].keepTime > 50)
+                else if (debuffs[9].keepTime > mangmuTimeBig)
                 {
                     mangmuTime = 0f;
                 }
@@ -80,31 +111,36 @@ public class PlayerController : MonoBehaviour
             }
             if (CurrentSp < MaxSp / 9 && debuffs[4].isEnable)
             {
-                ChangeHealth(-1);
+                ChangeHealth(-huxikunanReduceHp);
             }
             //切换速度，使得在体力条小于10%不能奔跑，跑步消耗体力，走路休息恢复体力
-            if ((CurrentSp > MaxSp / 10 && isRun) && x != 0 && !debuffs[2].isEnable)//fali)
+            if ((CurrentSp > MaxSp * RunSpRange / 100 && isRun) && x != 0 && !debuffs[2].isEnable)//fali)
             {
-                currentspeed = maxspeed;
-                ChangeSp(-1);
+                currentspeed = RunSpeed;
+                ChangeSp(-RunReduceSp);
+            }
+            else if (CurrentSp > MaxSp * WalkSpRange / 100 && isRun && x != 0)
+            {
+                ChangeSp(-WalkReduceSp);
+                currentspeed = WalkSpeed;
             }
             else
             {
                 if (debuffs[4].isEnable)//huxikunnan)
                 {
-                    ChangeSp(1);
+                    ChangeSp(BreakRecoverSp / 2);
                 }
                 else
                 {
-                    ChangeSp(2);
+                    ChangeSp(BreakRecoverSp);
                 }
-                currentspeed = maxspeed / 2;
+                currentspeed = WalkSpeed / 2;
                 isRun = false;
             }
             Move(x);
             if (debuffs[1].isEnable)//fare)
             {
-                ChangeSp(-1);
+                ChangeSp(-fareReduceSp);
             }
             if (debuffs[3].isEnable)//outufuxie)
             {
@@ -112,7 +148,7 @@ public class PlayerController : MonoBehaviour
             }
             if (debuffs[7].isEnable)//yiyu
             {
-                ChangeBP(-2);
+                ChangeBP(-yiyuReduceBp);
             }
             #region 咕咕咕の代码
             if (debuffs[10].isEnable == true)//中药的sp回复
@@ -153,16 +189,16 @@ public class PlayerController : MonoBehaviour
                 x = Random.Range(0, 2);
                 if (debuffs[0].isEnable)//zhongdu)
                 {
-                    ChangeHealth(-2);
+                    ChangeHealth(-zhongduReduceHp);
                 }
                 if (debuffs[1].isEnable)//fare)
                 {
-                    MaxSp -= 5;
+                    MaxSp -= fareReduceSpMax;
                 }
                 Timer = 1.5f;
                 NewSpeed();
             }
-            if (debuffs[6].isEnable && debuffs[6].keepTime - CurrentTime > 5)//jianwang)
+            if (debuffs[6].isEnable && debuffs[6].keepTime - CurrentTime > jiwangRunTime)//jianwang)
             {
                 Jianwang();
                 CurrentTime = debuffs[6].keepTime;
@@ -195,6 +231,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region 数值系统
+    [Header("数值系统")]
     public float MaxHealthy;
     public float CurrentHealthy;
     public float MaxSp;
@@ -202,7 +239,6 @@ public class PlayerController : MonoBehaviour
     public float MaxBp;//幸福值
     public float CurrentBp;
     public float Gold;
-    public float CurrentTime;//处理健忘
 
     public void ChangeHealth(float amount)
     {
@@ -211,7 +247,7 @@ public class PlayerController : MonoBehaviour
         if (CurrentHealthy <= 0)
         {
             Time.timeScale = 0f;
-            gameover=true;
+            gameover = true;
             DataManager.instance.EndEvent.SetActive(true);
         }
     }
@@ -242,8 +278,6 @@ public class PlayerController : MonoBehaviour
     //8=焦躁
     //9=盲目
 
-    public CinemachineVirtualCamera virtualCamera;
-    public DebuffClass[] debuffs;
 
     [HideInInspector]
     public const int maxDebuffNum = 17;//最大病症数量
@@ -281,6 +315,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
     #region 切换UI
+    [Header("UI切换对象")]
     public GameObject myBar;
     public GameObject myBag;
     bool isOpean;
@@ -297,26 +332,28 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
-
+    [HideInInspector]
     public bool gameover;
     #region 碰撞
+    [Header("碰撞所需变量")]
     public bool IsTrue;
     public bool Isrun;
-    public string whatEnemy;
+    //public string whatEnemy;
     public List<GetItem> ItemsPackage;
     public int eventCountPerformed;//经过的事件数
+    public int loopNum;
     public bool IfHunluan()
     {
-        if (debuffs[5].isEnable && Random.Range(1, 7) < 5)
+        if (debuffs[5].isEnable && Random.Range(0, 100) < hunluanRandom)
         {
             return false;
         }
         return true;
     }
-    public int num;
+    //public int num;
     void Jianwang()
     {
-        DataManager.instance.lawOrActLists.lawlists.RemoveRange(((int)Random.Range(0,DataManager.instance.lawOrActLists.lawlists.Count/3))*3,3);
+        DataManager.instance.lawOrActLists.lawlists.RemoveRange(((int)Random.Range(0, DataManager.instance.lawOrActLists.lawlists.Count / 3)) * 3, 3);
     }
     public bool Probability(int amount)
     {
@@ -333,7 +370,7 @@ public class PlayerController : MonoBehaviour
             eventCountPerformed++;
             collision.gameObject.GetComponent<eventElmentFather>().getEventPerform(); return;
         }
-        if(IfHunluan())
+        if (IfHunluan())
         {
             eventCountPerformed++;
             OnEvent(collision);
@@ -342,7 +379,7 @@ public class PlayerController : MonoBehaviour
         {
             collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         }
-     #region 老代码
+        #region 老代码
         /*if (propsController != null)//判断为物品
         {
             if (IfHunluan())
