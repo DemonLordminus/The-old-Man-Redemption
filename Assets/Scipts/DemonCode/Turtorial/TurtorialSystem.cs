@@ -2,9 +2,11 @@ using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
+using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+//using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 namespace tur
 {
@@ -24,6 +26,10 @@ namespace tur
         public GameObject barManager;
         public Transform letterGive;
         public GetItem letter;
+        public Transform GiveCitao;
+        public GameObject tragger;
+        public Button sendButton;
+        public string nextLevel;
         [Serializable]
         public class TextIntro
         {
@@ -37,6 +43,7 @@ namespace tur
         {
             UIobj.SetActive(true);
             InvokeRepeating("blockBecomeSmall", 0.5f, 0.01f);
+            //sendButton.onClick.AddListener(endButtonCheck);
         }
         void blockBecomeSmall()
         {
@@ -109,6 +116,15 @@ namespace tur
                     //control.AddNewItem(letter);
                     letterGive.gameObject.SetActive(false);
                 }
+                if (player.transform.position.x >= GiveCitao.position.x && GiveCitao.gameObject.activeInHierarchy)
+                {
+                    GiveCitao.gameObject.SetActive(false);
+                    //control.forcePalse=true;
+                    foreach(ScrObjcitiao c in citiaos)
+                    {
+                        CreateNewcitiao(c);
+                    }
+                }
             }
             #region 左右键
             if (Input.GetKeyDown(KeyCode.LeftShift) && !isSpeedUp)
@@ -146,6 +162,60 @@ namespace tur
                 }
 
             }
+        }
+
+
+
+        public void endButtonCheck()
+        {
+            //Debug.Log("触发");
+            string[] nowCitiao = new string[2];
+
+            for (int i = 0; i < tragger.transform.parent.childCount - 1; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    try
+                    {
+
+                        if (tragger.transform.GetChild(i).GetChild(j).GetChild(0)!= null)
+                        {
+                            var tmp = tragger.transform.GetChild(i).GetChild(j).GetChild(0).GetComponent<citiao>();
+                            nowCitiao[i] += tmp.GetComponent<citiao>().citiaoScrObj.Content;
+                        }
+                    }
+                    catch
+                    { }
+                }
+            }
+            bool flag = false;
+            UnityEngine.Debug.Log(nowCitiao[0]);
+            UnityEngine.Debug.Log(nowCitiao[1]);
+            if (nowCitiao[0] == "前方是好的" || nowCitiao[1] == "前方是好的")
+            {
+                if (nowCitiao[1]=="继续前进" || nowCitiao[0] == "继续前进")
+                {
+                    SceneManager.LoadScene(nextLevel);
+                }
+            }
+        }
+
+        [Header("生成词条用")]
+        public Inventory inventory;
+        public GameObject Grid;
+        public citiao citiaoPrefab;
+        public ScrObjcitiao[] citiaos;
+
+        public void CreateNewcitiao(ScrObjcitiao getcitiao)
+        {
+            //在在网格的位置生成一个词条预制件
+            citiao newcitiao = Instantiate(citiaoPrefab, Grid.transform.position, Quaternion.identity);
+            newcitiao.gameObject.transform.SetParent(Grid.transform);
+            newcitiao.citiaoScrObj = getcitiao;
+            newcitiao.textShow.text = getcitiao.Content;
+            //int r = UnityEngine.Random.Range(0, getcitiao.Image.Length);
+            //newcitiao.image = getcitiao.Image[r];
+
         }
     }
 }
