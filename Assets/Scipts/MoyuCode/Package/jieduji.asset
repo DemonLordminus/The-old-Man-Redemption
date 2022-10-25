@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: jieduji
   m_EditorClassIdentifier: 
   Name: jieduji
-  Image: {fileID: 0}
+  Image: {fileID: 21300000, guid: 785f448fc5e14114c9e51c1344f1ad92, type: 3}
   Num: 0

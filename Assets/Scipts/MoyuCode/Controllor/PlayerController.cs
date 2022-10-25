@@ -5,6 +5,7 @@ using Dmld;
 using System.Collections;
 using Cinemachine;
 using System.Collections.Generic;
+using static Unity.VisualScripting.FlowStateWidget;
 
 public class PlayerController : MonoBehaviour
 {
@@ -95,125 +96,138 @@ public class PlayerController : MonoBehaviour
         WalkSpeed = Mathf.Clamp(WalkSpeed, 0, RunSpeed);
         if (!isPalse)
         {
-            if (debuffs[9].isEnable)
+            if (!isEvent)
             {
-                if (debuffs[9].keepTime > mangmuTimeSmall)
+                if (debuffs[9].isEnable)
                 {
-                    mangmuTime = -1;
+                    if (debuffs[9].keepTime > mangmuTimeSmall)
+                    {
+                        mangmuTime = -1;
+                    }
+                    else if (debuffs[9].keepTime > mangmuTimeBig)
+                    {
+                        mangmuTime = 0f;
+                    }
+                    else
+                    {
+                        mangmuTime = 1 / 10f;
+                    }
+                    virtualCamera.m_Lens.OrthographicSize = Mathf.Clamp(virtualCamera.m_Lens.OrthographicSize + mangmuTime * Time.fixedDeltaTime, 2, 5);
                 }
-                else if (debuffs[9].keepTime > mangmuTimeBig)
+                if (CurrentSp < MaxSp / 9 && debuffs[4].isEnable)
                 {
-                    mangmuTime = 0f;
+                    ChangeHealth(-huxikunanReduceHp);
+                }
+                //切换速度，使得在体力条小于10%不能奔跑，跑步消耗体力，走路休息恢复体力
+                if ((CurrentSp > MaxSp * RunSpRange / 100 && isRun) && x != 0 && !debuffs[2].isEnable)//fali)
+                {
+                    currentspeed = RunSpeed;
+                    ChangeSp(-RunReduceSp);
+                }
+                else if (CurrentSp > MaxSp * WalkSpRange / 100 && isRun && x != 0)
+                {
+                    ChangeSp(-WalkReduceSp);
+                    currentspeed = WalkSpeed;
                 }
                 else
                 {
-                    mangmuTime = 1 / 10f;
+                    if (debuffs[4].isEnable)//huxikunnan)
+                    {
+                        ChangeSp(BreakRecoverSp / 2);
+                    }
+                    else
+                    {
+                        ChangeSp(BreakRecoverSp);
+                    }
+                    currentspeed = WalkSpeed / 2;
+                    isRun = false;
                 }
-                virtualCamera.m_Lens.OrthographicSize = Mathf.Clamp(virtualCamera.m_Lens.OrthographicSize + mangmuTime * Time.fixedDeltaTime, 2, 5);
-            }
-            if (CurrentSp < MaxSp / 9 && debuffs[4].isEnable)
-            {
-                ChangeHealth(-huxikunanReduceHp);
-            }
-            //切换速度，使得在体力条小于10%不能奔跑，跑步消耗体力，走路休息恢复体力
-            if ((CurrentSp > MaxSp * RunSpRange / 100 && isRun) && x != 0 && !debuffs[2].isEnable)//fali)
-            {
-                currentspeed = RunSpeed;
-                ChangeSp(-RunReduceSp);
-            }
-            else if (CurrentSp > MaxSp * WalkSpRange / 100 && isRun && x != 0)
-            {
-                ChangeSp(-WalkReduceSp);
-                currentspeed = WalkSpeed;
+                Move(x);
+                if (debuffs[1].isEnable)//fare)
+                {
+                    ChangeSp(-fareReduceSp);
+                }
+                if (debuffs[3].isEnable)//outufuxie)
+                {
+                    ChangeHealth(Convert.ToInt32(-1 - debuffs[3].keepTime / 10));
+                }
+                if (debuffs[7].isEnable)//yiyu
+                {
+                    ChangeBP(-yiyuReduceBp);
+                }
+                #region 咕咕咕の代码
+                if (debuffs[10].isEnable == true)//中药的sp回复
+                {
+                    reSp += 1;
+                }
+                if (debuffs[11].isEnable == true && nlylcot == 1)//能量饮料的sp回复
+                {
+                    reSp += 1;
+                }
+                if (debuffs[11].isEnable == true && nlylcot >= 2)//能量饮料两层buff以上的效果
+                {
+                    reSp += 1.5f;
+                    ChangeHealth(-(nlylcot));
+                }
+                if (debuffs[11].isEnable == true)//能量饮料抑制乏力的效果
+                {
+                    debuffs[2].isEnable = false;
+                }
+                if (debuffs[12].isEnable == true)//氧气瓶的sp回复效果
+                {
+                    reSp += 1;
+                }
+                if (debuffs[16].isEnable == true)//止痛药的hp减少效果
+                {
+                    ChangeHealth(-0.04f);
+                }
+                if (debuffs[15].isEnable == true)//眼药水的视野恢复
+                {
+                    virtualCamera.m_Lens.OrthographicSize = Mathf.Clamp(virtualCamera.m_Lens.OrthographicSize - 0.002f, 2, 5);
+                }
+                #endregion
+
+                //计时器
+                Timer -= Time.fixedDeltaTime;
+                if (Timer <= 0)
+                {
+                    //初始化
+                    if (isRandonRest)
+                    {
+                        x = Random.Range(0, 2);
+                    }
+                    else
+                    {
+                        x = 1;
+                    }
+                    if (debuffs[0].isEnable)//zhongdu)
+                    {
+                        ChangeHealth(-zhongduReduceHp);
+                    }
+                    if (debuffs[1].isEnable)//fare)
+                    {
+                        MaxSp -= fareReduceSpMax;
+                    }
+                    Timer = 1.5f;
+                    NewSpeed();
+                }
+                if (debuffs[6].isEnable && debuffs[6].keepTime - CurrentTime > jiwangRunTime)//jianwang)
+                {
+                    Jianwang();
+                    CurrentTime = debuffs[6].keepTime;
+                }
+                UpdateDebuffTime();
             }
             else
             {
-                if (debuffs[4].isEnable)//huxikunnan)
+                eventTime += Time.fixedDeltaTime;
+                Move(0);
+                if (eventTime > inlitEventTime)
                 {
-                    ChangeSp(BreakRecoverSp / 2);
+                    isEvent = false;
+                    eventTime = 0f;
                 }
-                else
-                {
-                    ChangeSp(BreakRecoverSp);
-                }
-                currentspeed = WalkSpeed / 2;
-                isRun = false;
             }
-            Move(x);
-            if (debuffs[1].isEnable)//fare)
-            {
-                ChangeSp(-fareReduceSp);
-            }
-            if (debuffs[3].isEnable)//outufuxie)
-            {
-                ChangeHealth(Convert.ToInt32(-1 - debuffs[3].keepTime / 10));
-            }
-            if (debuffs[7].isEnable)//yiyu
-            {
-                ChangeBP(-yiyuReduceBp);
-            }
-            #region 咕咕咕の代码
-            if (debuffs[10].isEnable == true)//中药的sp回复
-            {
-                reSp += 1;
-            }
-            if (debuffs[11].isEnable == true && nlylcot == 1)//能量饮料的sp回复
-            {
-                reSp += 1;
-            }
-            if (debuffs[11].isEnable == true && nlylcot >= 2)//能量饮料两层buff以上的效果
-            {
-                reSp += 1.5f;
-                ChangeHealth(-(nlylcot));
-            }
-            if (debuffs[11].isEnable == true)//能量饮料抑制乏力的效果
-            {
-                debuffs[2].isEnable = false;
-            }
-            if (debuffs[12].isEnable == true)//氧气瓶的sp回复效果
-            {
-                reSp += 1;
-            }
-            if (debuffs[16].isEnable == true)//止痛药的hp减少效果
-            {
-                ChangeHealth(-0.04f);
-            }
-            if (debuffs[15].isEnable == true)//眼药水的视野恢复
-            {
-                virtualCamera.m_Lens.OrthographicSize = Mathf.Clamp(virtualCamera.m_Lens.OrthographicSize - 0.002f, 2, 5);
-            }
-            #endregion
-            
-            //计时器
-            Timer -= Time.fixedDeltaTime;
-            if (Timer <= 0)
-            {
-                //初始化
-                if (isRandonRest)
-                {
-                    x = Random.Range(0, 2);
-                }
-                else
-                {
-                    x = 1;
-                }
-                if (debuffs[0].isEnable)//zhongdu)
-                {
-                    ChangeHealth(-zhongduReduceHp);
-                }
-                if (debuffs[1].isEnable)//fare)
-                {
-                    MaxSp -= fareReduceSpMax;
-                }
-                Timer = 1.5f;
-                NewSpeed();
-            }
-            if (debuffs[6].isEnable && debuffs[6].keepTime - CurrentTime > jiwangRunTime)//jianwang)
-            {
-                Jianwang();
-                CurrentTime = debuffs[6].keepTime;
-            }
-            UpdateDebuffTime();
         }
         else
         {
@@ -352,6 +366,10 @@ public class PlayerController : MonoBehaviour
     public List<GetItem> ItemsPackage;
     public int eventCountPerformed;//经过的事件数
     public int loopNum;
+    public bool isEvent;
+    [Range(0f, 1f)]
+    public float inlitEventTime;
+    public float eventTime;
     public bool IfHunluan()
     {
         if (debuffs[5].isEnable && Random.Range(0, 100) < hunluanRandom)
@@ -483,8 +501,11 @@ public class PlayerController : MonoBehaviour
             if (collision.gameObject.GetComponent<virusEvent>() != null && debuffs[14].isEnable)
             {
                 collision.gameObject.GetComponent<virusEvent>().random += 5;
+                return;
             }
             collision.gameObject.GetComponent<eventElmentFather>().getEventPerform();
+            collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+            isEvent = true;
         }
     }
     #endregion

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: shuji
   m_EditorClassIdentifier: 
   Name: shuji
-  Image: {fileID: 0}
+  Image: {fileID: 21300000, guid: 66240f1e0310d374aa96e3f16fedbc7c, type: 3}
   Num: 0

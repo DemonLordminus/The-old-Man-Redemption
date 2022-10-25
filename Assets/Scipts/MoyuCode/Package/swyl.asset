@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: swyl
   m_EditorClassIdentifier: 
   Name: swyl
-  Image: {fileID: 0}
+  Image: {fileID: 21300000, guid: 740448450e567d04ca4c876ab2b33a9b, type: 3}
   Num: 0
