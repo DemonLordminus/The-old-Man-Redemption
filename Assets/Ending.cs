@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Ending : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class Ending : MonoBehaviour
         timer = 0f;
         onEnd = false;
         onEvent = false;
-        GameObject.Find("End").GetComponent<Text>().text = "剧情事件" + "\n";
+        GameObject.Find("End").GetComponent<TextMeshPro>().text = "剧情事件" + "\n";
     }
     public float time;
     public float timer;
@@ -32,18 +33,18 @@ public class Ending : MonoBehaviour
             }
             if (num < DataManager.instance.JuQingFinishin.Count)
             {
-                GameObject.Find("End").GetComponent<Text>().text += DataManager.instance.JuQingFinishin[num]+"\n";
+                GameObject.Find("End").GetComponent<TextMeshPro>().text += DataManager.instance.JuQingFinishin[num]+"\n";
                 num++;
             }
             if(num ==DataManager.instance.JuQingFinishin.Count)
             {
-                GameObject.Find("End").GetComponent<Text>().text += "事件回顾" + "\n";
+                GameObject.Find("End").GetComponent<TextMeshPro>().text += "事件回顾" + "\n";
                 num = 0;
                 onEnd = true;
             }
             if(onEnd&&num <DataManager.instance.endFinishin.Count)
             {
-                GameObject.Find("End").GetComponent<Text>().text += DataManager.instance.endFinishin[num] + "\n";
+                GameObject.Find("End").GetComponent<TextMeshPro>().text += DataManager.instance.endFinishin[num] + "\n";
                 num++;
             }
             if (num == DataManager.instance.endFinishin.Count&&onEnd)
@@ -53,7 +54,7 @@ public class Ending : MonoBehaviour
             }
             if(onEvent&&num<DataManager.instance.eventFinishing.Count)
             {
-                GameObject.Find("End").GetComponent<Text>().text += DataManager.instance.eventFinishing[num] + "\n";
+                GameObject.Find("End").GetComponent<TextMeshPro>().text += DataManager.instance.eventFinishing[num] + "\n";
                 num++;
             }
             if(onEvent&&num== DataManager.instance.eventFinishing.Count)

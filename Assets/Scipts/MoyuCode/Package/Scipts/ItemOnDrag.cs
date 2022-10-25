@@ -38,35 +38,34 @@ public class ItemOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     //鼠标松开拖拽触发
     public void OnEndDrag(PointerEventData eventData)
     {
+        Vector3 vector = Input.mousePosition - gameObject.transform.parent.transform.position;
+        Debug.Log(vector.x);
+        int delta = (int)vector.x;
         try
         {
-            if (eventData.pointerCurrentRaycast.gameObject.tag == "Package")//这个代码获取鼠标射线现在碰撞的物体的图层     //citiao调换位置
+            if (delta<0)//这个代码获取鼠标射线现在碰撞的物体的图层     //citiao调换位置
             {
                 //使拖拽对象归到鼠标当前位置的框中
-                transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
-                transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
+                transform.position = eventData.position;
+                //SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
+                //transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
                 //使原有对象返回到拖拽对象的原始位置
-                eventData.pointerCurrentRaycast.gameObject.transform.position = originalParent.position;
-                eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalParent);
+                //eventData.pointerCurrentRaycast.gameObject.transform.position = originalParent.position;
+                //eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originalParent);
                 GetComponent<CanvasGroup>().blocksRaycasts = true;
                 return;//退出
             }
         }
         catch
+        { }
+        ItemOnRun();
+        GetItem.Num -= 1;
+        if (GetItem.Num <= 0)
         {
-            ItemOnRun();
-            GetItem.Num -= 1;
-            if (GetItem.Num <= 0)
-            {
-                DataManager.instance.controller.ItemsPackage.Remove(GetItem);
-            }
-            PackageManager.RefreshItem();
-            Destroy(this.gameObject);
-            GetComponent<CanvasGroup>().blocksRaycasts = true;
-            return;//退出
+            DataManager.instance.controller.ItemsPackage.Remove(GetItem);
         }
-        transform.SetParent(originalParent);
-        transform.position = originalParent.GetChild(0).position;
+        PackageManager.RefreshItem();
+        Destroy(this.gameObject);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
     //鼠标拖拽触发
