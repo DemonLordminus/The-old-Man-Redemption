@@ -76,9 +76,9 @@ MonoBehaviour:
   HealthyLawLists: []
   debuffClasses: []
   random: 0
-  isVisible: 0
   isGood: 0
   information: 
+  shade: {fileID: 0}
   items:
   - {fileID: 11400000, guid: a93f90949f1b3ce45bd4905438f7e99f, type: 2}
   - {fileID: 11400000, guid: a93f90949f1b3ce45bd4905438f7e99f, type: 2}
@@ -103,7 +103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1665863215526774838
 Transform:
   m_ObjectHideFlags: 0

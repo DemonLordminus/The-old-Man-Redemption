@@ -6,18 +6,16 @@ public class eventElmentFather : LawOrActLists
 {
     [Range(0, 100)]
     public float random;
-    public bool isVisible;
     public bool isGood;
     public string information;
     // Start is called before the first frame update
-    private void OnBecameInvisible()
+    public GameObject shade;
+    public void changeForGoodOrBad()
     {
-        isVisible = false;
-    }
-
-    private void OnBecameVisible()
-    {
-        isVisible = true;
+        if(isGood)
+        {
+            shade.SetActive(false);
+        }
     }
     public void selfDestroyLater()
     {

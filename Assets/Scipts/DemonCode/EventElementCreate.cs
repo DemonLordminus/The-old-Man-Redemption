@@ -51,7 +51,12 @@ public class EventElementCreate : MonoBehaviour
         {
             int tmp = Random.Range(0, newEventScrList.Count-1);
             newEventScrList[tmp].isGood = false;
+            newEventScrList[tmp].changeForGoodOrBad();
             newEventScrList.Remove(newEventScrList[tmp]);
+        }
+        foreach(eventElmentFather eventTmp in newEventScrList)
+        {
+            eventTmp.changeForGoodOrBad();
         }
 
     }
