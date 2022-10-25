@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u8D2A\u5A6A"
   m_EditorClassIdentifier: 
   eventname: "\u8D2A\u5A6A"
-  eventinfomation: "\u8D70\u8DEF\u6361\u5230\u94B1\u5E76\u79C1\u541E"
+  eventinfomation: "\u8D70\u8DEF\u6361\u5230\u94B1\u4EA4\u7ED9\u8B66\u5BDF\uFF0C\u5931\u4E3B\u53BB\u9664\u4E00\u90E8\u5206\u8868\u793A\u611F\u8C22"
   hpchange: 0
   spchange: 0
   bpchange: 5

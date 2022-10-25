@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u6389\u7259"
   m_EditorClassIdentifier: 
   eventname: "\u6389\u7259"
-  eventinfomation: "\u5403\u996D\u7259\u9F7F\u6389\u4E86\u4E00\u9897\uFF0C\u5E78\u798F\u503C\u4E0B\u964D"
+  eventinfomation: "\u56E0\u4E3A\u7259\u9F7F\u4E0D\u597D\u3002\u5403\u996D\u56F0\u96BE\uFF0C\u5E78\u798F\u503C\u4E0B\u964D"
   hpchange: 0
   spchange: 0
   bpchange: -10

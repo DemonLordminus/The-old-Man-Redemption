@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: "\u78B0\u74F7"
   m_EditorClassIdentifier: 
   eventname: "\u78B0\u74F7"
-  eventinfomation: "\u9047\u5230\u4EBA\u78B0\u74F7\uFF0C\u5E78\u798F\u503C\u4E0B\u964D\uFF0C\u8D22\u5BCC\u503C\u4E0B\u964D"
-  hpchange: 0
+  eventinfomation: "\u8D70\u8DEF\u4E0A\u6454\u4E86\u4E00\u8DE4\uFF0C\u8DEF\u4EBA\u62C5\u5FC3\u662F\u78B0\u74F7\uFF0C\u6CA1\u4EBA\u6765\u5E2E"
+  hpchange: -5
   spchange: 0
-  bpchange: -10
-  goldchange: -500
+  bpchange: -15
+  goldchange: 0
