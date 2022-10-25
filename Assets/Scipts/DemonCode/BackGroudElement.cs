@@ -15,6 +15,8 @@ public class BackGroudElement : MonoBehaviour
     public Transform startTransform;
     private Transform lastEventElements;
     public int loopNum;
+    public Transform lastEndMark;
+    public float ViewMaxX;//ÆÁÄ»Íâ×ø±ê
     //public GameObject end;
     public void CreateElement()
     {
@@ -27,9 +29,10 @@ public class BackGroudElement : MonoBehaviour
             {
             }*/
             created[random] = true;
-            Vector3 pos = new Vector3(lastEventElements.position.x + Random.Range(minDistance, maxDistance), groundY,0);
+            Vector3 pos = new Vector3(lastEndMark.position.x + Random.Range(minDistance, maxDistance), groundY,0);
             var newEvent = Instantiate(eventElementsList[random], pos, Quaternion.identity, groundTransform);
             lastEventElements = newEvent.transform;
+            lastEndMark.position = lastEventElements.position;
             #region
             /*if (newEvent.TryGetComponent<eventElmentFather>(out eventElmentFather newScr))
             {
@@ -59,16 +62,22 @@ public class BackGroudElement : MonoBehaviour
     private void Start()
     {
         lastEventElements = DataManager.instance.player.transform;
+        lastEndMark.position = lastEventElements.position;
         CreateElement();
     }
     private void Update()
     {
-        if (DataManager.instance.controller.loopNum > loopNum)
+        //if (DataManager.instance.controller.loopNum > loopNum)
+        //{
+        //    loopNum = DataManager.instance.controller.loopNum;
+        //    CreateElement();
+        //    lastEventElements=startTransform;
+        //}
+        if (lastEndMark.transform.position.x < ViewMaxX)
         {
-            loopNum = DataManager.instance.controller.loopNum;
             CreateElement();
-            lastEventElements=startTransform;
         }
+
        /* if (DataManager.instance.controller.eventCountPerformed - eventDataPerformedCount > createNum)
         {
             CreateElement();

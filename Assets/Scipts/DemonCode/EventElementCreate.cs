@@ -14,6 +14,8 @@ public class EventElementCreate : MonoBehaviour
     public Transform startTransform;
     private Transform lastEventElements;
     public GameObject end;
+    public Transform lastEndMark;
+    public float ViewMaxX;//ÆÁÄ»Íâ×ø±ê
     public void CreateElement()
     {
         List<eventElmentFather> newEventScrList= new List<eventElmentFather>();
@@ -25,9 +27,10 @@ public class EventElementCreate : MonoBehaviour
             {   
             }
             created[random] = true;
-            Vector3 pos = new Vector3(lastEventElements.position.x + Random.Range(minDistance,maxDistance)/*,DataManager.instance.player.transform.position.x,GameObject.Find("End").gameObject.transform.position.x)*/,groundY,0);
+            Vector3 pos = new Vector3(lastEndMark.position.x + Random.Range(minDistance,maxDistance)/*,DataManager.instance.player.transform.position.x,GameObject.Find("End").gameObject.transform.position.x)*/,groundY,0);
             var newEvent= Instantiate(eventElementsList[random],pos,Quaternion.identity,DataManager.instance.eventElementFather.transform);
             lastEventElements = newEvent.transform;
+            lastEndMark.position = lastEventElements.position;
             if (newEvent.TryGetComponent<eventElmentFather>(out eventElmentFather newScr))
             {
                 newEventScrList.Add(newScr);
@@ -42,7 +45,7 @@ public class EventElementCreate : MonoBehaviour
                 }
             }
         }
-        end.transform.position =new Vector3(lastEventElements.position.x,groundY,0);
+        //end.transform.position =new Vector3(lastEventElements.position.x,groundY,0);
         //Debug.Log(newEventScrList.Count);
         for (int nowBadNum=0;nowBadNum<badNum;++nowBadNum)
         {
@@ -55,22 +58,27 @@ public class EventElementCreate : MonoBehaviour
     private void Start()
     {
         lastEventElements = DataManager.instance.player.transform;
+        lastEndMark.position = lastEventElements.position;
         CreateElement();
     }
     public int loopNum;
     private void Update()
     {
-        /*if(DataManager.instance.controller.eventCountPerformed-eventDataPerformedCount>createNum)
+        //if(DataManager.instance.controller.eventCountPerformed-eventDataPerformedCount>createNum)
+        //{
+        //    lastEventElements = startTransform;
+        //    CreateElement();
+        //    eventDataPerformedCount=DataManager.instance.controller.eventCountPerformed;
+        //}
+        //if(DataManager.instance.controller.loopNum>loopNum)
+        //{
+        //    lastEventElements = startTransform;
+        //    CreateElement();
+        //    loopNum += 1;
+        //}
+        if (lastEndMark.transform.position.x < ViewMaxX)
         {
-            lastEventElements = startTransform;
             CreateElement();
-            eventDataPerformedCount=DataManager.instance.controller.eventCountPerformed;
-        }*/
-        if(DataManager.instance.controller.loopNum>loopNum)
-        {
-            lastEventElements = startTransform;
-            CreateElement();
-            loopNum += 1;
         }
     }
     private int RandomEventElement()

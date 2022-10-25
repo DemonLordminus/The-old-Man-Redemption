@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     [Header("道具需要的数值")]
     public float reSp;
     public int nlylcot;
+    public bool isRandonRest;
     //声明刚性对象
     Rigidbody2D Rigidbody2D;
     //声明随机量
@@ -182,12 +183,20 @@ public class PlayerController : MonoBehaviour
                 virtualCamera.m_Lens.OrthographicSize = Mathf.Clamp(virtualCamera.m_Lens.OrthographicSize - 0.002f, 2, 5);
             }
             #endregion
+            
             //计时器
             Timer -= Time.fixedDeltaTime;
             if (Timer <= 0)
             {
                 //初始化
-                x = Random.Range(0, 2);
+                if (isRandonRest)
+                {
+                    x = Random.Range(0, 2);
+                }
+                else
+                {
+                    x = 1;
+                }
                 if (debuffs[0].isEnable)//zhongdu)
                 {
                     ChangeHealth(-zhongduReduceHp);

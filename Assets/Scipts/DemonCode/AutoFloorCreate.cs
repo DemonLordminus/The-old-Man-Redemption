@@ -51,39 +51,55 @@ public class AutoFloorCreate : MonoBehaviour
     Transform pos;
     public void floorLoop()
     {
-        //List<GameObject> move=new List<GameObject>();
+        ////List<GameObject> move=new List<GameObject>();
+        //foreach (GameObject fl in floorList)
+        //{
+        //    try
+        //    {
+        //        if (fl.transform.position.x + gap < EndPos.position.x)
+        //        {
+        //            //floorList.Remove(fl);
+        //            //move.Add(fl);
+        //            //floorList.Add(fl);
+        //            //Instantiate(floor, transform);
+        //            positionX = fl.transform.position.x;
+        //            Debug.Log("fl" + fl.transform.position.x);
+        //        }
+        //    }
+        //    catch
+        //    { }
+        //}
+        //Debug.Log(EndPos);
+        //Debug.Log(positionX);
+        //while(positionX-gap*2<EndPos.position.x)
+        //{
+        //    Vector2 vector2 =new Vector2(floorList[floorList.Count-1].transform.position.x + positionX, floorList[floorList.Count-1].transform.position.y);
+        //    pos.position = vector2;
+        //    GameObject fl= Instantiate(floor, pos);
+        //    floorList.Add(fl);
+        //    positionX +=gap;
+        //}
+        ///*
+        //foreach (GameObject fl in move)
+        //{
+        //    floorList.Add(fl);
+        //    fl.transform.position = floorList[floorList.Count-1].transform.position+ new Vector3(gap, 0);
+        //}*/
+        List<GameObject> move = new List<GameObject>();
         foreach (GameObject fl in floorList)
         {
-            try
+            if (fl.transform.position.x + gap < DataManager.instance.player.transform.position.x)
             {
-                if (fl.transform.position.x + gap < EndPos.position.x)
-                {
-                    //floorList.Remove(fl);
-                    //move.Add(fl);
-                    //floorList.Add(fl);
-                    //Instantiate(floor, transform);
-                    positionX = fl.transform.position.x;
-                    Debug.Log("fl" + fl.transform.position.x);
-                }
+                //floorList.Remove(fl);
+                move.Add(fl);
+                //Debug.Log("???");
             }
-            catch
-            { }
         }
-        Debug.Log(EndPos);
-        Debug.Log(positionX);
-        while(positionX-gap*2<EndPos.position.x)
-        {
-            Vector2 vector2 =new Vector2(floorList[floorList.Count-1].transform.position.x + positionX, floorList[floorList.Count-1].transform.position.y);
-            pos.position = vector2;
-            GameObject fl= Instantiate(floor, pos);
-            floorList.Add(fl);
-            positionX +=gap;
-        }
-        /*
         foreach (GameObject fl in move)
         {
+            floorList.Remove(fl);
+            fl.transform.position = floorList[floorList.Count - 1].transform.position + new Vector3(gap, 0);
             floorList.Add(fl);
-            fl.transform.position = floorList[floorList.Count-1].transform.position+ new Vector3(gap, 0);
-        }*/
+        }
     }
 }
