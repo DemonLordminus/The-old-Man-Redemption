@@ -22,12 +22,12 @@ public class Get: MonoBehaviour
 
     protected void OnMouseDown()
     {
-        ifUse =GameObject.Find("Ink").GetComponent<InkManager>().ifUseInk;
-        if (ifUse)
-        {
-            AddNewIten();
-            GameObject.Find("Ink").GetComponent<InkManager>().ifUseInk =false;
-        }
+        //ifUse =GameObject.Find("Ink").GetComponent<InkManager>().ifUseInk;
+        //if (ifUse)
+        //{
+        //    AddNewIten();
+        //    GameObject.Find("Ink").GetComponent<InkManager>().ifUseInk =false;
+        //}
     }
     //¿ª¾ÖÇå¿Õ
     private void Start()

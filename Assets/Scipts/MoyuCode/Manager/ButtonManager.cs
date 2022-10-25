@@ -34,9 +34,10 @@ public class ButtonManager : MonoBehaviour
     public void Click0()
     {
         //找到第一个信箱并使它具有信
-        GameObject.Find("mailbox").GetComponent<MailboxEvent>().ishave = true;
+        //GameObject.Find("mailbox").GetComponent<MailboxEvent>().ishave = true;
         //使信隐藏
         myLetter.SetActive(false);
+        DataManager.instance.controller.Isrun = true;
         for (int i = 0; i < gameObject.transform.parent.childCount-1; i++)
         {
             citiaon = "";
@@ -92,6 +93,7 @@ public class ButtonManager : MonoBehaviour
                 LawOrActLists.ActLists.Add(citiaon);
             }
         }
+
     }
     public string citiaon;
     public string[] citiao;

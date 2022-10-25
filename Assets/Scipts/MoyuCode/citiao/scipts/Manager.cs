@@ -7,10 +7,12 @@ using UnityEngine.UI;
 public class Manager : MonoBehaviour
 {
     //声明一个特有的静态字段
-    static Manager instance;
+    public static Manager instance;
     public Inventory inventory;
     public GameObject Grid;
     public citiao citiaoPrefab;
+    public List<ScrObjcitiao> citiaoScrList;
+    public Transform citiaoPos;
     void Awake()
     {
         if (instance != null)
@@ -22,6 +24,8 @@ public class Manager : MonoBehaviour
     {
         citiao newcitiao = Instantiate(instance.citiaoPrefab, instance.Grid.transform.position, Quaternion.identity);
         newcitiao.gameObject.transform.SetParent(instance.Grid.transform);
+        Vector3 randomPos = new Vector3(UnityEngine.Random.Range(-300, 300), UnityEngine.Random.Range(-100, 100), 0);
+        newcitiao.gameObject.transform.position = instance.citiaoPos.position+randomPos;
         newcitiao.citiaoScrObj = getcitiao;
         newcitiao.textShow.text = getcitiao.Content;
     }

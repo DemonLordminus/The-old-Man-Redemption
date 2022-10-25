@@ -7,14 +7,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e76a29df08bdf944aae66cbcc888650, type: 3}
-  m_Name: "\u5267\u60C58"
+  m_Name: "\u610F\u5916\u4E4B\u8D22"
   m_EditorClassIdentifier: 
-  eventname: "\u6765\u81EA\u8001\u4EBA\u7684\u513F\u5B50\uFF08\u8282\u9009\uFF09"
-  eventinfomation: "\u7238\uFF0C\u6211\u542C\u6148\u5584\u673A\u6784\u7684\u4EBA\u8BF4\u4E86\uFF0C\u60A8\u7684\u75BE\u75C5\u5DF2\u7ECF\u6709\u597D\u8F6C\u4E86\u3002\u6211\u8FC7\u51E0\u5929\u5C31\u56DE\u6765\u770B\u671B\u60A8\u3002"
+  eventname: "\u610F\u5916\u4E4B\u8D22"
+  eventinfomation: "\u8D70\u8DEF\u6361\u5230\u94B1\u4EA4\u7ED9\u8B66\u5BDF\uFF0C\u5931\u4E3B\u53BB\u9664\u4E00\u90E8\u5206\u8868\u793A\u611F\u8C22"
   hpchange: 0
   spchange: 0
-  bpchange: 10
-  goldchange: 0
+  bpchange: 5
+  goldchange: 100

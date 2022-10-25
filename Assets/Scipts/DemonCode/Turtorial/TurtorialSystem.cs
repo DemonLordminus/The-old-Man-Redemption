@@ -75,6 +75,8 @@ namespace tur
         private bool isSpeedUp, isBack;
         void Update()
         {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            { SceneManager.LoadScene(nextLevel); }
             if (showUp)
             {
                 if (player.transform.position.x >= playerStop[0].position.x)

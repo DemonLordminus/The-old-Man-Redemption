@@ -5,7 +5,7 @@ using Dmld;
 using System.Collections;
 using Cinemachine;
 using System.Collections.Generic;
-using static Unity.VisualScripting.FlowStateWidget;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     public float WalkSpRange;
     [Range(0, 100)]
     public float BreakSpRange;
-    [Range(0, 100)]
-    public float RestToSp;//休息恢复到的sp比例
+    //[Range(0, 100)]
+    //public float RestToSp;//休息恢复到的sp比例
     public float RunSpeed;
     public float WalkSpeed;
     [Header("debuff需要的数值")]
@@ -64,7 +64,8 @@ public class PlayerController : MonoBehaviour
 
         Initialize();
         animator = GetComponent<Animator>();
-        isPalse = false;
+        isPalse = true;
+        Invoke("endPalse", 3f);
         CurrentBp = MaxBp;
         CurrentHealthy = MaxHealthy;
         CurrentSp = MaxSp;
@@ -75,6 +76,10 @@ public class PlayerController : MonoBehaviour
         x = Random.Range(0, 2);
         //获取刚性
         Rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+    private void endPalse()
+    {
+        isPalse = false;
     }
     private void Update()
     {
@@ -131,16 +136,21 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    if (debuffs[4].isEnable)//huxikunnan)
+                    currentspeed = WalkSpeed / 2;
+                    isRun = false;
+                    if (debuffs[4].isEnable)//huxikunnan
                     {
                         ChangeSp(BreakRecoverSp / 2);
                     }
                     else
                     {
-                        ChangeSp(BreakRecoverSp);
+                        if (CurrentSp < BreakSpRange)
+                        {
+                            currentspeed = 0;
+                        }
+                            ChangeSp(BreakRecoverSp);
                     }
-                    currentspeed = WalkSpeed / 2;
-                    isRun = false;
+                    
                 }
                 Move(x);
                 if (debuffs[1].isEnable)//fare)
@@ -345,15 +355,20 @@ public class PlayerController : MonoBehaviour
     bool isOpean;
     void OpenMyBag()
     {
-        if (!isPalse)
+        //if (!isPalse)
         {
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(1))
             {
                 isOpean = !isOpean;
                 myBar.SetActive(isOpean);
                 myBag.SetActive(!isOpean);
             }
         }
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            isPalse = !isPalse;
+        }
+
     }
     #endregion
     [HideInInspector]
@@ -396,10 +411,12 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.name == "mailbox")
         {
             eventCountPerformed++;
+            AddCitiao(5);
             collision.gameObject.GetComponent<eventElmentFather>().getEventPerform(); return;
         }
         if (IfHunluan())
         {
+           
             eventCountPerformed++;
             OnEvent(collision);
         }
@@ -494,6 +511,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "EventElement")
         {
+            AddCitiao(2);
             if (debuffs[13].isEnable)
             {
                 collision.gameObject.GetComponent<eventElmentFather>().random += 5;
@@ -511,6 +529,16 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region 获取
+    public void AddCitiao(int n)
+    {
+        for(int i = 0;i<n;++i)
+        {
+            Manager.CreateNewcitiao(Manager.instance.citiaoScrList[UnityEngine.Random.Range(0, Manager.instance.citiaoScrList.Count-1)]);
+        }
+
+
+    }
+
     public void AddNewItem(GetItem item)
     {
         if (!ItemsPackage.Contains(item))

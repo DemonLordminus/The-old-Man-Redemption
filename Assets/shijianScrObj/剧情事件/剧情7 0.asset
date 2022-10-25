@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e76a29df08bdf944aae66cbcc888650, type: 3}
+  m_Name: "\u5267\u60C57 0"
+  m_EditorClassIdentifier: 
+  eventname: "\u6765\u81EA\u67D0\u6148\u5584\u673A\u6784\u7684\u8D1F\u8D23\u4EBA\uFF08\u8282\u9009\uFF09"
+  eventinfomation: "\u60A8\u597D\uFF0C\u6211\u4ECE\u60A8\u7684\u5B50\u5973\u90A3\u91CC\u542C\u8BF4\u4E86\u60A8\u7684\u60C5\u51B5\u3002\u6211\u4EEC\u5E0C\u671B\u5C3D\u5168\u529B\u5E2E\u52A9\u60A8\u6CBB\u75C5\uFF0C\u660E\u5929\u6211\u4EEC\u4F1A\u767B\u95E8\u62DC\u8BBF\u6765\u4E86\u89E3\u60C5\u51B5\u3002"
+  hpchange: 0
+  spchange: 0
+  bpchange: 0
+  goldchange: 0

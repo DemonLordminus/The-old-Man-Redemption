@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e76a29df08bdf944aae66cbcc888650, type: 3}
-  m_Name: "\u64B8\u732B"
+  m_Name: "\u905B\u72D7"
   m_EditorClassIdentifier: 
-  eventname: "\u64B8\u732B"
-  eventinfomation: "\u64B8\u5230\u4E86\u732B\uFF0C\u5E78\u798F\u503C\u4E0A\u5347"
+  eventname: "\u905B\u72D7"
+  eventinfomation: "\u4EE3\u66FF\u90BB\u5C45\u905B\u72D7\uFF0C\u5E78\u798F\u503C\u4E0A\u5347"
   hpchange: 0
   spchange: 0
   bpchange: 10
