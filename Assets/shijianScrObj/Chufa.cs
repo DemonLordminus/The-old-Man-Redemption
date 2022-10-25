@@ -54,24 +54,28 @@ public class Chufa : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        #region æ…»’
-        /* num = Random.Range(1, maxevent+1);
-         changehealth = list.shijianlist[num].hpchange;
-         changebp = list.shijianlist[num].bpchange;
-         changesp = list.shijianlist[num].spchange;
-         ChangeHealth(changehealth);
-         ChangeBP(changebp);
-         ChangeSp(changesp);
-         Destroy(gameObject);*/
-        #endregion
-        try
+        PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+        if (playerController != null)
         {
-            OnRunNormal();
+            #region æ…»’
+            /* num = Random.Range(1, maxevent+1);
+             changehealth = list.shijianlist[num].hpchange;
+             changebp = list.shijianlist[num].bpchange;
+             changesp = list.shijianlist[num].spchange;
+             ChangeHealth(changehealth);
+             ChangeBP(changebp);
+             ChangeSp(changesp);
+             Destroy(gameObject);*/
+            #endregion
+            try
+            {
+                OnRunNormal();
+            }
+            catch
+            { }
+            DataManager.instance.eventFinishing.Add(ShijianR.Shijian.eventinfomation);
+            Destroy(gameObject);
         }
-        catch
-        { }
-        DataManager.instance.eventFinishing.Add(ShijianR.Shijian.eventinfomation);
-        Destroy(gameObject);
     }/*
     public virtual void OnRun()
     {

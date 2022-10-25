@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: weiyao
   m_EditorClassIdentifier: 
   Name: weiyao
-  Image: {fileID: 0}
+  Image: {fileID: 21300000, guid: b79d5502efd801e4e9aaa8eef5435c3f, type: 3}
   Num: 0

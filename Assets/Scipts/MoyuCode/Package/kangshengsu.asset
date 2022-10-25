@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: kangshengsu
   m_EditorClassIdentifier: 
   Name: kangshengsu
-  Image: {fileID: 0}
+  Image: {fileID: 21300000, guid: e9eaa369b39fad3458d7c684c17c82c6, type: 3}
   Num: 0

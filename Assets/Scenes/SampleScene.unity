@@ -453,15 +453,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2393,7 +2393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: 341cfb8a2542e6449aaeca1f561f19e7, type: 2}
   Grid: {fileID: 1442695860}
-  citiaoPrefab: {fileID: 6238042058898741104, guid: 7b114ada475fa2646bb77c265f9155db, type: 3}
+  citiaoPrefab: {fileID: 6573219705591472115, guid: b65d88ff337f5204a9ab4e4abc5ef889, type: 3}
 --- !u!114 &444857092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4147,7 +4147,7 @@ MonoBehaviour:
   groundTransform: {fileID: 2079013002}
   startTransform: {fileID: 672570695}
   loopNum: 0
-  delta: 100
+  delta: 20
 --- !u!1 &1067964337
 GameObject:
   m_ObjectHideFlags: 0
@@ -6490,10 +6490,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b6d70f56ccf0945afe84c9606d0c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  end: {fileID: 57193523}
   isRun: 0
   time: 0
   timer: 0
   num: 0
+  onJuqing: 0
   onEnd: 0
   onEvent: 0
 --- !u!114 &1675208698
@@ -7678,6 +7680,10 @@ PrefabInstance:
       objectReference: {fileID: 207744105}
     - target: {fileID: 7970409439681811533, guid: 5c932eb5e70a8284aa3315462c1fab48, type: 3}
       propertyPath: BreakRecoverSp
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970409439681811533, guid: 5c932eb5e70a8284aa3315462c1fab48, type: 3}
+      propertyPath: inlitEventTime
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7970409439681811533, guid: 5c932eb5e70a8284aa3315462c1fab48, type: 3}

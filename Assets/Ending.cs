@@ -7,65 +7,70 @@ using TMPro;
 
 public class Ending : MonoBehaviour
 {
+    public GameObject end;
     public bool isRun;
     private void OnEnable()
     {
         isRun = true;
         time = 0f;
         timer = 0f;
+        onJuqing = true;
         onEnd = false;
         onEvent = false;
-        GameObject.Find("End").GetComponent<TextMeshPro>().text = "剧情事件" + "\n";
+        end.GetComponent<TextMeshProUGUI>().text = "剧情事件" + "\n";
     }
     public float time;
     public float timer;
     public int num;
+    public bool onJuqing;
     public bool onEnd;
     public bool onEvent;
     private void FixedUpdate()
     {
         timer += Time.fixedDeltaTime;
-        if(isRun&&timer-time>1.5f)
+        if (isRun && timer - time > 1.5f)
         {
             if (timer > 1.5f)
             {
                 time = timer;
             }
-            if (num < DataManager.instance.JuQingFinishin.Count)
+            if (num < DataManager.instance.JuQingFinishin.Count && onJuqing)
             {
-                GameObject.Find("End").GetComponent<TextMeshPro>().text += DataManager.instance.JuQingFinishin[num]+"\n";
+                end.GetComponent<TextMeshProUGUI>().text += DataManager.instance.JuQingFinishin[num] + "\n";
                 num++;
             }
-            if(num ==DataManager.instance.JuQingFinishin.Count)
+            if (num == DataManager.instance.JuQingFinishin.Count && onJuqing)
             {
-                GameObject.Find("End").GetComponent<TextMeshPro>().text += "事件回顾" + "\n";
+                end.GetComponent<TextMeshProUGUI>().text += "事件回顾" + "\n";
                 num = 0;
                 onEnd = true;
+                onJuqing = false;
             }
-            if(onEnd&&num <DataManager.instance.endFinishin.Count)
+            if (onEnd && num < DataManager.instance.endFinishin.Count)
             {
-                GameObject.Find("End").GetComponent<TextMeshPro>().text += DataManager.instance.endFinishin[num] + "\n";
+                end.GetComponent<TextMeshProUGUI>().text += DataManager.instance.endFinishin[num] + "\n";
                 num++;
             }
-            if (num == DataManager.instance.endFinishin.Count&&onEnd)
+            if (num == DataManager.instance.endFinishin.Count && onEnd)
             {
                 num = 0;
                 onEvent = true;
+                onEnd = false;
             }
-            if(onEvent&&num<DataManager.instance.eventFinishing.Count)
+            if (onEvent && num < DataManager.instance.eventFinishing.Count)
             {
-                GameObject.Find("End").GetComponent<TextMeshPro>().text += DataManager.instance.eventFinishing[num] + "\n";
+                end.GetComponent<TextMeshProUGUI>().text += DataManager.instance.eventFinishing[num] + "\n";
                 num++;
             }
-            if(onEvent&&num== DataManager.instance.eventFinishing.Count)
+            if (onEvent && num == DataManager.instance.eventFinishing.Count)
             {
-                if(DataManager.instance.controller.gameover)
+                if (DataManager.instance.controller.gameover)
                 {
                     SceneManager.LoadScene("Gameover");
                 }
                 else
                 {
-                    SceneManager.LoadScene("EndScene");
+                    SceneManager.LoadScene("StartMenu");
                 }
             }
         }

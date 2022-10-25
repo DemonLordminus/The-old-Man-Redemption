@@ -20,12 +20,10 @@ public class Manager : MonoBehaviour
 
     public static void CreateNewcitiao(ScrObjcitiao getcitiao)
     {
-        //在在网格的位置生成一个词条预制件
         citiao newcitiao = Instantiate(instance.citiaoPrefab, instance.Grid.transform.position, Quaternion.identity);
         newcitiao.gameObject.transform.SetParent(instance.Grid.transform);
         newcitiao.citiaoScrObj = getcitiao;
-        int r = UnityEngine.Random.Range(0, getcitiao.Image.Length);
-        newcitiao.image = getcitiao.Image[r];
+        newcitiao.textShow.text = getcitiao.Content;
     }
 
     private void FixedUpdate()

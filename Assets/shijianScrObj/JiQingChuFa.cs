@@ -9,12 +9,16 @@ public class JiQingChuFa : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        WhatShiJian();
-        DataManager.instance.JuQingFinishin.Add(Shijian.eventname+"\n"+ "\t\t"+Shijian.eventinfomation);
-        DataManager.instance.allEvent.transform.GetChild(0).gameObject.GetComponent<Text>().text = DataManager.instance.JuQingFinishin[DataManager.instance.JuQingFinishin.Count - 1];
-        DataManager.instance.allEvent.SetActive(true);
-        DataManager.instance.controller.isPalse = true;
-        Destroy(gameObject);
+        PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+        if (playerController != null)
+        {
+            WhatShiJian();
+            DataManager.instance.JuQingFinishin.Add(Shijian.eventname + "\n" + "\t\t" + Shijian.eventinfomation);
+            DataManager.instance.allEvent.transform.GetChild(0).gameObject.GetComponent<Text>().text = DataManager.instance.JuQingFinishin[DataManager.instance.JuQingFinishin.Count - 1];
+            DataManager.instance.allEvent.SetActive(true);
+            DataManager.instance.controller.isPalse = true;
+            Destroy(gameObject);
+        }
     }
     void WhatShiJian()
     {

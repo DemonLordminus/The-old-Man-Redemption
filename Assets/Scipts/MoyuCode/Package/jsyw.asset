@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: jsyw
   m_EditorClassIdentifier: 
   Name: jsyw
-  Image: {fileID: 0}
+  Image: {fileID: 21300000, guid: a9d7581d94d51d145ad188841d0c4c84, type: 3}
   Num: 0

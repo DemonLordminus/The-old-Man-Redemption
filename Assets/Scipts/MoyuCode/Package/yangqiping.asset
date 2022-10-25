@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: yangqiping
   m_EditorClassIdentifier: 
   Name: yangqiping
-  Image: {fileID: 0}
+  Image: {fileID: 21300000, guid: 82527449ebc77fc44bc1ba6ce63c240d, type: 3}
   Num: 0
