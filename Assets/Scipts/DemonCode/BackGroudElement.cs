@@ -9,9 +9,10 @@ public class BackGroudElement : MonoBehaviour
     //public int goodNum;
     //public int badNum;
     public float minDistance, maxDistance;
-    private int eventDataPerformedCount;
+    //private int eventDataPerformedCount;
     public float groundY;
     public Transform groundTransform;
+    public Transform startTransform;
     private Transform lastEventElements;
     public int loopNum;
     //public GameObject end;
@@ -26,7 +27,7 @@ public class BackGroudElement : MonoBehaviour
             {
             }*/
             created[random] = true;
-            Vector3 pos = new Vector3(lastEventElements.position.x + Random.Range(minDistance, maxDistance), groundY, 0);
+            Vector3 pos = new Vector3(lastEventElements.position.x + Random.Range(minDistance, maxDistance), groundY,0);
             var newEvent = Instantiate(eventElementsList[random], pos, Quaternion.identity, groundTransform);
             lastEventElements = newEvent.transform;
             #region
@@ -59,14 +60,14 @@ public class BackGroudElement : MonoBehaviour
     {
         lastEventElements = DataManager.instance.player.transform;
         CreateElement();
-        CreateElement();
     }
     private void Update()
     {
         if (DataManager.instance.controller.loopNum > loopNum)
         {
+            loopNum = DataManager.instance.controller.loopNum;
             CreateElement();
-            loopNum = DataManager.instance.controller.loopNum;    
+            lastEventElements=startTransform;
         }
        /* if (DataManager.instance.controller.eventCountPerformed - eventDataPerformedCount > createNum)
         {
