@@ -7,7 +7,7 @@ public class Xin : ItemOnDrag
     public int ChuOrZhongOrGao;
     public override void ItemOnRun()
     {
-        if (!traggerManager.GetComponent<TraggerManager>().Open(ChuOrZhongOrGao))
+        if (!traggerManager.GetComponent<TraggerManager>().Open())
         {
             GetItem.Num += 1;
         }

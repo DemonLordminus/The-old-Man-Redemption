@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fc4b9e03446ce45ba3d58e58acc1af, type: 3}
   m_Name: swyl
   m_EditorClassIdentifier: 
-  Name: swyl
-  Image: {fileID: 21300000, guid: 740448450e567d04ca4c876ab2b33a9b, type: 3}
+  Name: "\u98DF\u7269\u996E\u6599"
+  Image: {fileID: 21300000, guid: 9da03e076fc30a549a2c41f196a9c820, type: 3}
   Num: 0

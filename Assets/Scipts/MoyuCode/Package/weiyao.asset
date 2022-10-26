@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fc4b9e03446ce45ba3d58e58acc1af, type: 3}
   m_Name: weiyao
   m_EditorClassIdentifier: 
-  Name: weiyao
+  Name: "\u80C3\u836F"
   Image: {fileID: 21300000, guid: b79d5502efd801e4e9aaa8eef5435c3f, type: 3}
   Num: 0

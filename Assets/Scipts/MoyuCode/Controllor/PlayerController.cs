@@ -5,7 +5,7 @@ using Dmld;
 using System.Collections;
 using Cinemachine;
 using System.Collections.Generic;
-
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     public float jiwangRunTime;
     public float CurrentTime;//处理健忘
     public float mangmuTime;
+    public float outufuxieTime;
     public CinemachineVirtualCamera virtualCamera;
     public DebuffClass[] debuffs;
     [Range(0, 100)]
@@ -62,7 +63,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        debuffline = DataManager.instance.debufftext;
+        lawline = DataManager.instance.lawtext;
+        actline=DataManager.instance.acttext;
         Initialize();
         animator = GetComponent<Animator>();
         isPalse = true;
@@ -85,6 +88,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         OpenMyBag();
+        Opendebuffline();
+        OpenlawOrActline();
     }
     //初始化速度
     void NewSpeed()
@@ -94,6 +99,7 @@ public class PlayerController : MonoBehaviour
             isRun = true;
         }
     }
+    public bool textOnDying;
     void FixedUpdate()
     {
         /*Vector3 vector3= new Vector3(transform.position.x,transform.position.y,0);
@@ -102,6 +108,18 @@ public class PlayerController : MonoBehaviour
         WalkSpeed = Mathf.Clamp(WalkSpeed, 0, RunSpeed);
         if (!isPalse)
         {
+            if (textOnDying)
+            {
+                TextMeshProUGUI text = DataManager.instance.text;
+                Color color = text.color;
+                color.a = Mathf.PingPong(0.5f * Time.time, 1F);//5*Time.time是闪烁频率，1F就是颜色的a的最大的值，意思就是从完全透明到完全不透明
+                text.color = color;
+                if (text.color.a == 0)
+                {
+                    text.text = "";
+                    textOnDying = false;
+                }
+            }
             if (!isEvent)
             {
                 if (debuffs[9].isEnable)
@@ -118,7 +136,7 @@ public class PlayerController : MonoBehaviour
                     {
                         mangmuTime = 1 / 10f;
                     }
-                    virtualCamera.m_Lens.OrthographicSize = Mathf.Clamp(virtualCamera.m_Lens.OrthographicSize + mangmuTime * Time.fixedDeltaTime, 2, 5);
+                    virtualCamera.m_Lens.OrthographicSize = Mathf.Clamp(virtualCamera.m_Lens.OrthographicSize + mangmuTime * Time.fixedDeltaTime, 5, 8.53f);
                 }
                 if (CurrentSp < MaxSp / 9 && debuffs[4].isEnable)
                 {
@@ -149,18 +167,18 @@ public class PlayerController : MonoBehaviour
                         {
                             currentspeed = 0;
                         }
-                            ChangeSp(BreakRecoverSp);
+                        ChangeSp(BreakRecoverSp);
                     }
-                    
+
                 }
                 Move(x);
-                if (debuffs[1].isEnable)//fare)
+                if (debuffs[1].isEnable&&CurrentSp>MaxSp/10f)//fare)
                 {
                     ChangeSp(-fareReduceSp);
                 }
                 if (debuffs[3].isEnable)//outufuxie)
                 {
-                    ChangeHealth(Convert.ToInt32(-1 - debuffs[3].keepTime / 10));
+                    ChangeHealth(-outufuxieTime - (120-debuffs[3].keepTime) / 1000);
                 }
                 if (debuffs[7].isEnable)//yiyu
                 {
@@ -318,10 +336,13 @@ public class PlayerController : MonoBehaviour
     public const int maxDebuffNum = 17;//最大病症数量
     public void RandomDebuff()
     {
-        for(int i = 0; i < debuffsNumMax; i++)
+        for (int i = 0; i < debuffsNumMax; i++)
         {
-            debuffs[Random.Range(0, 10)].isEnable = true;
+            int r = Random.Range(0, 10);
+            debuffs[r].isEnable = true;
+            DataManager.instance.text.text += "获得" + debuffs[r].debuffName + "\n";
         }
+        textOnDying = true;
     }
     void Initialize()
     {
@@ -335,19 +356,26 @@ public class PlayerController : MonoBehaviour
     {
         foreach (DebuffClass debuff in debuffs)
         {
-            if (debuff.keepTime > 0)
+            if (debuff.isEnable)
             {
-                debuff.keepTime -= Time.fixedDeltaTime;
-                if (debuff.keepTime < 0)
+                if(debuff.keepTime==0)
                 {
-                    debuff.isEnable = false;
-                    debuff.keepTime = 0;
-                    if (debuff.DebuffOrder == 11)//能量饮料相关检测
+                    debuff.keepTime = 120;
+                }
+                if (debuff.keepTime > 0)
+                {
+                    debuff.keepTime -= Time.fixedDeltaTime;
+                    if (debuff.keepTime <0.1f )
                     {
-                        nlylcot = 0;
-                        if (debuffs[2].keepTime > 0)
+                        debuff.isEnable = false;
+                        debuff.keepTime = 0;
+                        if (debuff.DebuffOrder == 11)//能量饮料相关检测
                         {
-                            debuffs[2].isEnable = true;
+                            nlylcot = 0;
+                            if (debuffs[2].keepTime > 0)
+                            {
+                                debuffs[2].isEnable = true;
+                            }
                         }
                     }
                 }
@@ -359,6 +387,9 @@ public class PlayerController : MonoBehaviour
     [Header("UI切换对象")]
     public GameObject myBar;
     public GameObject myBag;
+    public TextMeshProUGUI debuffline;
+    public TextMeshProUGUI lawline;
+    public TextMeshProUGUI actline;
     bool isOpean;
     void OpenMyBag()
     {
@@ -371,11 +402,65 @@ public class PlayerController : MonoBehaviour
                 myBag.SetActive(!isOpean);
             }
         }
-        if(Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             isPalse = !isPalse;
         }
 
+    }
+    string text;
+    void Opendebuffline()
+    {
+        if (Input.GetKeyDown(KeyCode.C) )
+        {
+            Color color=debuffline.color;
+            color.a=1-color.a;
+            debuffline.color =color ;
+        }
+        foreach(DebuffClass debuff in debuffs)
+        {
+            if(debuff.isEnable)
+            {
+                text += debuff.debuffName + "持续时间" + debuff.keepTime + "\n";
+            }
+        }
+        debuffline.text = text;
+        text = "";
+    }
+    string acttext;
+    string lawtext;
+    void OpenlawOrActline()
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Color color = lawline.color;
+            color.a = 1 - color.a;
+            Color color1 = actline.color;
+            color1.a = 1-color.a;
+            lawline.color = color;
+            actline.color = color1;
+        }
+        foreach (string law in DataManager.instance.lawOrActLists.lawlists)
+        {
+            lawtext += law + "\n";
+        }
+        foreach(string act in DataManager.instance.lawOrActLists.ActLists)
+        {
+            acttext+=act + "\n";
+        }
+        if(lawtext=="")
+        {
+            lawtext = "暂无规律";
+        }
+        if(acttext=="")
+
+        {
+            acttext = "暂无行动";
+        }
+        lawline.text=lawtext;
+        actline.text = acttext;
+        lawtext = "";
+        acttext = "";
     }
     #endregion
     [HideInInspector]
@@ -403,7 +488,12 @@ public class PlayerController : MonoBehaviour
     //public int num;
     void Jianwang()
     {
-        DataManager.instance.lawOrActLists.lawlists.RemoveRange(((int)Random.Range(0, DataManager.instance.lawOrActLists.lawlists.Count / 3)) * 3, 3);
+        try
+        {
+            DataManager.instance.lawOrActLists.lawlists.RemoveRange(((int)Random.Range(0, DataManager.instance.lawOrActLists.lawlists.Count / 3)) * 3, 3);
+        }
+        catch
+        { }
     }
     public bool Probability(int amount)
     {
@@ -423,11 +513,11 @@ public class PlayerController : MonoBehaviour
         }
         if (IfHunluan())
         {
-           
+
             eventCountPerformed++;
             OnEvent(collision);
         }
-        else
+        else if(collision.gameObject.layer!=9)
         {
             collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         }
@@ -538,9 +628,9 @@ public class PlayerController : MonoBehaviour
     #region 获取
     public void AddCitiao(int n)
     {
-        for(int i = 0;i<n;++i)
+        for (int i = 0; i < n; ++i)
         {
-            Manager.CreateNewcitiao(Manager.instance.citiaoScrList[UnityEngine.Random.Range(0, Manager.instance.citiaoScrList.Count-1)]);
+            Manager.CreateNewcitiao(Manager.instance.citiaoScrList[UnityEngine.Random.Range(0, Manager.instance.citiaoScrList.Count - 1)]);
         }
 
 
@@ -558,6 +648,8 @@ public class PlayerController : MonoBehaviour
         {
             item.Num++;
         }
+        DataManager.instance.text.text += "获得" + item.Name + "\n";
+        textOnDying = true;
         PackageManager.RefreshItem();
 
     }
@@ -575,9 +667,12 @@ public class PlayerController : MonoBehaviour
             {
                 item.Num++;
             }
+            DataManager.instance.text.text += "获得" + item.Name + "\n";
+            textOnDying = true;
         }
         PackageManager.RefreshItem();
 
     }
+
     #endregion
 }

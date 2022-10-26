@@ -91,6 +91,11 @@ public class ButtonManager : MonoBehaviour
                     citiaon+= citiao[k] ;
                 }
                 LawOrActLists.ActLists.Add(citiaon);
+                if(isShenghuo)
+                {
+                    LawOrActLists.shenghuo.Add(LawOrActLists.ActLists.Count - 1);
+                    isShenghuo = false;
+                }
             }
         }
 
@@ -156,6 +161,7 @@ public class ButtonManager : MonoBehaviour
             default: break;
         }
     }
+    public bool isShenghuo;
     public void AssignmentAct(int i, int k)
     {
         ScrObjcitiao = gameObject.transform.parent.GetChild(i).GetChild(citiaoNo[k]).GetChild(0).gameObject.GetComponent<citiao>().citiaoScrObj;
@@ -177,6 +183,11 @@ public class ButtonManager : MonoBehaviour
                 {
                     citiao[k] = ScrObjcitiao.Content;
                 }
+                if(ScrObjcitiao.type == (wordType)1)
+                {
+                    citiao[k] = ScrObjcitiao.Content;
+                    isShenghuo = true;
+                }
                 break;
             case 1://±ˆ”Ô
                 #region æ…»’
@@ -194,6 +205,11 @@ public class ButtonManager : MonoBehaviour
                 if (ScrObjcitiao.type == (wordType)0)
                 {
                     citiao[k] = ScrObjcitiao.Content;
+                }
+                if (ScrObjcitiao.type == (wordType)1)
+                {
+                    citiao[k] = ScrObjcitiao.Content;
+                    isShenghuo = true;
                 }
                 break;
             default: break;

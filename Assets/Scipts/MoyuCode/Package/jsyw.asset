@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fc4b9e03446ce45ba3d58e58acc1af, type: 3}
   m_Name: jsyw
   m_EditorClassIdentifier: 
-  Name: jsyw
+  Name: "\u7CBE\u795E\u836F\u7269"
   Image: {fileID: 21300000, guid: a9d7581d94d51d145ad188841d0c4c84, type: 3}
   Num: 0

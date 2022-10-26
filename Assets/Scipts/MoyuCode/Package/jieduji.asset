@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fc4b9e03446ce45ba3d58e58acc1af, type: 3}
   m_Name: jieduji
   m_EditorClassIdentifier: 
-  Name: jieduji
+  Name: "\u89E3\u6BD2\u5242"
   Image: {fileID: 21300000, guid: 785f448fc5e14114c9e51c1344f1ad92, type: 3}
   Num: 0

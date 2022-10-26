@@ -1242,6 +1242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lawlists: []
   ActLists: []
+  shenghuo: 
   HealthyLawLists: []
   debuffClasses: []
 --- !u!1 &178226384
@@ -7576,6 +7577,10 @@ MonoBehaviour:
   JuQingFinishin: []
   allEvent: {fileID: 0}
   EndEvent: {fileID: 0}
+  text: {fileID: 0}
+  debufftext: {fileID: 0}
+  lawtext: {fileID: 0}
+  acttext: {fileID: 0}
 --- !u!1 &988968552
 GameObject:
   m_ObjectHideFlags: 0
@@ -19360,7 +19365,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

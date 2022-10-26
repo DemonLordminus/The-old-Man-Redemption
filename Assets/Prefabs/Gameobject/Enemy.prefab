@@ -95,7 +95,6 @@ GameObject:
   - component: {fileID: 5114230751547709220}
   - component: {fileID: 6350346124282911851}
   - component: {fileID: 7048700771046842490}
-  - component: {fileID: 3031431745486046970}
   - component: {fileID: 1841987105297798713}
   m_Layer: 12
   m_Name: EnemyConllision
@@ -166,19 +165,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1082834, y: 0.66713536}
   m_EdgeRadius: 0
---- !u!114 &3031431745486046970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4085783858532039006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f9ec4b0c7e45a45a7b85f9fa5ed6e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatEnemy: 
 --- !u!114 &1841987105297798713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lawlists: []
   ActLists: []
+  shenghuo: 
   HealthyLawLists: []
   debuffClasses: []
   random: 50
@@ -202,7 +189,7 @@ MonoBehaviour:
   items: []
   inlit: 0
   random1: 0
-  escapeF: 0
+  escapeF: 7
 --- !u!1 &7638780310405477317
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fc4b9e03446ce45ba3d58e58acc1af, type: 3}
   m_Name: zhitongyao
   m_EditorClassIdentifier: 
-  Name: zhitongyao
+  Name: "\u6B62\u75DB\u836F"
   Image: {fileID: 21300000, guid: 1571dc35adc470345a46b1e1720e3123, type: 3}
   Num: 0

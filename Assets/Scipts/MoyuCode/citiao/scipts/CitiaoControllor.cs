@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
+//using UnityEngine.UIElements;
 //词条系统，用来使词条生效并移动
 public class CitiaoControllor : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     //声明起始组类
     public Transform originalPosition;
     private bool isOnLetter;//Demon测试用变量，是否在信上
-
+    public Sprite[] images;
     //鼠标点击触发
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -36,8 +37,9 @@ public class CitiaoControllor : MonoBehaviour, IBeginDragHandler, IEndDragHandle
                 return;
             }
             //遇到词条，并且词条在触发区上
-            if(eventData.pointerCurrentRaycast.gameObject.name== "Lajitong")
+            if(eventData.pointerCurrentRaycast.gameObject.tag== "Lajitong")
             {
+                eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite = images[0];
                 Destroy(gameObject);
             }
             if(eventData.pointerCurrentRaycast.gameObject.layer == 3 && eventData.pointerCurrentRaycast.gameObject.transform.parent.tag == "Tragger")
@@ -75,6 +77,10 @@ public class CitiaoControllor : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = eventData.position;
+        if (eventData.pointerCurrentRaycast.gameObject.tag == "Lajitong")
+        {
+            eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite= images[1];
+        }
     }
 
 }

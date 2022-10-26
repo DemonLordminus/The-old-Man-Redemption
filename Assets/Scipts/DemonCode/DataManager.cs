@@ -2,6 +2,7 @@ using Dmld;
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -38,6 +39,14 @@ public class DataManager : MonoBehaviour
     public GameObject allEvent;
     [SerializeField]
     public GameObject EndEvent;
+    [SerializeField]
+    public TextMeshProUGUI text;
+    [SerializeField]
+    public TextMeshProUGUI debufftext;
+    [SerializeField]
+    public TextMeshProUGUI lawtext;
+    [SerializeField]
+    public TextMeshProUGUI acttext;
     void Awake()
     {
         if (instance != null)

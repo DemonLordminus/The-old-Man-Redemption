@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fc4b9e03446ce45ba3d58e58acc1af, type: 3}
   m_Name: yangqiping
   m_EditorClassIdentifier: 
-  Name: yangqiping
-  Image: {fileID: 21300000, guid: 82527449ebc77fc44bc1ba6ce63c240d, type: 3}
+  Name: "\u6C27\u6C14\u74F6"
+  Image: {fileID: 21300000, guid: b9a08e0e7fa2ead4c9c261f677de2943, type: 3}
   Num: 0

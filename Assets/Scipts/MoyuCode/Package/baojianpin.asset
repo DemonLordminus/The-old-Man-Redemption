@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fc4b9e03446ce45ba3d58e58acc1af, type: 3}
   m_Name: baojianpin
   m_EditorClassIdentifier: 
-  Name: baojianpin
+  Name: "\u4FDD\u5065\u54C1"
   Image: {fileID: 21300000, guid: 13262a6be5ca8df498eb62663d3e8b51, type: 3}
   Num: 0

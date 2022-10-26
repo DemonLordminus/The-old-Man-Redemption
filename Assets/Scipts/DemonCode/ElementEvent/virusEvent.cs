@@ -64,7 +64,7 @@ public class virusEvent : eventElmentFather
         //在战斗判定时，会检测老人的规律与数值，判定结果
         //病魔无法规避，遇上强制触发，但是规避的尝试会带来优势
         //根据老人健康与否和规律合理与否，将判断是否患病，越健康越规律，则患病概率越低
-        inlit = (int)DataManager.instance.controller.CurrentBp / (int)DataManager.instance.controller.MaxBp * 60 + DataManager.instance.lawOrActLists.HealthyLawLists.Count * 5;
+        inlit = (int)DataManager.instance.controller.CurrentBp / (int)DataManager.instance.controller.MaxBp * 80 + DataManager.instance.lawOrActLists.HealthyLawLists.Count * 5;
         if (escape)
         {
             //增益;

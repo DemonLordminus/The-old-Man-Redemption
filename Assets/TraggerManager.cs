@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class TraggerManager : MonoBehaviour
 {
     public GameObject tragger;
-    public bool Open(int ChuOrZhongOrGao)
+    public bool Open()
     {
         if(tragger.activeSelf==true)
         { return false; }
         //使信生成在触发器
         tragger.SetActive(true);
         //重置触发器的内容
-        for (int i = 0; i < ChuOrZhongOrGao; i++)
+        for (int i = 0; i < tragger.transform.GetChild(i).childCount-1; i++)
         {
             for (int j = 0; j < tragger.transform.GetChild(i).childCount; j++)
             {

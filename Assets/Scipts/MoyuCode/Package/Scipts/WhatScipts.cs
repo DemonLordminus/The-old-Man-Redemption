@@ -9,21 +9,21 @@ public class WhatScipts : MonoBehaviour
     {
         switch (gameObject.GetComponent<Item>().itemname.Name)
         {
-            case "baojianpin": { gameObject.AddComponent<Baojianpin>(); break; }
-            case "jieduji": { gameObject.AddComponent<Jieduji>(); break; }
-            case "jsyw": { gameObject.AddComponent<Jsyw>();break; }
-            case "kangshengsu": { gameObject.AddComponent<Kangshengsu>(); break; }
-            case "nlyl": { gameObject.AddComponent<Nlyl>(); break; }
-            case "shuji": { gameObject.AddComponent<Shuji >(); break; }
-            case "swyl": { gameObject.AddComponent<Swyl>(); break; }
-            case "tuishaoyao": { gameObject.AddComponent<Tuishaoyao>(); break; }
-            case "weiyao": { gameObject.AddComponent<Weiyao>(); break; }
-            case "yangqiping": { gameObject.AddComponent<Yangqiping>(); break; }
-            case "yanjiu": { gameObject.AddComponent<Yanjiu>(); break; }
-            case "yanyaoshui": { gameObject.AddComponent<Yanyaoshui >(); break; }
-            case "zhitongyao": { gameObject.AddComponent<Zhitongyao>(); break; }
-            case "zhongyao": { gameObject.AddComponent<Zhongyao>(); break; }
-            case "xin": gameObject.AddComponent<Xin>(); break;
+            case "保健品": { gameObject.AddComponent<Baojianpin>(); break; }
+            case "解毒剂": { gameObject.AddComponent<Jieduji>(); break; }
+            case "精神药物": { gameObject.AddComponent<Jsyw>();break; }
+            case "抗生素": { gameObject.AddComponent<Kangshengsu>(); break; }
+            case "能量饮料": { gameObject.AddComponent<Nlyl>(); break; }
+            case "书籍": { gameObject.AddComponent<Shuji >(); break; }
+            case "食物饮料": { gameObject.AddComponent<Swyl>(); break; }
+            case "退烧药": { gameObject.AddComponent<Tuishaoyao>(); break; }
+            case "胃药": { gameObject.AddComponent<Weiyao>(); break; }
+            case "氧气瓶": { gameObject.AddComponent<Yangqiping>(); break; }
+            case "烟酒": { gameObject.AddComponent<Yanjiu>(); break; }
+            case "眼药水": { gameObject.AddComponent<Yanyaoshui >(); break; }
+            case "止痛药": { gameObject.AddComponent<Zhitongyao>(); break; }
+            case "中药": { gameObject.AddComponent<Zhongyao>(); break; }
+            case "信": gameObject.AddComponent<Xin>(); break;
         }
     }
 }

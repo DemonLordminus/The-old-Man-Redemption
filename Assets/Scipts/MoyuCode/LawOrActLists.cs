@@ -8,6 +8,7 @@ public class LawOrActLists : MonoBehaviour
 {
     public List<string> lawlists=new List<string>() ;
     public List<string > ActLists=new List<string>() ;
+    public List<int> shenghuo=new List<int>();
     public List <string> HealthyLawLists=new List<string>() ;
     public List<DebuffClass> debuffClasses=new List<DebuffClass>();
     public bool OnLaw(string LawName)
@@ -28,9 +29,17 @@ public class LawOrActLists : MonoBehaviour
             if (lawlists[i]  == ActName)
             {
                 ActLists.RemoveAt(i);
+                RemoveShenghuo();
                 return true;
             }
         }
         return false;
+    }
+    void RemoveShenghuo()
+    {
+        for(int i = 0; i < shenghuo.Count; i ++)
+        {
+            ActLists.RemoveAt(shenghuo[i]);
+        }
     }
 }
