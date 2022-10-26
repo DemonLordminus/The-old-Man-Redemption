@@ -11,9 +11,11 @@ public class CitiaoControllor : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     public Transform originalPosition;
     private bool isOnLetter;//Demon测试用变量，是否在信上
     public Sprite[] images;
+    public GameObject Lajitong;
     //鼠标点击触发
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Lajitong = DataManager.instance.Lajitong;
         transform.SetAsLastSibling();
         //起始所属赋值
         originalPosition = transform;
@@ -77,10 +79,19 @@ public class CitiaoControllor : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = eventData.position;
-        if (eventData.pointerCurrentRaycast.gameObject.tag == "Lajitong")
+        try
         {
-            eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite= images[1];
+            if (eventData.pointerCurrentRaycast.gameObject.tag == "Lajitong")
+            {
+                Lajitong.GetComponent<Image>().sprite = images[1];
+            }
+            if (eventData.pointerCurrentRaycast.gameObject.tag != "Lajitong")
+            {
+                Lajitong.GetComponent<Image>().sprite = images[0];
+            }
         }
+        catch
+        { }
     }
 
 }

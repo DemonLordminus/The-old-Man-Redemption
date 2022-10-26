@@ -15,3 +15,4 @@ MonoBehaviour:
   Name: "\u4FDD\u5065\u54C1"
   Image: {fileID: 21300000, guid: 13262a6be5ca8df498eb62663d3e8b51, type: 3}
   Num: 0
+  infomation: "\u4FDD\u5065\u54C1\r\n\u83B7\u5F97\u5C11\u91CF\u5065\u5EB7\u503C\u548C\u4F53\u80FD\u503C"

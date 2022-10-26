@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7375419664490373099}
   - component: {fileID: 6721787481182695830}
   - component: {fileID: 7813053429986798747}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Props
   m_TagString: Package
   m_Icon: {fileID: 0}
@@ -126,6 +126,7 @@ MonoBehaviour:
   kangshengsu: 5
   swyl: 0
   playerController: {fileID: 0}
+  TextMeshProUGUI: {fileID: 4480199189023129908, guid: 13bb2faefe361f5409c4c5cb5fece62d, type: 3}
   virtualCamera: {fileID: 0}
 --- !u!114 &7813053429986798747
 MonoBehaviour:
@@ -150,7 +151,8 @@ GameObject:
   - component: {fileID: 2968171856217834784}
   - component: {fileID: 8853222198449574743}
   - component: {fileID: 4730101541339048795}
-  m_Layer: 5
+  - component: {fileID: 5894173286083114165}
+  m_Layer: 6
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +177,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -14.3331, y: 11.1805}
-  m_SizeDelta: {x: 28.6661, y: 22.3609}
+  m_SizeDelta: {x: 0, y: 22.3609}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8853222198449574743
 CanvasRenderer:
@@ -219,3 +221,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &5894173286083114165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5448910150894615598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
