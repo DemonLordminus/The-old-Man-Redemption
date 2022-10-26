@@ -2,6 +2,7 @@ using Cinemachine;
 using Dmld;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 //背包中物品的使用，拖拽到主角上生效
@@ -15,15 +16,18 @@ public class ItemOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     public float kangshengsu = 5;
     public float swyl;//食物饮料的回复量
     public PlayerController playerController;
+    public TextMeshProUGUI TextMeshProUGUI;
     public CinemachineVirtualCamera virtualCamera;//这里的对象还需设置
     private void Start()
     {
+        TextMeshProUGUI = DataManager.instance.item;
         playerController = DataManager.instance.controller;
         GetItem = this.gameObject.GetComponent<Item>().itemname;
     }
     //鼠标点击触发
     public void OnBeginDrag(PointerEventData eventData)
     {
+        TextMeshProUGUI.text = GetItem.infomation;
         //起始所属赋值
         originalParent = transform.parent;
         //跳出所属画布
@@ -36,6 +40,7 @@ public class ItemOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     //鼠标松开拖拽触发
     public void OnEndDrag(PointerEventData eventData)
     {
+        TextMeshProUGUI.text = "";
         Vector3 vector = Input.mousePosition - gameObject.transform.parent.transform.position;
         Debug.Log(vector.x);
         int delta = (int)vector.x;
@@ -70,6 +75,7 @@ public class ItemOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     //鼠标拖拽触发
     public void OnDrag(PointerEventData eventData)
     {
+        TextMeshProUGUI.text = GetItem.infomation;
         //跟随鼠标
         transform.position = eventData.position;
     }

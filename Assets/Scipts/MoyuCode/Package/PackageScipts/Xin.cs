@@ -7,7 +7,6 @@ public class Xin : ItemOnDrag
 {
     public int ChuOrZhongOrGao;
     public GameObject tragger;
-
     public override void ItemOnRun()
     {
         tragger = DataManager.instance.tragger;

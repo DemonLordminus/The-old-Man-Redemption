@@ -34,7 +34,7 @@ public class PackageManager : MonoBehaviour
         newitem.gameObject.transform.SetParent(instance.Grid.transform);
         newitem.itemname = getItem;
         newitem.Image.sprite=getItem.Image;
-        newitem.num.text=getItem.Num.ToString();
+        newitem.num.text=getItem.Name+ getItem.Num.ToString();
     }
 
     public static void RefreshItem()

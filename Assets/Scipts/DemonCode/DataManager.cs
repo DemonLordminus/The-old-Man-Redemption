@@ -47,7 +47,10 @@ public class DataManager : MonoBehaviour
     public TextMeshProUGUI lawtext;
     [SerializeField]
     public TextMeshProUGUI acttext;
-    
+    [SerializeField]
+    public GameObject Lajitong;
+    [SerializeField]
+    public TextMeshProUGUI item;
     void Awake()
     {
         if (instance != null)
