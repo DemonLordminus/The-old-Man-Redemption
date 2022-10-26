@@ -299,7 +299,7 @@ public class PlayerController : MonoBehaviour
         HealthyBarManager.Instance.SetValue(CurrentHealthy / (float)MaxHealthy);
         if (CurrentHealthy <= 0)
         {
-            Time.timeScale = 0f;
+            isPalse=true;
             gameover = true;
             DataManager.instance.EndEvent.SetActive(true);
         }

@@ -10,7 +10,6 @@ public class ItemOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     //声明起始组类
     public Transform originalParent;
     public GetItem GetItem;
-    public GameObject traggerManager;
     public int count1 = 0;
     public float kangshengsu = 5;
     public float swyl;//食物饮料的回复量
@@ -19,7 +18,6 @@ public class ItemOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     private void Start()
     {
         playerController = DataManager.instance.controller;
-        traggerManager = GameObject.Find("TraggerManager");
         GetItem = this.gameObject.GetComponent<Item>().itemname;
     }
     //鼠标点击触发
