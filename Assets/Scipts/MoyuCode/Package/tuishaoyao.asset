@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: tuishaoyao
   m_EditorClassIdentifier: 
   Name: tuishaoyao
-  Image: {fileID: 0}
+  Image: {fileID: 21300000, guid: a34520dafbb76874ba7f44a7e6168a2b, type: 3}
   Num: 0

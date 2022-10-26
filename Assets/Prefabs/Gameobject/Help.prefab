@@ -263,7 +263,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.18252039, y: 1.0986407}
+  m_Offset: {x: 0.82866156, y: 1.0986407}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -274,7 +274,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5057917, y: 2.1579843}
+  m_Size: {x: 1.2135093, y: 2.1579843}
   m_EdgeRadius: 0
 --- !u!114 &5553389772906288151
 MonoBehaviour:
@@ -292,15 +292,15 @@ MonoBehaviour:
   ActLists: []
   HealthyLawLists: []
   debuffClasses: []
-  random: 0
+  random: 50
   isGood: 0
   information: 
   shade: {fileID: 1951980913762268651}
   items:
-  - {fileID: 11400000, guid: a93f90949f1b3ce45bd4905438f7e99f, type: 2}
-  - {fileID: 11400000, guid: a93f90949f1b3ce45bd4905438f7e99f, type: 2}
-  - {fileID: 11400000, guid: a93f90949f1b3ce45bd4905438f7e99f, type: 2}
-  - {fileID: 11400000, guid: a93f90949f1b3ce45bd4905438f7e99f, type: 2}
-  price: 0
+  - {fileID: 11400000, guid: 7400cd4c710b9e045a833a08e6073630, type: 2}
+  - {fileID: 11400000, guid: f9c430cad0d949b4bb758a0bcff2bcbf, type: 2}
+  - {fileID: 11400000, guid: 6161d09ca3f6d6b47ba439be642d5ce5, type: 2}
+  - {fileID: 11400000, guid: f2edd854f53ab1047ae201a7a3f05e51, type: 2}
+  price: 50
   inlit: 8
   upBp: 5

@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public DebuffClass[] debuffs;
     [Range(0, 100)]
     public float hunluanRandom;
+    public int debuffsNumMax;
     #region  移动
     Animator animator;
     [Header("道具需要的数值")]
@@ -315,7 +316,13 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector]
     public const int maxDebuffNum = 17;//最大病症数量
-
+    public void RandomDebuff()
+    {
+        for(int i = 0; i < debuffsNumMax; i++)
+        {
+            debuffs[Random.Range(0, 10)].isEnable = true;
+        }
+    }
     void Initialize()
     {
         debuffs = new DebuffClass[maxDebuffNum];
@@ -411,7 +418,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.name == "mailbox")
         {
             eventCountPerformed++;
-            AddCitiao(5);
+            AddCitiao(3);
             collision.gameObject.GetComponent<eventElmentFather>().getEventPerform(); return;
         }
         if (IfHunluan())

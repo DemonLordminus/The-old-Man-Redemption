@@ -40,7 +40,7 @@ public class HRMEvent : eventElmentFather
         {
             random1=Random.Range(0, 20);
             DataManager.instance.controller.ChangeSp(-random1);
-            DataManager.instance.controller.Gold+=random1;
+            DataManager.instance.controller.Gold+=random1*10;
             information += "，通过一定的体力劳动获得了金钱";
             return;
         }
@@ -52,7 +52,7 @@ public class HRMEvent : eventElmentFather
     {
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         //老人有概率识破并跑路
-        if (Random.Range(0, 100) < random)
+        if (Random.Range(0, 100) > random)
         {
             information += "，但老人敏锐地识破，并未进入";
             return;
@@ -71,13 +71,13 @@ public class HRMEvent : eventElmentFather
         {
             random1 = Random.Range(0, 20);
             DataManager.instance.controller.ChangeSp(-random1);
-            DataManager.instance.controller.Gold-=2*random1;
+            DataManager.instance.controller.Gold-=20*random1;
             information += "，因为体力不足，被执行了违约惩罚，金钱减少";
         }
         if(Random.Range(1,7)<2)
         {
             //有一定概率在过程中患病症
-            DataManager.instance.debuffName.AddRange(debuffClasses);
+            DataManager.instance.controller.RandomDebuff();
             information += "，因为劳累，不幸患病";
         }
     }

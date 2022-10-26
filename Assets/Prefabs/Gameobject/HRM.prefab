@@ -285,7 +285,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.24458313, y: 1.8892946}
+  m_Offset: {x: 2.0432346, y: 1.8892946}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -296,7 +296,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.8745537, y: 3.7667274}
+  m_Size: {x: 2.2772508, y: 3.7667274}
   m_EdgeRadius: 0
 --- !u!114 &5658523767630909603
 MonoBehaviour:
@@ -314,10 +314,10 @@ MonoBehaviour:
   ActLists: []
   HealthyLawLists: []
   debuffClasses: []
-  random: 0
+  random: 60
   isGood: 0
   information: 
   shade: {fileID: 2320986466924447485}
   items: []
-  inlit: 0
+  inlit: 40
   random1: 0

@@ -64,7 +64,7 @@ public class Close : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHan
             DataManager.instance.controller.isPalse = false;
             try
             {
-                if (DataManager.instance.JuQingFinishin.Count == 8)
+                if (DataManager.instance.JuQingFinishin.Count == 14)
                 {
                     DataManager.instance.controller.isPalse = true;
                     DataManager.instance.EndEvent.SetActive(true);

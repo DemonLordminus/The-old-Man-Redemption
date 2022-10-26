@@ -25,15 +25,13 @@ public class Ending : MonoBehaviour
     public bool onJuqing;
     public bool onEnd;
     public bool onEvent;
+    public float timer1;
     private void FixedUpdate()
     {
         timer += Time.fixedDeltaTime;
-        if (isRun && timer - time > 1.5f)
+        if (isRun && timer - time > 1f)
         {
-            if (timer > 1.5f)
-            {
-                time = timer;
-            }
+            time = timer;
             if (num < DataManager.instance.JuQingFinishin.Count && onJuqing)
             {
                 end.GetComponent<TextMeshProUGUI>().text += DataManager.instance.JuQingFinishin[num] + "\n";
@@ -62,7 +60,7 @@ public class Ending : MonoBehaviour
                 end.GetComponent<TextMeshProUGUI>().text += DataManager.instance.eventFinishing[num] + "\n";
                 num++;
             }
-            if (onEvent && num == DataManager.instance.eventFinishing.Count)
+            if (onEvent && num == DataManager.instance.eventFinishing.Count&&time-timer1>3f)
             {
                 if (DataManager.instance.controller.gameover)
                 {
@@ -72,6 +70,10 @@ public class Ending : MonoBehaviour
                 {
                     SceneManager.LoadScene("StartMenu");
                 }
+            }
+            if (time - timer1 > 3f)
+            {
+                timer1 = time;
             }
         }
     }

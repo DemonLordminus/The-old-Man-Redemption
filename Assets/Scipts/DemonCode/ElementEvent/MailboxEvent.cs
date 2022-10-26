@@ -71,7 +71,7 @@ public class MailboxEvent : eventElmentFather
             { DataManager.instance.controller.AddNewItem(Baditems2);}
             DataManager.instance.controller.Gold -= price;
         }
-        information += "，花费一些金钱购买了拙劣的信纸";
+        information += "，花费一些金钱购买了信纸";
     }
     void OnPresent()
     {

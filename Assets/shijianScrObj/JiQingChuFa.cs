@@ -32,6 +32,12 @@ public class JiQingChuFa : MonoBehaviour
             case 5: Shijian = DataManager.instance.juqingList.shijianlist[5]; break;
             case 6: Shijian = DataManager.instance.juqingList.shijianlist[6]; break;
             case 7: Shijian = DataManager.instance.juqingList.shijianlist[7]; break;
+            case 8: Shijian = DataManager.instance.juqingList.shijianlist[8]; break;
+            case 9: Shijian = DataManager.instance.juqingList.shijianlist[9]; break;
+            case 10: Shijian = DataManager.instance.juqingList.shijianlist[10]; break;
+            case 11: Shijian = DataManager.instance.juqingList.shijianlist[11]; break;
+            case 12: Shijian = DataManager.instance.juqingList.shijianlist[12]; break;
+            case 13: Shijian = DataManager.instance.juqingList.shijianlist[13]; break;
         }
     }
 }

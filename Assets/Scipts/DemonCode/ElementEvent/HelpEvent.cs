@@ -68,7 +68,7 @@ public class HelpEvent : eventElmentFather
             }
             else
             {
-                DataManager.instance.controller.Gold -= price;
+                DataManager.instance.controller.Gold -= price*items.Length;
                 //会给老人劣质道具，使用后具有正常的效果，但是有概率会产生病症——中毒
                 DataManager.instance.controller.AddNewItem(items);
                 information += "被迫“自愿”购买物品";

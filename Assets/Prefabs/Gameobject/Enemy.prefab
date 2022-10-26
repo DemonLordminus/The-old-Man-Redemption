@@ -195,7 +195,7 @@ MonoBehaviour:
   ActLists: []
   HealthyLawLists: []
   debuffClasses: []
-  random: 0
+  random: 50
   isGood: 0
   information: 
   shade: {fileID: 7638780310405477317}
@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 7652950547724771662}
   - component: {fileID: 7652950547724771657}
   - component: {fileID: 7817603151117308384}
+  - component: {fileID: 5934829441628006274}
   m_Layer: 12
   m_Name: Enemy
   m_TagString: EventElement
@@ -442,3 +443,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5934829441628006274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7652950547724771655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b5467a95cadcb42a05461b668aa7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  images:
+  - {fileID: 21300000, guid: 65fc77d3a254ec94cab5d35783244d22, type: 3}
+  - {fileID: 21300000, guid: a1ab8541ac2ec1d47ba2b386c6fa5bcd, type: 3}
+  - {fileID: 21300000, guid: 3d2393211b65d684083871e5b2100d87, type: 3}
+  - {fileID: 21300000, guid: 64e8f9a204b7f85459f6c8c9e901c68a, type: 3}
+  - {fileID: 21300000, guid: 604046c88b7e8884ea05d7510957c6af, type: 3}
+  - {fileID: 21300000, guid: 89e465a97e0358741b5fcaa230b7cd47, type: 3}
+  - {fileID: 21300000, guid: badf0ed994723ba4db6532f05f0bbe4b, type: 3}

@@ -50,7 +50,7 @@ public class HospitalEvent : eventElmentFather
         if (DataManager.instance.controller.Gold > price)
         {
             DataManager.instance.controller.AddNewItem(items);
-            DataManager.instance.controller.Gold -= price;
+            DataManager.instance.controller.Gold -= price*items.Length;
             DataManager.instance.controller.ChangeHealth(Random.Range(10, 21));
             information += "";
             return;
@@ -73,7 +73,7 @@ public class HospitalEvent : eventElmentFather
         else if (DataManager.instance.controller.Gold > price)
         {
             DataManager.instance.controller.AddNewItem(items);
-            DataManager.instance.controller.Gold -= 2 * price;
+            DataManager.instance.controller.Gold -= 2 * price*items.Length;
             //成功触发事件后大概率恢复少量健康度，小概率减少健康度
             if (Random.Range(0,100)< random)
             {
@@ -85,7 +85,7 @@ public class HospitalEvent : eventElmentFather
             }
             information += "，付出更多的价格购买了道具";
             //极小概率使得病症的持续值增加
-            if (Random.Range(0,100)<random)
+            if (Random.Range(0,100)>10+random)
             {
                 foreach (DebuffClass debuff in DataManager.instance.debuffName)
                 {

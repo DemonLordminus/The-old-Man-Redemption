@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: zhitongyao
   m_EditorClassIdentifier: 
   Name: zhitongyao
-  Image: {fileID: 0}
+  Image: {fileID: 21300000, guid: 1571dc35adc470345a46b1e1720e3123, type: 3}
   Num: 0

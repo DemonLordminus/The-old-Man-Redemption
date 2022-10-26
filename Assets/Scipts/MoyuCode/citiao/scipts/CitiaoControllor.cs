@@ -36,6 +36,10 @@ public class CitiaoControllor : MonoBehaviour, IBeginDragHandler, IEndDragHandle
                 return;
             }
             //遇到词条，并且词条在触发区上
+            if(eventData.pointerCurrentRaycast.gameObject.name== "Lajitong")
+            {
+                Destroy(gameObject);
+            }
             if(eventData.pointerCurrentRaycast.gameObject.layer == 3 && eventData.pointerCurrentRaycast.gameObject.transform.parent.tag == "Tragger")
             {
                 //设置当前对象所属

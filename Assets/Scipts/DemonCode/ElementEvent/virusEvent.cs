@@ -56,6 +56,7 @@ public class virusEvent : eventElmentFather
 
     void BadRun()
     {
+        DataManager.instance.controller.RandomDebuff();
         bool escape = Random.Range(0, escapeF) > 5;
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         //老人在遭遇病魔时，会手持桃木剑与其战斗。（抗争具体化）
