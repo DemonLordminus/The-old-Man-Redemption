@@ -10,6 +10,7 @@ public class eventElmentFather : LawOrActLists
     public string information;
     // Start is called before the first frame update
     public GameObject shade;
+    public bool isOnFather;
     public void changeForGoodOrBad()
     {
         if(isGood)
@@ -23,7 +24,7 @@ public class eventElmentFather : LawOrActLists
     }
     private void DestroyForInvoke()
     {
-        if(gameObject.transform.parent.transform.childCount <= 1)
+        if(!isOnFather)
         {
             Destroy(gameObject.transform.parent.gameObject);
         }

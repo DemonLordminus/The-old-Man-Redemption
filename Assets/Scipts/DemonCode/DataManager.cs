@@ -47,6 +47,7 @@ public class DataManager : MonoBehaviour
     public TextMeshProUGUI lawtext;
     [SerializeField]
     public TextMeshProUGUI acttext;
+    
     void Awake()
     {
         if (instance != null)

@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
         debuffline = DataManager.instance.debufftext;
         lawline = DataManager.instance.lawtext;
         actline=DataManager.instance.acttext;
-        Initialize();
+        //Initialize();
         animator = GetComponent<Animator>();
         isPalse = true;
         Invoke("endPalse", 3f);
@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (debuffs[3].isEnable)//outufuxie)
                 {
-                    ChangeHealth(-outufuxieTime - (120-debuffs[3].keepTime) / 1000);
+                    ChangeHealth(-outufuxieTime - (debuffs[3].giveTime - debuffs[3].keepTime) / 1000);
                 }
                 if (debuffs[7].isEnable)//yiyu
                 {
@@ -360,7 +360,7 @@ public class PlayerController : MonoBehaviour
             {
                 if(debuff.keepTime==0)
                 {
-                    debuff.keepTime = 120;
+                    debuff.keepTime = debuff.giveTime;
                 }
                 if (debuff.keepTime > 0)
                 {
@@ -421,7 +421,7 @@ public class PlayerController : MonoBehaviour
         {
             if(debuff.isEnable)
             {
-                text += debuff.debuffName + "持续时间" + debuff.keepTime + "\n";
+                text += debuff.debuffName + "持续时间" + string.Format("{0:0}",debuff.keepTime) + "\n";
             }
         }
         debuffline.text = text;
@@ -642,7 +642,6 @@ public class PlayerController : MonoBehaviour
         {
             item.Num = 1;
             ItemsPackage.Add(item);
-
         }
         else
         {
@@ -661,17 +660,17 @@ public class PlayerController : MonoBehaviour
             {
                 item.Num = 1;
                 ItemsPackage.Add(item);
-
+                Debug.Log("从无到有");
             }
             else
             {
+                Debug.Log("从"+item.Num+"加1");
                 item.Num++;
             }
             DataManager.instance.text.text += "获得" + item.Name + "\n";
             textOnDying = true;
         }
         PackageManager.RefreshItem();
-
     }
 
     #endregion

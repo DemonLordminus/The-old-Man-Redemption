@@ -40,6 +40,7 @@ namespace tur
         // Start is called before the first frame update
         void Start()
         {
+            barManager.SetActive(false);
             UIobj.SetActive(true);
             InvokeRepeating("blockBecomeSmall", 0.5f, 0.01f);
             //sendButton.onClick.AddListener(endButtonCheck);

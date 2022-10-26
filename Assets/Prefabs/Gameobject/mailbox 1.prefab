@@ -143,12 +143,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lawlists: []
   ActLists: []
+  shenghuo: 
   HealthyLawLists: []
   debuffClasses: []
   random: 50
   isGood: 0
   information: 
   shade: {fileID: 4141041281896418897}
+  isOnFather: 1
   Gooditems1:
   - {fileID: 11400000, guid: 07082168f80eb1a4fa3a2627c408baee, type: 2}
   - {fileID: 11400000, guid: 07082168f80eb1a4fa3a2627c408baee, type: 2}
@@ -175,7 +177,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07082168f80eb1a4fa3a2627c408baee, type: 2}
   - {fileID: 11400000, guid: 07082168f80eb1a4fa3a2627c408baee, type: 2}
   price: 50
-  ishave: 0
 --- !u!1 &4141041281896418897
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,15 +250,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 582c05c7271e9e34cae8a8c07f78775f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63a93db391812ad45a68d67d6137b2f3, type: 3}
   m_Color: {r: 0.8773585, g: 0.2621039, b: 0.84314996, a: 0.57254905}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &4349090414373415032

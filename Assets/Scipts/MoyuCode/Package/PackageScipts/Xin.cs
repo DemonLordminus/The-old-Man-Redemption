@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Xin : ItemOnDrag
 {
     public int ChuOrZhongOrGao;
     public GameObject tragger;
+
     public override void ItemOnRun()
     {
         tragger = DataManager.instance.tragger;
-        if (tragger.activeSelf == true)
+        if (tragger.activeInHierarchy == true)
         {
             GetItem.Num += 1;
             return; 

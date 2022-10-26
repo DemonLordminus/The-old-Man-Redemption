@@ -11,13 +11,13 @@ public class MailboxEvent : eventElmentFather
 
     //public bool BadOrGood;
     public int price;
-    public bool ishave;
+    //public bool ishave;
     public override void getEventPerform()
     {
 
         if (!OnLaw("邮箱是坏的") || !OnAct("避开邮箱"))
         {
-            if (isGood && ishave)
+            if (isGood)
             {
                 information += "老人遇到了邮箱";
                 GoodRun();
@@ -82,8 +82,11 @@ public class MailboxEvent : eventElmentFather
         }
         try
         {
-            DataManager.instance.allEvent.SetActive(true);
-            DataManager.instance.controller.isPalse = true;
+            if (DataManager.instance.allEvent.transform.GetChild(0).gameObject.GetComponent<Text>().text != "")
+            {
+                DataManager.instance.allEvent.SetActive(true);
+                DataManager.instance.controller.isPalse = true;
+            }
         }
         catch
         { }

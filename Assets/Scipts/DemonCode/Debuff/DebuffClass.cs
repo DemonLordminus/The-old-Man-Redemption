@@ -38,11 +38,12 @@ namespace Dmld
         public DebuffType debuffType;//type枚举类型
         public float keepTime;//持续时间
         public bool isEnable;//效果是否触发
+        public float giveTime;
         public DebuffClass(string name,DebuffType type)
         { 
             this.debuffName = name;
             this.debuffType = type;
-            this.keepTime = 120;
+            this.keepTime = this.giveTime;
             DebuffOrder =(int)debuffType;
         }
 
@@ -52,14 +53,14 @@ namespace Dmld
             this.debuffType = type;
             DebuffOrder = (int)debuffType;
             autoRename();
-            this.keepTime = 120;
+            this.keepTime = this.giveTime;
         }
        public DebuffClass(int order)
         {
             DebuffOrder = order;
             this.debuffType = (DebuffType)order;
             autoRename();
-            this.keepTime = 120;
+            this.keepTime = this.giveTime;
         }
         //以下为临时代码，之后需要再改
         void autoRename()

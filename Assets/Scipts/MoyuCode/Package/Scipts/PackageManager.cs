@@ -21,6 +21,7 @@ public class PackageManager : MonoBehaviour
     }
     private void Start()
     {
+        RefreshItem();
         Package = DataManager.instance.controller.ItemsPackage;
     }
     private void OnEnable()

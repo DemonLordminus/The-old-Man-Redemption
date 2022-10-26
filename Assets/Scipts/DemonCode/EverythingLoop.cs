@@ -7,7 +7,7 @@ public class EverythingLoop : MonoBehaviour
 {
     public List<GameObject> GameObjectForLoop;
     public Transform LoopMarkStr, LoopMarkEnd;
-    public AutoFloorCreate atuofloor;
+    public AutoFloorCreate atuofloor,atuoSky;
     public GameObject ElementFather;
     public GameObject BackGroudFather; 
     public GameObject EventFather;
@@ -53,6 +53,7 @@ public class EverythingLoop : MonoBehaviour
             AutoDestory(EventFather);
             AutoDestory(BackGroudFather);
             atuofloor.floorLoop();
+            atuoSky.floorLoop();
             DataManager.instance.controller.loopNum += 1;
         }
     }

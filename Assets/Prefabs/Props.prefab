@@ -115,14 +115,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2375714548372599788}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc3e8f9442b4a1240a7aec6be8a13d2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   originalParent: {fileID: 0}
   GetItem: {fileID: 0}
-  traggerManager: {fileID: 0}
   count1: 0
   kangshengsu: 5
   swyl: 0

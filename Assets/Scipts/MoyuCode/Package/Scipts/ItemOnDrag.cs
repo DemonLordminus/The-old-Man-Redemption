@@ -10,6 +10,7 @@ public class ItemOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     //声明起始组类
     public Transform originalParent;
     public GetItem GetItem;
+
     public int count1 = 0;
     public float kangshengsu = 5;
     public float swyl;//食物饮料的回复量
@@ -62,8 +63,9 @@ public class ItemOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
             DataManager.instance.controller.ItemsPackage.Remove(GetItem);
         }
         PackageManager.RefreshItem();
-        Destroy(this.gameObject);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+        Destroy(this.gameObject);
     }
     //鼠标拖拽触发
     public void OnDrag(PointerEventData eventData)
