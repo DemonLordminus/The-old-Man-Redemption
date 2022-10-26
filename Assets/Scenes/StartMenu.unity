@@ -1104,10 +1104,10 @@ MonoBehaviour:
   allowFullscreen: 1
   aspectRatioWidth: 16
   aspectRatioHeight: 9
-  minWidthPixel: 512
-  minHeightPixel: 288
-  maxWidthPixel: 4800
-  maxHeightPixel: 2700
+  minWidthPixel: 400
+  minHeightPixel: 300
+  maxWidthPixel: 4000
+  maxHeightPixel: 3000
 --- !u!4 &471753273
 Transform:
   m_ObjectHideFlags: 0
