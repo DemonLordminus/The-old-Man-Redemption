@@ -11,7 +11,7 @@ public class Manager : MonoBehaviour
     public Inventory inventory;
     public GameObject Grid;
     public citiao citiaoPrefab;
-    public List<ScrObjcitiao> citiaoScrList;
+    public List<ScrObjcitiao> citiaoScrList1, citiaoScrList2, citiaoScrList3;
     public Transform citiaoPos;
     void Awake()
     {

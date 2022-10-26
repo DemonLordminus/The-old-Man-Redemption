@@ -17,4 +17,4 @@ MonoBehaviour:
   hpchange: 0
   spchange: 0
   bpchange: 0
-  goldchange: 1000
+  goldchange: 200

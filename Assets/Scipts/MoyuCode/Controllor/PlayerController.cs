@@ -515,7 +515,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.name == "mailbox")
         {
             eventCountPerformed++;
-            AddCitiao(3);
+            AddCitiao(1);
             collision.gameObject.GetComponent<eventElmentFather>().getEventPerform(); return;
         }
         if (IfHunluan())
@@ -615,7 +615,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "EventElement")
         {
-            AddCitiao(2);
+            AddCitiao(1);
             if (debuffs[13].isEnable)
             {
                 collision.gameObject.GetComponent<eventElmentFather>().random += 5;
@@ -637,7 +637,9 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < n; ++i)
         {
-            Manager.CreateNewcitiao(Manager.instance.citiaoScrList[UnityEngine.Random.Range(0, Manager.instance.citiaoScrList.Count - 1)]);
+            Manager.CreateNewcitiao(Manager.instance.citiaoScrList1[UnityEngine.Random.Range(0, Manager.instance.citiaoScrList1.Count)]);
+            Manager.CreateNewcitiao(Manager.instance.citiaoScrList2[UnityEngine.Random.Range(0, Manager.instance.citiaoScrList2.Count)]);
+            Manager.CreateNewcitiao(Manager.instance.citiaoScrList3[UnityEngine.Random.Range(0, Manager.instance.citiaoScrList3.Count)]);
         }
 
 
