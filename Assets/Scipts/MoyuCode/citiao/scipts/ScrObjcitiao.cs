@@ -14,6 +14,7 @@ public class ScrObjcitiao : ScriptableObject
     public ScrObjcitiao reverseWord;
     [Header("编号 在WordDataManager可以统一赋予编号，这里不用改")]
     public int serialNum;
+    public float hpChange, spChange, bpChange, moneyChange;
 }
 
 public enum wordType

@@ -18,3 +18,7 @@ MonoBehaviour:
   type: 1
   reverseWord: {fileID: 11400000, guid: e7a630d881ac79046857b8b1a22f55b3, type: 2}
   serialNum: 11
+  hpChange: 0
+  spChange: 5
+  bpChange: 5
+  moneyChange: -10

@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
     [Range(0, 100)]
     public float hunluanRandom;
     public int debuffsNumMax;
+
+    public float hpReduceRate=1;
     #region  移动
     Animator animator;
     [Header("道具需要的数值")]
@@ -295,6 +297,10 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeHealth(float amount)
     {
+        if (amount < 0)
+        {
+            amount *= hpReduceRate;
+        }
         CurrentHealthy = Mathf.Clamp(CurrentHealthy + amount, 0, MaxHealthy);
         HealthyBarManager.Instance.SetValue(CurrentHealthy / (float)MaxHealthy);
         if (CurrentHealthy <= 0)
@@ -313,6 +319,7 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeBP(float amount)
     {
+       
         CurrentBp = Mathf.Clamp(CurrentBp + amount, 0, MaxBp);
         BlissBarManager.Instance.SetValue(CurrentBp / (float)MaxBp);
     }

@@ -53,9 +53,17 @@ public class ButtonManager : MonoBehaviour
                     { }
                     citiaoNo[citiaoNum] = j;
                     citiaoNum++;
-                    if (gameObject.transform.parent.GetChild(i).GetChild(j).GetChild(0).GetComponent<citiao>().citiaoScrObj.type == (wordType)2)
+                    var citiao = gameObject.transform.parent.GetChild(i).GetChild(j).GetChild(0).GetComponent<citiao>();
+                    if (citiao.citiaoScrObj.type == (wordType)2)
                     {
                         lawOrAct = true;
+                    }
+                    if (citiao.citiaoScrObj.type == wordType.lifeStyle)
+                    { 
+                        DataManager.instance.controller.ChangeHealth(citiao.citiaoScrObj.hpChange);
+                        DataManager.instance.controller.ChangeSp(citiao.citiaoScrObj.spChange);
+                        DataManager.instance.controller.ChangeBP(citiao.citiaoScrObj.bpChange);
+                        DataManager.instance.controller.Gold += citiao.citiaoScrObj.moneyChange;
                     }
                 }
                 catch

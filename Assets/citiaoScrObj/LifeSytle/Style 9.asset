@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   Image: []
-  Content: "\u6D01\u8EAB\u81EA\u597D"
+  Content: "\u5BFB\u6C42\u5E78\u798F"
   type: 1
   reverseWord: {fileID: 11400000, guid: 3328bea841527444f8ad2e572c927f12, type: 2}
   serialNum: 14
+  hpChange: -7
+  spChange: -15
+  bpChange: 20
+  moneyChange: -20

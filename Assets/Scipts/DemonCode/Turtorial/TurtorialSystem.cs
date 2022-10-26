@@ -190,7 +190,7 @@ namespace tur
                     { }
                 }
             }
-            bool flag = false;
+            //bool flag = false;
             UnityEngine.Debug.Log(nowCitiao[0]);
             UnityEngine.Debug.Log(nowCitiao[1]);
             if (nowCitiao[0] == "前方是好的" || nowCitiao[1] == "前方是好的")
